@@ -177,7 +177,7 @@
                 <view class='t'>优惠套餐</view>
                 <view class='lists'>
                     <block wx:for="{{spec.packager}}" wx:key="packager_{{index}}">
-                        <view class="item{{item.isselect?' on':''}}" data-index="{{index}}" data-type="packager" bindtap='ClickAttr'>{{item.combinationTitle}}</view>
+                        <view class="item{{item.isselect?' on':''}}{{chooseSpecStock >=  item.packageCount ?'':' disabled'}}" data-index="{{index}}" data-type="packager" bindtap='ClickAttr'>{{item.combinationTitle}}</view>
                     </block>
                 </view>
             </view>
