@@ -11,20 +11,20 @@ Page({
     /**
      * 生命周期函数--监听页面加载
      */
-    onLoad: function(options) {
+    onLoad(options) {
         this.GetKeyWordList();
     },
 
     /**
      * 生命周期函数--监听页面初次渲染完成
      */
-    onReady: function() {
+    onReady() {
         this.Dialog = this.selectComponent('#Dialog');
     },
     /**
      * 生命周期函数--监听页面显示
      */
-    onShow: function() {
+    onShow() {
         //从本地获取搜索记录
         let searchstory = wx.getStorageSync('searchData');
         if (searchstory && searchstory.length > 0) {
@@ -44,11 +44,11 @@ Page({
             callback: res => {
                 if (res.name == 'confirm') {
                     */
-                    wx.setStorageSync('searchData', []);
-                    this.setData({
-                        searchstory: []
-                    });
-                    /*
+        wx.setStorageSync('searchData', []);
+        this.setData({
+            searchstory: []
+        });
+        /*
                     this.Dialog.CloseDialog();
                 } else {
                     this.Dialog.CloseDialog();
@@ -57,35 +57,32 @@ Page({
         });
         */
     },
+    //热门搜索以及历史纪录快捷搜索
     searchSubmit(e) {
-        if (e.target.dataset.search) {
-            this.setData({
-                inputValue: e.target.dataset.search
-            });
-        }
-        let data;
+        let _SearchValue = e.target.dataset.search;
         let localStorageValue = [];
-        if (this.data.inputValue != '') {
+
+        if (_SearchValue != '') {
+
+            //添加搜索历史记录
             //调用API从本地缓存中获取数据
-            var searchData = wx.getStorageSync('searchData') || [];
-            var tempSearchData = [];
+            localStorageValue = wx.getStorageSync('searchData') || [];
+
+            let tempSearchData = [];
             //过滤历史列表中相同的搜索记录
-            for (let item of searchData) {
-                if (item != this.data.inputValue) {
+            for (let item of localStorageValue) {
+                if (item != _SearchValue) {
                     tempSearchData.push(item);
                 }
             }
-            tempSearchData.push(this.data.inputValue);
+            //添加搜索文本进历史记录
+            tempSearchData.push(_SearchValue);
+            //保存至从本地缓存
             wx.setStorageSync('searchData', tempSearchData);
+
             //跳转列表
             wx.navigateTo({
-                url: "/pages/List/GoodsList/GoodsList?search=" + this.data.inputValue
-            });
-        } else {
-            wx.showToast({
-                title: '请输入关键词！',
-                icon: 'none',
-                duration: 2000
+                url: "/pages/List/GoodsList/GoodsList?search=" + _SearchValue
             });
         }
     },
@@ -98,6 +95,7 @@ Page({
     },
     //获取关键字列表
     GetKeyWordList() {
+        //显示加载动画
         this.setData({
             SearchHotListLoading: true
         });

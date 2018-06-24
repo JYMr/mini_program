@@ -18,7 +18,7 @@ Component({
         },
         selectHide: {
             type: Boolean,
-            value: true
+            value: false
         },
         clickable: {
             type: Boolean,
@@ -49,30 +49,34 @@ Component({
             });
         },
         searchSubmit(e) {
-            let inputValue = e.detail.value;
+            //获取表单数据
+            let _SearchValue = e.detail.value.trim();
+            let localStorageValue = [];
 
-            if (inputValue != '') {
+            if (_SearchValue != '') {
 
                 this.setData({
-                    inputValue: inputValue
+                    inputValue: _SearchValue
                 });
 
+                //添加搜索历史记录
                 //调用API从本地缓存中获取数据
-                let searchData = wx.getStorageSync('searchData') || [];
+                localStorageValue = wx.getStorageSync('searchData') || [];
 
                 let tempSearchData = [];
-                for (let item of searchData) {
-                    //查找是否有重复历史记录
-                    if (item != this.data.inputValue) {
+                //过滤历史列表中相同的搜索记录
+                for (let item of localStorageValue) {
+                    if (item != _SearchValue) {
                         tempSearchData.push(item);
                     }
                 }
-                //将搜索内容加入数组（前端输出为倒序）
-                tempSearchData.push(this.data.inputValue);
+                //添加搜索文本进历史记录
+                tempSearchData.push(_SearchValue);
+                //保存至从本地缓存
                 wx.setStorageSync('searchData', tempSearchData);
-                //触发搜索事件
+                //触发搜索事件，并放回搜索关键词
                 this.triggerEvent("SearchEvent", {
-                    keyword: this.data.inputValue
+                    keyword: _SearchValue
                 });
             } else {
                 //搜索词为空

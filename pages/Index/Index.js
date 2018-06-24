@@ -1,44 +1,41 @@
 //index.js
 const indexControllers = require('../controllers/indexController.js').controller;
-var app = getApp();
+const app = getApp();
 
 Page({
     data: {
         navmeau: [], //菜单
         collage: [], //拼团
         recommendgoods: [], //推荐单品
-        scanresult: '',
         isLoading: true,
         DefaultImage: ''
     },
-    onLoad: function() {
+    onLoad() {
         //获取全局默认图片底图
         this.setData({
             DefaultImage: app.globalData.defaultImg
-        })
+        });
+        
         let token = wx.getStorageSync('token') || '';
 
         if (token) {
             //加载首页数据
             this.GetHomeData();
         } else {
-            //首次进入，等待login登录回调
+            //无token，等待login登录回调
             app.tokenReadyCallback = res => {
                 this.GetHomeData();
             }
         }
     },
-    onReady: function() {
+    onReady() {
         this.search = this.selectComponent("#search");
     },
-    calling: function() {
-        app.calling();
-    },
-    //测试用
     /**
      * 页面相关事件处理函数--监听用户下拉动作
+     * 测试用
      */
-    onPullDownRefresh: function() {
+    onPullDownRefresh() {
         this.GetHomeData();
     },
     //导航菜单事件响应
@@ -77,15 +74,12 @@ Page({
             no: this.data.pageNo
         }).then(res => {
             if (res.done) {
-                //计算立省
                 this.setData({
                     navmeau: res.result.activities,
                     collage: res.result.purchases,
                     recommendgoods: res.result.reGoods,
                     isLoading: false
-                })
-                //设置客服地址
-                app.globalData.tel = res.mobile;
+                });
                 wx.hideLoading();
             } else {
                 wx.showToast({
@@ -96,6 +90,10 @@ Page({
             //测试用
             wx.stopPullDownRefresh();
         });
+    },
+    //拨打电话
+    calling() {
+        app.calling();
     },
     ErrorImage(e) {
         app.errImg(e, this);

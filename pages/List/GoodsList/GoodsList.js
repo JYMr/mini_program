@@ -1,6 +1,7 @@
 // pages/cate/lists.js
 const searchController = require('../../controllers/searchController').controller;
-var app = getApp();
+const app = getApp();
+
 Page({
 
     /**
@@ -25,52 +26,47 @@ Page({
     /**
      * 生命周期函数--监听页面加载
      */
-    onLoad: function(options) {
+    onLoad(options) {
+        //关键词搜索
         if (options.search) {
             this.setData({
                 keyword: options.search,
                 selectHide: true
-            })
-            this.GetListData(this)
+            });
+            this.GetListData();
         }
+        //通过分类搜索
         if (options.id) {
             this.setData({
                 categoryId: options.id
-            })
+            });
             this.GetCategoryList();
         }
-
         //获取全局默认图片底图
         this.setData({
             DefaultImage: app.globalData.defaultImg
-        })
+        });
     },
 
     /**
      * 生命周期函数--监听页面初次渲染完成
      */
-    onReady: function() {
+    onReady() {
         this.search = this.selectComponent("#search");
     },
     /**
      * 页面上拉触底事件的处理函数
      */
-    onReachBottom: function() {
+    onReachBottom() {
         //上拉 
         if (this.data.isEnd) {
             wx.showToast({
                 title: '已经到底了哦',
                 icon: 'none'
-            })
+            });
             return;
         }
-        this.GetListData()
-    },
-    onRefreshList: function() {
         this.GetListData();
-    },
-    onRefreshCategory: function() {
-        this.GetCategoryList();
     },
     //获取搜索列表
     GetListData() {
@@ -85,28 +81,32 @@ Page({
             pageNo: this.data.pageNo,
             pageSize: this.data.pagesize
         }).then(res => {
+            //设置加载状态和取消错误状态
             this.setData({
                 isLoading: true,
+                RequestErrorList: false,
                 RequestError: false
-            })
+            });
             if (res.done) {
                 this.setData({
                     contentlist: this.data.contentlist.concat(res.result.goodsList.list),
                     pageNo: res.result.goodsList.nextPage,
                     isEnd: this.data.pageNo == res.result.goodsList.nextPage //判断是否为最后一页
-
-                })
-                wx.hideLoading();
+                });
             } else {
-                wx.hideLoading();
-
+                wx.showToast({
+                    title: res.msg || '服务器出错, 请重试!',
+                    icon: 'none'
+                });
             }
-
+            wx.hideLoading();
         }).catch(err => {
+            //处理错误
+            wx.hideLoading();
             this.setData({
                 RequestErrorList: true,
                 RequestError: true
-            })
+            });
         })
     },
     //获取商品分类列表
@@ -124,27 +124,31 @@ Page({
         }).then(res => {
             this.setData({
                 isLoading: true,
-                RequestError: false
-            })
+                RequestError: false,
+                RequestErrorCategory: false
+            });
 
             if (res.done) {
                 this.setData({
                     contentlist: this.data.contentlist.concat(res.result.goodslist.list),
                     pageNo: res.result.goodslist.nextPage,
                     isEnd: this.data.pageNo == res.result.goodslist.nextPage //判断是否为最后一页
-
-                })
+                });
 
                 //设置标题
                 wx.setNavigationBarTitle({
                     title: res.result.category.catName || '搜索'
-                })
-                wx.hideLoading();
+                });
             } else {
-                wx.hideLoading();
-
+                wx.showToast({
+                    title: res.msg || '服务器出错, 请重试!',
+                    icon: 'none'
+                });
             }
+            wx.hideLoading();
         }).catch(err => {
+            //处理错误
+            wx.hideLoading();
             this.setData({
                 RequestErrorCategory: true,
                 RequestError: true
@@ -156,10 +160,20 @@ Page({
         let keyword = e.detail.keyword;
         this.setData({
             keyword: keyword,
+        });
+        this.RefreshList();
+    },
+    //重新加载列表
+    RefreshList() {
+        this.setData({
             contentlist: [],
             pageNo: 1
-        })
+        });
         this.GetListData();
+    },
+    //重新加载搜索列表
+    RefreshCategoryList() {
+        this.GetCategoryList();
     },
     ErrorImage(e) {
         app.errImg(e, this);

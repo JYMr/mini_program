@@ -23,7 +23,7 @@
                 <text class='clear-btn' bindtap="clearSearchStorage">清除</text>
             </view>
             <view class='con'>
-                <block wx:for="{{searchstory}}" wx:for-item="item" wx:for-index='index' wx:key="story_{{index}}">
+                <block wx:for="{{searchstory}}" wx:key="story_{{index}}">
                     <text class='item' data-search='{{item}}' bindtap="searchSubmit">{{item}}</text>
                 </block>
             </view>
