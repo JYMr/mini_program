@@ -3,22 +3,37 @@ const Util = require('/utils/util.js')
 const indexController = require('/pages/controllers/indexController.js').controller;
 App({
     onLaunch: function() {
-        wx.checkSession({
-            success: () => {
-                //session_key 未过期，并且在本生命周期一直有效
-                console.log('session_key 未过期')
-                this.GetParameter();
+        //获取token
+        let token = wx.getStorageSync('token') || '';
 
-                setTimeout(() => {
-                    this.SetHotRed();
-                }, 1000);
-            },
-            fail: () => {
-                // session_key 已经失效，需要重新执行登录流程
-                this.GetLogin();
-            }
-        });
-        
+        //优先判断token
+        if (token) {
+
+            //获取应用设置
+            this.GetParameter();
+
+            //延时获取导航栏红点状态
+            setTimeout(() => {
+                this.SetHotRed();
+            }, 1000);
+
+            //延时判断微信服务器Session状态
+            setTimeout(() => {
+                wx.checkSession({
+                    success: () => {
+                        //session_key 未过期，并且在本生命周期一直有效
+                    },
+                    fail: () => {
+                        // session_key 已经失效，需要重新执行登录流程
+                        this.GetLogin();
+                    }
+                });
+            }, 1500);
+        } else {
+            //无token，直接登录
+            this.GetLogin();
+        }
+
         // 登录
         // 获取用户信息
         wx.getSetting({
@@ -104,7 +119,7 @@ App({
         open_rx: '', //后台设置开启购买
         isOpenCustomerService: false, //是否开启在线客服
         AddressId: '', //用于订单地址选择
-        PaySuccessGroupId: ''//用于拼团成功后，返回详情页提示分享
+        PaySuccessGroupId: '' //用于拼团成功后，返回详情页提示分享
     },
     Util: {
         handleDate: Util
