@@ -1,0 +1,8 @@
+var filter = {
+	toFixed: function(value, num){
+		if(value === undefined) return value;
+		return value.toFixed(num || 2);
+	}
+}
+
+module.exports = filter

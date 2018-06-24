@@ -1,0 +1,75 @@
+/* pages/order/order.wxss */
+.ConfirmOrder{ padding-bottom: 98rpx;}
+.addaddress{ overflow: hidden; margin-bottom: 20rpx;}
+.addaddress .add{padding: 36rpx 30rpx; line-height: 90rpx; height: 90rpx; color: #222; font-size: 30rpx; position: relative; background: url(http://www.kzj365.com/mini_program/images/adressbg.png) no-repeat center bottom #fff; background-size: 100%; }
+.addaddress .add .icon{ float: left; width: 90rpx; height: 90rpx;background: url(http://www.kzj365.com/mini_program/images/addadressicon.png) no-repeat center center #37c4a4; background-size: 100%; border-radius: 20rpx; margin-right: 30rpx;  }
+.addaddress .add::after{ content: ''; width: 14rpx; height: 24rpx; margin-right: 10rpx; background: url(http://www.kzj365.com/mini_program/images/ciricon.png) no-repeat center center; background-size: 100% 100%; display: inline-block; position: absolute; top: 0; bottom: 0; right: 40rpx; margin: auto; z-index: 100;}
+.addaddress .info{ padding: 30rpx 30rpx 30rpx 60rpx;  background: url(http://www.kzj365.com/mini_program/images/adressbg.png) no-repeat center bottom #fff; background-size: 100%;}
+.addaddress .info .t{ color: #222;margin-bottom: 10rpx;font-weight: 700;}
+.addaddress .info .tip{ background: #37c4a4; display: inline-block; color: #fff; padding: 0 15rpx;  font-size: 24rpx; border-radius: 30rpx; vertical-align: middle; position: relative; top: -2rpx;}
+.addaddress .info .name{ font-size: 34rpx; margin-right: 20rpx;}
+.addaddress .info .tel{ font-size: 29rpx; margin-right: 20rpx; }
+.addaddress .info .c{ color: #888; position: relative; font-size: 26rpx;}
+.addaddress .info .c::after{ content: ''; width: 25rpx; height: 30rpx; margin-right: 10rpx; background: url(http://www.kzj365.com/mini_program/images/adressicon2.png) no-repeat center center; background-size: 100%; display: inline-block; position: absolute; top:10rpx;  left:-35rpx; margin: auto; z-index: 100;}
+
+.addaddress{ overflow: hidden;margin-bottom: 20rpx; background: #fff;}
+.addaddress .add{font-size: 30rpx;line-height: 90rpx;position: relative;height: 90rpx; padding: 36rpx 30rpx;color: #222;background: url(http://www.kzj365.com/mini_program/images/adressbg.png) no-repeat center bottom;background-size: 100%;}
+.addaddress .add .icon{ float: left;width: 90rpx;height: 90rpx;margin-right: 30rpx;  border-radius: 20rpx;background: url(http://www.kzj365.com/mini_program/images/addadressicon.png) no-repeat center center #37c4a4;background-size: 100%;}
+.addaddress .add::after{position: absolute;z-index: 100;top: 0;right: 40rpx;bottom: 0;display: inline-block;width: 14rpx;height: 24rpx;margin: auto;margin-right: 10rpx; content: '';background: url(http://www.kzj365.com/mini_program/images/ciricon.png) no-repeat center center;background-size: 100% 100%;}
+.addaddress .info{ padding: 30rpx 30rpx 30rpx 60rpx;background: url(http://www.kzj365.com/mini_program/images/adressbg.png) no-repeat center bottom #fff;background-size: 100%;}
+.addaddress .info .t{font-weight: 700;margin-bottom: 10rpx; color: #222;}
+.addaddress .info .tip{font-size: 24rpx;position: relative;top: -2rpx;display: inline-block;padding: 0 15rpx;vertical-align: middle;color: #fff;border-radius: 30rpx; background: #37c4a4;}
+.addaddress .info .name{ font-size: 34rpx;margin-right: 20rpx;}
+.addaddress .info .tel{ font-size: 29rpx;margin-right: 20rpx;}
+.addaddress .info .c{font-size: 26rpx;position: relative; color: #888;}
+.addaddress .info .c::after{position: absolute;z-index: 100;top: 5rpx;left: -35rpx;display: inline-block;width: 25rpx;height: 30rpx;margin: auto;margin-right: 10rpx; content: '';background: url(http://www.kzj365.com/mini_program/images/adressicon2.png) no-repeat center center;background-size: 100%;}
+
+.goodslists{margin-bottom: 20rpx; background: #fff;}
+.goodslists .title{ line-height: 88rpx;height: 88rpx;padding: 0 30rpx;}
+.goodslists .title .name{ font-size: 30rpx;font-weight: 700;color: #37c4a4;}
+.goodslists .title .shopicon{float: left; width: 40rpx;height: 40rpx;margin-top: 24rpx;margin-right: 15rpx;background: url(http://www.kzj365.com/mini_program/images/shopicon.png) no-repeat center center;background-size: 100%;}
+.goodslists .title .pedpay,.goodslists .title .peddelivery,.goodslists .title .share{ font-size: 30rpx;font-weight: 700;float: right;color: #ff5c58;}
+.goodslists .title .cancel,.goodslists .title .success,.goodslists .title .aftersale{ font-size: 30rpx;font-weight: 700;float: right;color: #ddd;}
+.goodslists .lists .name{font-size: 26rpx;line-height: 1.4;display: -webkit-box;overflow: hidden;height: 100rpx; text-overflow: ellipsis;color: #4a5259;-webkit-line-clamp: 3;-webkit-box-orient: vertical;}
+.goodslists .lists .item{position: relative;display: block;overflow: hidden;margin-bottom: 10rpx;padding: 30rpx; background: #fafafa;}
+.goodslists .lists .item:last-child{ margin-bottom: 0;}
+.goodslists .lists .pic{float: left; width: 140rpx;height: 140rpx;margin-right: 30rpx;}
+.goodslists .TypeIcon{font-size: 24rpx;line-height: 30rpx;display: inline-block;height: 30rpx;margin-right: 10rpx;padding: 0 10rpx;text-align: center;vertical-align: middle;text-transform: uppercase;color: #fff;border-radius: 50rpx; background: #37c4a4;}
+.goodslists .TypeIcon.redbg{ background: #ff5c58;}
+.goodslists .TypeIcon.bjp{width: 47rpx; height: 30rpx;background: url('http://www.kzj365.com/mini_program/images/bjpicon.png') center center no-repeat;background-size: 47rpx 30rpx;}
+.goodslists .lists .price{font-size: 20rpx;font-weight: 700; color: #ff5c58;}
+.goodslists .lists .price .n{ font-size: 30rpx;}
+.goodslists .lists .attr{ color: #888;}
+.goodslists .lists .ctype{background: #37c4a4; padding: 2rpx 6rpx;color: #fff; text-align: center; margin-left: 10rpx; height: 24rpx; overflow: hidden; font-size: 24rpx; display: inline-block; vertical-align: middle; line-height: 23rpx; position: relative; top: -1px;}
+.goodslists .remarks{line-height: 50rpx;height: 50rpx; padding: 20rpx 30rpx;border-top: #f4f4f4 1px solid;}
+.goodslists .remarks .l{ float: left;}
+.goodslists .remarks .r{ overflow: hidden;}
+.goodslists .remarks input{ display: inline-block;width: 100%;vertical-align: middle;}
+.goodslists .remarks input::-moz-placeholder{ color: #ddd;}
+.goodslists .lists .nums{font-size: 28rpx;position: absolute;z-index: 100;right: 30rpx;bottom: 30rpx; color: #888;}
+.goodslists  .total{line-height: 48rpx; height: 48rpx;padding: 20rpx 30rpx;text-align: right;color: #222;border-top: #f4f4f4 1px solid;}
+.goodslists  .total .p{ color: #ff5c58;}
+.goodslists .control{ padding: 20rpx 30rpx;text-align: right;}
+
+.payway{ overflow: hidden;}
+.payway .default{line-height: 88rpx;position: relative; height: 88rpx;padding: 0 30rpx;background: #fff;}
+.payway .default .icon{ position: absolute;z-index: 100;top: 0;right: 40rpx;bottom: 0;display: inline-block;width: 14rpx;height: 24rpx;margin: auto;margin-right: 10rpx;content: '';background: url(http://www.kzj365.com/mini_program/images/ciricon.png) no-repeat center center;background-size: 100%;background-size: 100%;transition: all .3s;}
+.payway .default.open .icon{transform: rotate(90deg);}
+.payway .lists{margin-bottom: 20rpx; background: #fff;}
+.payway .lists .item{line-height: 88rpx;position: relative; height: 88rpx;padding: 0 30rpx;border-top: #f4f4f4 1px solid;}
+.payway .lists .wechat-icon{float: left; width: 39rpx;height: 34rpx;margin-top: 28rpx;margin-right: 20rpx;background: url(http://www.kzj365.com/mini_program/images/wechatpayicon.png) no-repeat center center;background-size: 100%;}
+.payway .lists .cash-icon{float: left; width: 40rpx;height: 40rpx;margin-top: 24rpx;margin-right: 20rpx;background: url(http://www.kzj365.com/mini_program/images/deliveryicon.png) no-repeat center center;background-size: 100%;}
+.payway .lists .select{float: right; width: 36rpx;height: 36rpx;margin-top: 26rpx;margin-right: 0;border-radius: 100%;background: url(http://www.kzj365.com/mini_program/images/successicon.png) no-repeat center center #ddd;background-size: 100%;}
+.payway .lists .select.on{ background-color: #3cc6a6;}
+
+.floattotal{font-weight: 700; position: fixed;z-index: 500;right: 0;bottom: 0;left: 0;margin: auto;background: #fff;box-shadow: rgba(0, 0,0,.1) 5rpx 10rpx 20rpx;}
+.floattotal .allselect{ float: left;margin-top: 20rpx;margin-left: 30rpx;  color: #ddd;}
+.floattotal .allselect .icon{position: relative;top: -2px;display: inline-block; width: 36rpx;height: 36rpx;margin-right: 20rpx;vertical-align: middle;border-radius: 100%;background: url(http://www.kzj365.com/mini_program/images/successicon.png) no-repeat center center #ddd;background-size: 100%;}
+.floattotal .allselect.on{ color: #3cc6a6;}
+.floattotal .allselect.on .icon{ background-color: #3cc6a6;}
+.floattotal .info{line-height: 1.2; float: right;margin-top: 20rpx;text-align: right;}
+.floattotal .info .price{font-size: 20rpx;font-weight: 700; color: #ff5c58;}
+.floattotal .info .price .n{ font-size: 30rpx;}
+.floattotal .buy-btn{font-weight: 700;line-height: 98rpx; float: right;width: 286rpx;height: 98rpx;margin-left: 20rpx;text-align: center;color: #fff;background: #ff5c58;}
+
+.floattotal .free{ font-size: 20rpx;}

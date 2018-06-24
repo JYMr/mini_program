@@ -1,0 +1,44 @@
+/* pages/GroupBuy/GroupBuyShare/GroupBuyShare.wxss */
+.ShareTitle{background-color: #ffffff;height: 88rpx;padding: 0 30rpx;}
+.ShareTitle .group-num{background-color: #37c4a4;border-radius: 10rpx;color: #fff;font-size: 24rpx;line-height: 40rpx;padding: 6rpx 16rpx;}
+.ShareTitle .time{color: #555;line-height: 40rpx;font-size: 24rpx;display: inline-block;margin-left: 20rpx;margin-top: 26rpx;}
+.ShareTitle .time text{background-color: #555;border-radius: 10rpx;height: 40rpx;color: #FFF;padding: 6rpx 10rpx;margin-right: 10rpx;}
+
+.goods{ overflow: hidden; padding: 20rpx 30rpx; position: relative;}
+.goods .pic{ width: 140rpx; height: 140rpx; float: left; margin-right: 30rpx;}
+.goods .name{ text-overflow: ellipsis;display: -webkit-box;-webkit-line-clamp: 3;-webkit-box-orient: vertical;overflow: hidden;  color: #4a5259; font-size: 26rpx; height: 100rpx; line-height: 1.4;}
+.goods .type{ background: #37c4a4; display: inline-block; line-height: 30rpx; vertical-align: middle; padding: 0 10rpx;  height: 30rpx; color: #fff; text-align: center; margin-right: 10rpx; text-transform: uppercase; border-radius: 50rpx;}
+.goods .type.redbg{ background: #ff5c58;}
+.goods .price{color: #ff5c58; font-size: 30rpx; font-weight: 700;}
+.goods .price .n{ font-size: 30rpx;}
+.goods .attr{ color: #888;font-size: 24rpx;}
+.goods .ctype{ background: rgba(255, 92, 88, 0.2);  display: inline-block;padding: 2rpx 6rpx;color: #ff5c58; text-align: center; margin-left: 10rpx; height: 24rpx; overflow: hidden; font-size: 24rpx;  vertical-align: middle; line-height: 23rpx; position: relative; top: -1px; }
+ 
+.group-list{padding: 0 30rpx;background: #FFF;padding-bottom: 36rpx;margin-bottom: 20rpx;}
+.group-list .title{font-size: 26rpx;color: #555;padding: 35rpx 0;}
+.group-list .title text{color: #ff5c58;}
+.group-list .list{margin: 0 -14rpx;overflow: hidden;}
+.group-list .list .list-item{padding: 0 14rpx;float: left;}
+.group-list .list .list-item image{width: 90rpx;height: 90rpx;border-radius: 50%;}
+
+.GroupBuyText{text-align: center;color: #bbb;font-size: 24rpx;padding: 30rpx 0;background-color: #FFF;margin-bottom: 20rpx;}
+.GroupBuyText .title{font-size: 30rpx;display: inline-block;position: relative;line-height: 1;}
+.GroupBuyText .title:before{content:'';display: block;position: absolute;top: 14rpx;left: -76rpx;height: 1rpx;width: 56rpx;background-color: #bbb;}
+.GroupBuyText .title:after{content:'';display: block;position: absolute;top: 14rpx;right: -76rpx;height: 1rpx;width: 56rpx;background-color: #bbb;}
+.step{width: 690rpx;height: 78rpx;border-radius: 39rpx;margin: 50rpx auto 59rpx;overflow: hidden;line-height: 78rpx;text-align: center;font-size: 24rpx;color: #FFF;display: flex; z-index: 9;position: relative;}
+.step text{display: inline-block;width: 28rpx; height: 0;background-color: #FFF;border-radius: 50%;color: #3eccac;font-size: 18rpx;line-height: 0;text-align: center;margin-right: 10rpx;padding: 14rpx 0;position: relative; top: -2rpx;}
+.step view{flex: 1;border-radius: 0 39rpx 39rpx 0;height: 78rpx;float: left;justify-content: center; align-items: center;}
+.step view + view{padding-left: 78rpx;margin-left: -78rpx;}
+.step .step1{z-index: 4;position: relative;background-color: #37c4a4;}
+.step .step2{z-index: 3;position: relative;background-color: #3fcfae;}
+.step .step3{z-index: 2;position: relative;background-color: #47d8b7;}
+.step .step4{z-index: 1;position: relative;background-color: #51e3c2;}
+
+.Group-Fixed{position: fixed;bottom: 0;width: 100%;height: 98rpx;background-color: #FFF;}
+.Group-Fixed .Icon-btn{width: 144rpx;font-size: 20rpx;color: #bbbbbb;text-align: center;box-sizing: border-box;border-right: 1rpx solid  #f4f4f4;float: left;border-top: 1rpx solid  #f4f4f4;}
+.Group-Fixed .Icon-btn image{width: 46rpx;height: 46rpx;display: block;margin: 0 auto;margin-bottom: 11rpx;margin-top: 10rpx;}
+
+.Group-btn{height: 98rpx;background-color: #ff5c58;line-height: 98rpx;font-size: 32rpx;color: #fff;text-align: center;border-radius: 0;}
+.Group-btn:after{border: none;}
+.Group-btn.left{margin-left: 144rpx;}
+.Group-btn.gray{background-color: #bbbbbb;}

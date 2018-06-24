@@ -1,0 +1,9 @@
+<!-- 
+	传入参数：0处方药, 1红色OTC, 绿色OTC, 3普通商品(无图标), 4保健品
+ -->
+<template name="TypeIcon">
+    <text class='TypeIcon' wx:if="{{type == 0}}">RX</text>
+    <text class='TypeIcon redbg' wx:if="{{type == 1}}">OTC</text>
+    <text class='TypeIcon' wx:if="{{type == 2}}">OTC</text>
+    <text class='TypeIcon bjp' wx:if="{{type == 4}}"></text>
+</template>

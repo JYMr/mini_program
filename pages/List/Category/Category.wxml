@@ -1,0 +1,44 @@
+<!--pages/cate/cate.wxml-->
+<view class='cate-left'>
+  <scroll-view class='cate-left-in' scroll-y>
+      <block wx:for="{{CategoryList}}" wx:key="cate_{{index}}">
+          <view class="cate-btn {{chooseId == item.catId ? 'hover' : ''}}" bindtap="switchRightTab" data-index="{{index}}" data-id="{{item.catId}}">{{item.catName}}</view>
+      </block>
+  </scroll-view>
+</view>
+<view class="scroll-content">
+    <scroll-view class="scroll-view" scroll-y>
+        <block wx:if="{{ChildList.length > 0}}">
+            <view class='scroll-grid'>
+                <view class='con'>
+                    <block wx:for="{{ChildList}}" wx:for-item="item" wx:for-index='index' wx:key="scroll_{{index}}">
+                        <view class='item'>
+                            <navigator url='/pages/List/GoodsList/GoodsList?id={{item.catId}}&name={{item.catName}}'>
+                                <image class='pic' src='{{item.catImage ||DefaultImage}}' binderror="ErrorImage" data-obj="ChildList[{{index}}].catImage" lazy-load="true"></image>
+                                <view class='name'>{{item.catName}}</view>
+                            </navigator>
+                        </view>
+                    </block>
+                </view>
+            </view>
+            <!-- footer -->
+            <view class='footer-out'>
+                <import src="/pages/Common/footer.wxml" />
+                <template is="footer" data="" />
+            </view>
+        </block>
+        <block wx:else>
+            <view class="empty-content">
+                <view class='empty'>
+                    暂无数据
+                </view>
+            </view>
+
+            <!-- footer -->
+            <view class='footer-out'>
+                <import src="/pages/Common/footer.wxml" />
+                <template is="footer" data="" />
+            </view>
+        </block>
+    </scroll-view>
+</view>

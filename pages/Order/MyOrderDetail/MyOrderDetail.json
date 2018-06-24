@@ -1,0 +1,9 @@
+{
+    "navigationBarTitleText": "订单详情",
+    "usingComponents":
+    {
+        "Dialog": "/pages/Common/Dialog/Dialog",
+        "CustomerService": "/pages/Common/CustomerService/CustomerService",
+        "Floatcustomer": "/pages/Common/Floatcustomer/Floatcustomer"
+    }
+}

@@ -1,0 +1,113 @@
+/* pages/goods/index.wxss */
+page{background:#f4f4f4;padding-bottom: 98rpx; color: #555;font-size: 28rpx;}
+.goodsnav{height: 98rpx; line-height: 98rpx; width: 100%;display: flex;flex-direction: row; justify-content: space-around; align-items: center;background: #fff; color: #888; font-size: 30rpx; }
+.goodsnav .item{ display: block; position: relative; width: 33.333%; float: left; text-align: center;}
+.goodsnav .hover{ color: #37c4a4; font-weight:700; }
+.goodsnav .hover::after{ content: ''; height: 0; border-bottom: #37c4a4 6rpx solid; width:60rpx; position: absolute; bottom: 0; left: 0;right: 0; margin: auto; display: inline-block;}
+.goodsnavfixed{ position: fixed; top: 0;left: 0; right: 0; z-index: 500; box-shadow: rgba(0,0, 0, 0.1) 1px 1px 3px;}
+.goodsnav-blank{ height: 98rpx;}
+.goodsilder{ overflow: hidden; text-align: center; height: 584rpx; position: relative; background: #fff;  }
+.goodsilder image{width: 464rpx; height: 464rpx; position: absolute; left: 0; right: 0;top: 0; bottom: 0; margin: auto; z-index: 100; }
+.goodsilder .wx-swiper-dot{width: 12rpx;display: inline-flex;height: 12rpx;vertical-align: sub; margin-left: 5rpx;margin-right: 5rpx;background:#ddd;border-radius: 100%; bottom: 0;}
+.goodsilder .wx-swiper-dot::before{ content: ''; flex-grow: 1;} 
+.goodsilder .wx-swiper-dot-active::before{ content: ''; flex-grow: 1; background:#37c4a4; border-radius: 100%;}
+
+.goodserver{ overflow: hidden; height: 80rpx; background: #fafafa; border-top: #f4f4f4 1px solid; display: flex; flex-direction: row; justify-content: space-around; align-items: center;}
+.goodserver .item{ font-size: 24rpx; color: #a4aab2; }
+.goodserver .item .icon{ width: 24rpx; height: 24rpx; display: inline-block; margin-right: 5rpx; vertical-align: middle; position: relative; top: -1px;background: url(http://www.kzj365.com/mini_program/images/servericon.png) no-repeat center center; background-size: 100%; }
+
+.goodsinfo{padding: 20rpx 30rpx; position: relative; background: #fff; margin-bottom: 20rpx;}
+.goodsinfo .name{ font-size: 34rpx; padding-right: 80rpx; margin-bottom: 25rpx;font-weight: 700;}
+.goodsinfo .TypeIcon{ background: #37c4a4; display: inline-block; line-height: 30rpx; vertical-align: middle; padding: 0 10rpx; font-size: 24rpx; height: 30rpx; color: #fff; text-align: center; margin-right: 10rpx; text-transform: uppercase; border-radius: 50rpx;}
+.goodsinfo .TypeIcon.redbg{ background: #ff5c58;}
+.goodsinfo .TypeIcon.bjp{height: 30rpx;width: 47rpx;
+	background: url("http://www.kzj365.com/mini_program/images/bjpicon.png") center center no-repeat;background-size: 47rpx 30rpx;}
+
+.goodsinfo .price-item{ margin-bottom: 25rpx;}
+.goodsinfo .price{ margin-right: 15rpx; color: #ff5c58; font-weight: 700; }
+.goodsinfo .price .nums{ font-size: 46rpx;}
+.goodsinfo .market{ color: #bbbbbb; font-size: 18rpx;}
+.goodsinfo .market .nums{ font-size:30rpx; text-decoration: line-through;}
+.goodsinfo .share{ position: absolute;top: 30rpx;right: 30rpx;width: 80rpx;height: 36rpx;margin-right: 0;margin-left: 0;padding-right: 0;padding-left: 0;border-radius: 0;background: url(http://www.kzj365.com/mini_program/images/shareicon.png) no-repeat top right;background-size: 30rpx;}
+.goodsinfo .share:after{border: none;}
+.goodsinfo .detail{ font-size: 24rpx; color: #999;}
+
+/*预加载样式*/
+.goodsinfo.load .name{background: #ddd;border-radius: 6rpx;height: 60rpx;margin-right: 80rpx; margin-bottom: 25rpx;}
+.goodsinfo.load .share{ position: absolute;top: 30rpx;right: 30rpx;width: 36rpx;height: 36rpx;background: #ddd;border-radius: 6rpx;}
+.goodsinfo.load .price-item{ margin-bottom: 25rpx;background: #ddd;border-radius: 6rpx;height: 60rpx;width: 200rpx;}
+.goodsinfo.load .detail{background: #ddd;border-radius: 6rpx;height: 30rpx;}
+
+.goodsattr{ background: #fff; height: 88rpx; line-height: 88rpx; padding: 0 30rpx;  font-size: 30rpx; margin-bottom: 20rpx;}
+.goodsattr .attr{ color:#36c0a1;}
+
+.goodsfloat{position: fixed; z-index: 101; left:0; right: 0; bottom: 0; margin: auto; max-width: 750rpx; background: #fff; box-shadow: rgba(0,0, 0, 0.1) 0 -1px 3px; text-align: center; height: 98rpx;}
+.goodsfloat .phone{ width: 143rpx; height: 100%; border-right: #f4f4f4 1rpx solid; color: #bbb; font-size: 20rpx; display: flex; flex-direction: column; align-items: center; justify-content: center; float: left; }
+.goodsfloat .phone .icon{ width: 46rpx; height: 46rpx;background: url(http://www.kzj365.com/mini_program/images/phoneicon.png) no-repeat center center; background-size: 100%; margin-bottom:11rpx;}
+.goodsfloat .cart{ width: 143rpx; height: 100%; color: #bbb; font-size: 20rpx;display: flex; flex-direction: column; align-items: center; justify-content: center;  float: right;}
+.goodsfloat .cart .icon{ width: 46rpx; height: 46rpx;background: url(http://www.kzj365.com/mini_program/images/carticon.png) no-repeat center center; background-size: 100%; margin-bottom:11rpx;}
+.goodsfloat .list{ width: 143rpx; height: 100%; color: #bbb; font-size: 20rpx;display: flex; flex-direction: column; align-items: center; justify-content: center;  float: right;}
+.goodsfloat .list .icon{ width: 46rpx; height: 46rpx;background: url(http://www.kzj365.com/mini_program/images/listicon.png) no-repeat center center; background-size: auto 100%; margin-bottom:11rpx;}
+.goodsfloat .addcart{ width: 233rpx; height: 100%; background: #ff9459; color: #fff; font-size: 30rpx;display: flex; flex-direction: column; align-items: center; justify-content: center;  float: right;}
+.goodsfloat .addlist{ width: 233rpx; height: 100%; background: #37c4a4; color: #fff; font-size: 30rpx;display: flex; flex-direction: column; align-items: center; justify-content: center;  float: left;}
+.goodsfloat .buy{ width: 233rpx; height: 100%; background: #ff5c58; color: #fff; font-size: 30rpx;display: flex; flex-direction: column; align-items: center; justify-content: center;  float: right;}
+.goodsfloat .prestanding{ width: 233rpx; height: 100%; background: #ff5c58; color: #fff; font-size: 30rpx;display: flex; flex-direction: column; align-items: center; justify-content: center;  float: left;}
+.goodsfloat .gray{background-color: #bbbbbb;height: 100%;width: 465rpx;color: #FFF;font-size: 30rpx;line-height: 98rpx;float: right;}
+.goodsfloat .green{background-color: #37c4a4;}
+
+.prop{width: 100%; height: 100%;  position: fixed; top: 0; bottom: 0; left: 0; right: 0; z-index: 102; margin: auto;}
+.prop .gray-bg{ width: 100%; height: 100%; background: rgba(0,0, 0, 0.5); position: fixed; top: 0; bottom: 0; left: 0; right: 0; z-index: 1000; margin: auto;}
+.select-attr{ background: #fff; position: fixed; bottom: 0; left: 0; right: 0; margin: auto; z-index: 1001;}
+.select-attr .info{ padding: 45rpx 30rpx;overflow: hidden;}
+.select-attr .info .pic{ width: 180rpx; height: 180rpx; float: left; margin-right: 30rpx;}
+.select-attr .info .price{ color: #ff5c58; margin-bottom: 15rpx; margin-top: 10rpx;}
+.select-attr .info .name{display: -webkit-box; overflow: hidden;text-overflow: ellipsis;-webkit-box-orient: vertical;-webkit-line-clamp: 2;}
+.select-attr .info .nums{ font-size: 46rpx; font-weight: 700;}
+.select-attr .grid{ margin-bottom: 10rpx; padding: 0 30rpx;}
+.select-attr .grid .t{ color: #222; font-size: 32rpx; margin-bottom: 20rpx;}
+.select-attr .lists{ overflow: hidden;}
+.select-attr .lists .item{ padding: 0 25rpx; line-height: 62rpx; height: 70rpx; box-sizing: border-box; border:#dddddd 2rpx solid; border-radius: 5rpx;  margin-right: 20rpx; float: left; margin-bottom: 20rpx; position: relative;}
+.select-attr .lists .item icon{ display: none;}
+.select-attr .lists .item.on{border: #36c0a1 4rpx solid; color: #36c0a1;}
+.select-attr .lists .item.disabled{color: #ddd;}
+/* .select-attr .lists .item.on icon{ position: absolute; right:0; bottom: 0; z-index: 100; color: #fff; } */
+.select-attr .lists .item.on:before{ content: '';display: inline-block; position: absolute; right:0rpx; bottom:0rpx; z-index: 100; color: #fff;background: url(http://www.kzj365.com/mini_program/images/selecticon.png) no-repeat center center; background-size: 100%;  width: 31rpx; height:31rpx; }
+/* .select-attr .lists .item.on:after{ content: ''; border-right: #36c0a1 35rpx solid;  border-top:transparent 35rpx solid;  border-left: transparent 35rpx solid; display: inline-block; position: absolute; z-index: 99; right: 0; bottom: 0;} */
+.select-attr .lists .item.hover{ border:#36c0a1 1rpx solid; color: #36c0a1; background: #fff;}
+.select-attr .control{ overflow: hidden;}
+.select-attr .control .mins,.select-attr .control .plus{ width: 70rpx; height: 70rpx; box-sizing: border-box; float: left; background: #f5f5f5; color: #5c6066; text-align: center; line-height: 66rpx; border:#ddd 1px solid; font-size: 40rpx; }
+.select-attr .control .mins{ background:url("http://www.kzj365.com/mini_program/images/mins-icon.png") no-repeat center center #f5f5f5; background-size:20rpx; }
+.select-attr .control .plus{ background:url("http://www.kzj365.com/mini_program/images/plus-icon.png") no-repeat center center #f5f5f5; 
+background-size:20rpx;}
+.select-attr .control .mins.hover,.select-attr .control .plus.hover{ background-color: #e5e5e5;}
+.select-attr .control .disabled{ color: #a4aab3;}
+.select-attr .control .nums{ border:#ddd 1px solid; float: left; margin-left: -1px; margin-right: -1px; height: 70rpx; width: 104rpx; box-sizing: border-box; text-align: center; color: #555; }
+.select-attr .comfirm-btn{ width: 100%; height: 98rpx; line-height: 98rpx; background: #ff5c58; font-size: 30rpx; color: #fff; text-align: center; display: block; margin-top:70rpx; border-radius: 0;}
+.select-attr .comfirm-btn.green{background-color: #37c4a4;}
+.select-attr .comfirm-btn:after{border: none;}
+.select-attr .comfirm-btn.hover{ background: #e7514d;}
+.select-attr .comfirm-btn.green.hover{background-color: #37c4a4;}
+.select-attr .close{ position: absolute; z-index: 100; right: 30rpx; top: 30rpx; display: inline-block; width: 40rpx; height: 40rpx;background: url(http://www.kzj365.com/mini_program/images/closeicon.png) no-repeat center center; background-size: 100%;}
+
+.goodsdetail{ text-align: center;}
+.goodsdetail image{ width: 100%; vertical-align: middle;}
+
+.instructions{ padding: 30rpx; padding-bottom: 0;}
+.instructions .table {border:1px solid #ddd;border-right: 0;border-bottom: 0;width: 100%; box-sizing: border-box; margin-bottom: 30rpx; background: #fff;}
+.instructions .table:last-child{ margin-bottom: 0;}
+.instructions .tr {width: 100%;display: flex;justify-content: space-between;}
+.instructions .tr.tr-empty{padding:30rpx;text-align: center;border-right: 1px solid #ddd;border-bottom: 1px solid #ddd;box-sizing: border-box;width: 100%;display: block;}
+.instructions .th,.instructions .td {padding:30rpx;border-bottom: 1px solid #ddd;border-right: 1px solid #ddd;width:100%;}
+.instructions .th { width: 30%; }
+
+/*商品推荐*/
+.product-recommend{overflow: auto;margin-top: 20rpx;background-color: #FFF;}
+.product-recommend .recommend-title{text-align: left;line-height: 36rpx;border-left: 10rpx solid #37C4A4;margin: 36rpx 30rpx;color: #222;font-size: 36rpx;padding-left: 20rpx;}
+.product-recommend .recommend-list{height: 432rpx;text-align: left;}
+.product-recommend .recommend-item{padding: 30rpx;}
+.product-recommend .recommend-item image{width: 220rpx;height: 220rpx;margin-bottom: 30rpx;}
+.product-recommend .recommend-item .name{font-size: 26rpx;color: #555;line-height: 36rpx; height: 72rpx;overflow:hidden;text-overflow:ellipsis;line-clamp:2;box-orient:vertical;}
+.product-recommend .recommend-item .price{color: #FF5656;font-size: 35rpx}
+
+.find-index{position: fixed;right: 15rpx;bottom: 148rpx;width: 88rpx;height: 88rpx;z-index: 9;}
+.find-index image{width: 88rpx;height: 88rpx;}

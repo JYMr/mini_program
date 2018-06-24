@@ -1,0 +1,6 @@
+<template name="footer">
+    <view class='footer'>
+        <view class='copy'>©2018 康之家提供服务</view>
+        <image class='img' src='http://www.kzj365.com/mini_program/images/f-logo.png' lazy-load="true"></image>
+    </view>
+</template>

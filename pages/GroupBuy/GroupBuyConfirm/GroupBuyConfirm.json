@@ -1,0 +1,9 @@
+{
+
+    "navigationBarTitleText": "拼团订单",
+    "usingComponents":
+    {
+        "AddressEdit": "/pages/Common/AddressEdit/AddressEdit",
+        "Dialog": "/pages/Common/Dialog/Dialog"
+    }
+}

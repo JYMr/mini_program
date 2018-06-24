@@ -1,0 +1,92 @@
+<!--pages/order/order.wxml-->
+<import src="/pages/Common/TypeIcon.wxml" />
+<!-- 引入过滤器 -->
+<wxs module="Filter" src="../../Common/filter/filter.wxs"></wxs>
+<view class="ConfirmOrder">
+    <view class='addaddress'>
+        <view class='add' wx:if="{{!OrderData.defalutUserAddr.addr_id}}" bindtap="ShowEdit">
+            <text class='icon'></text>
+            <text class='name'>添加收货地址</text>
+        </view>
+        <navigator wx:if="{{OrderData.defalutUserAddr.addr_id}}" class='info' url="/pages/User/AddressList/AddressList?ChooseMode=true">
+            <view class='t'>
+                <text class='name'>{{OrderData.defalutUserAddr.addr_recipient}}</text>
+                <text class='tel'>{{OrderData.defalutUserAddr.addr_mobile}}</text>
+                <text class='tip' wx:if="{{OrderData.defalutUserAddr.isDefault}}">默认</text>
+            </view>
+            <view class='c'>{{OrderData.defalutUserAddr.addr_province}}{{OrderData.defalutUserAddr.addr_city}}{{OrderData.defalutUserAddr.addr_area}}{{OrderData.defalutUserAddr.addr_address}}</view>
+        </navigator>
+    </view>
+    <view class='goodslists'>
+        <view class='title'>
+            <text class='shopicon'></text>
+            <text class='name'>康之家药店</text>
+        </view>
+        <view class='lists'>
+            <view class='item' wx:for="{{OrderData.shopCartApiList}}" wx:key="{{index}}" wx:if="{{OrderData.shopCartApiList.length > 0 }}">
+                <image class='pic' src='{{item.goods_img ||DefaultImage}}' binderror="ErrorImage" data-obj="OrderData.shopCartApiList[{{index}}].goods_img"></image>
+                <view class='name'>
+                    <template is="TypeIcon" data="{{type: item.goods_type}}" />{{item.goods_title}} {{item.goods_spec}}</view>
+                <text class='price'>￥<text class='n'>{{Filter.toFixed(item.goods_price)}}</text>
+                </text>
+                <text class='attr'>/1{{item.goods_unit}}</text>
+                <text class='ctype' wx:if="{{item.promotionF}}">疗程装</text>
+                <text class='ctype' wx:if="{{PayWay == 1}}">货到付款</text>
+                <text class='nums'>x{{item.shopcart_num}}</text>
+            </view>
+             <view class='item' wx:if="{{OrderData.shopCartApi.shopcart_id}}">
+                <image class='pic' src='{{OrderData.shopCartApi.goods_img ||DefaultImage}}' binderror="ErrorImage" data-obj="OrderData.shopCartApiList.goods_img"></image>
+                <view class='name'>
+                    <template is="TypeIcon" data="{{type: OrderData.shopCartApi.goods_type}}" />{{OrderData.shopCartApi.goods_title}} {{OrderData.shopCartApi.goods_spec}}</view>
+                <text class='price'>￥<text class='n'>{{Filter.toFixed(OrderData.shopCartApi.goods_price)}}</text>
+                </text>
+                <text class='attr'>/1{{OrderData.shopCartApi.goods_unit}}</text>
+                <text class='ctype' wx:if="{{OrderData.shopCartApi.promotionF}}">疗程装</text>
+                <text class='ctype' wx:if="{{PayWay == 1}}">货到付款</text>
+                <text class='nums'>x{{OrderData.shopCartApi.shopcart_num}}</text>
+            </view>
+        </view>
+        <view class='remarks'>
+            <text class="l">订单备注：</text>
+            <view class='r'>
+                <input placeholder="限50字以内" maxlength="50" bindinput="BindChange" />
+            </view>
+        </view>
+        <view class='total'> 共{{OrderData.goodsNum}}件商品 合计：
+            <text class='p'>￥{{Filter.toFixed(OrderData.totalPrice)}}</text>
+            <block wx:if="{{!OrderData.freeshipping}}">（包含快递费10元）</block>
+            <block wx:if="{{OrderData.freeshipping}}">（免运费）</block>
+        </view>
+    </view>
+    <view class='payway'>
+        <view class='default{{PayListStatus ? " open" : ""}}' bindtap="TogglePayList" wx:if="{{cashStatus}}">
+            支付方式： {{PayWay == '2' ? '微信支付' : '货到付款'}}
+            <view class="icon"></view>
+        </view>
+        <view class='lists' wx:if="{{!cashStatus || PayListStatus}}">
+            <view class='item' data-type="2" bindtap="choosePayWay">
+                <text class='select{{PayWay == 2 ? " on" : ""}}'></text>
+                <text class='wechat-icon'></text>微信支付
+            </view>
+            <view class='item' data-type="1" bindtap="choosePayWay" wx:if="{{cashStatus}}">
+                <text class='select{{PayWay == 1 ? " on" : ""}}'></text>
+                <text class='cash-icon'></text>货到付款
+            </view>
+        </view>
+    </view>
+</view>
+<view class='floattotal'>
+    <view class='buy-btn' wx:if="{{PayWay == 2}}" bindtap="ConfirmOrder">立即支付</view>
+    <view class='buy-btn' wx:if="{{PayWay == 1}}" bindtap="ConfirmOrder">提交订单</view>
+    <view class='info'>
+        <view>总计：
+            <text class='price'>¥<text class='n'>{{Filter.toFixed(OrderData.totalPrice)}}</text>
+            </text>
+        </view>
+        <text class='free' wx:if="{{!OrderData.freeshipping}}">（包含快递费10元）</text>
+        <text class='free' wx:if="{{OrderData.freeshipping}}">（已免邮）</text>
+    </view>
+</view>
+
+<Dialog id="Dialog"></Dialog>
+<AddressEdit id="AddressEdit" bind:EditEvent="AddAddress"></AddressEdit>

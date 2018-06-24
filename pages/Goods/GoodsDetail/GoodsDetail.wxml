@@ -1,0 +1,229 @@
+<!--pages/goods/index.wxml-->
+<!-- 引入药品图标模板 -->
+<import src="/pages/Common/TypeIcon.wxml" />
+<!-- 引入过滤器 -->
+<wxs module="Filter" src="../../Common/filter/filter.wxs"></wxs>
+<!-- banner -->
+<swiper class="goodsilder" indicator-dots="true" autoplay="true" interval="5000" duration="500">
+    <block wx:for="{{goodsinfo.goodsImages}}" wx:for-item="item" wx:for-index='index' wx:key="slider_{{index}}">
+        <swiper-item>
+            <image src="{{item.imageArtworkName || DefaultImage}}" binderror="errImg" data-obj="goodsinfo.goodsImages[{{index}}].imageArtworkName" class="slide-image" lazy-load="true"/>
+        </swiper-item>
+    </block>
+</swiper>
+<!-- server -->
+<view class='goodserver'>
+    <view class='item'>
+        <text class='icon'></text>正品保障</view>
+    <view class='item'>
+        <text class='icon'></text>正规发票</view>
+    <view class='item'>
+        <text class='icon'></text>隐私配送</view>
+    <view class='item'>
+        <text class='icon'></text>药师服务</view>
+</view>
+<!-- 基本信息 -->
+<view class='goodsinfo' wx:if="{{goodsinfo.goodsId}}">
+    <button class='share' open-type="share"></button>
+    <view class='name'>
+        <template is="TypeIcon" data="{{type: goodsinfo.goodsType}}" />{{goodsinfo.goodsTitle}} {{goodsinfo.goodsSpec}}
+    </view>
+    <view class='price-item'>
+        <text class='price'>
+            <text>¥</text>
+            <text class='nums'>{{Filter.toFixed(goodsinfo.goodsPrice)}}</text>
+        </text>
+        <text class='market'>
+            <text>¥</text>
+            <text class='nums'>{{Filter.toFixed(goodsinfo.goodsMarketPrice)}}</text>
+        </text>
+    </view>
+    <view class='detail'>{{goodsinfo.goodsSubtitle}}</view>
+</view>
+<!-- 预加载样式 -->
+<view class='goodsinfo load' wx:if="{{goodsinfo.goodsId == undefined}}">
+    <view class='share'></view>
+    <view class='name'></view>
+    <view class='price-item'></view>
+    <view class='detail'></view>
+</view>
+<!-- 规格 -->
+<view class='goodsattr' bindtap="HandleModal" wx:if="{{spec.speclists}}">商品规格:
+    <text>{{chooseSpecName!='' ? chooseSpecName : "请选择"}}</text>
+</view>
+<!-- nav -->
+<view class="goodsnav {{goodsnavbool ?'goodsnavfixed':''}}" bindtap="TabToggle">
+    <view class='item {{tabsindex=="0" ? "hover" : ""}}' data-id="0">图文详情</view>
+    <view class='item {{tabsindex=="1" ? "hover" : ""}}' data-id="1">说明书</view>
+</view>
+<view wx:if='{{goodsnavbool}}' class='goodsnav-blank'></view>
+<!-- 图文详情 -->
+<view class='infogrid {{tabsindex=="0" ? "show" : "hide"}}'>
+    <view class='goodsdetail'>
+        <!-- 图文详情图片 -->
+        <block wx:for='{{goodsinfo.goodsDescImgs}}' wx:for-item="item" wx:for-index='index' wx:key="detail_{{index}}">
+            <image src='{{item.goodsDescImg}}' mode="widthFix" binderror="ErrorImage" data-obj="goodsinfo.goodsDescImgs[{{index}}].goodsDescImg" lazy-load="true"></image>
+        </block>
+        <!-- 商品推荐 -->
+        <view class="product-recommend" wx:if="{{goodsinfo.associateGoodses.length >= 3}}">
+            <view class="recommend-title">看该商品的用户还浏览过</view>
+            <swiper class="recommend-list" display-multiple-items="2.5">
+                <swiper-item wx:for="{{goodsinfo.associateGoodses}}" wx:key="recommend_{{index}}">
+                    <navigator class="recommend-item" hover-class="none" url="/pages/Goods/GoodsDetail/GoodsDetail?id={{item.goods.goods_id}}">
+                        <image src="{{item.goods.goods_img || DefaultImage}}" data-obj="goodsinfo.associateGoodses[{{index}}].goods.goods_img" binderror="ErrorImage" lazy-load="true"></image>
+                        <view class="name">{{item.goods.goods_title}}</view>
+                        <text class="price">¥{{Filter.toFixed(item.goods.goods_price)}}</text>
+                    </navigator>
+                </swiper-item>
+            </swiper>
+        </view>
+    </view>
+</view>
+<!-- 说明书 -->
+<view class='infogrid {{tabsindex=="1" ? "show" : "hide"}}'>
+    <view class='instructions'>
+        <view class="table">
+            <block wx:if="{{goodsinfo.books.length > 0}}">
+                <view class="tr" wx:for="{{goodsinfo.books}}" wx:key="manual_{{index}}">
+                    <view class="th">{{item.bookname}}</view>
+                    <view class="td">{{item.bookvalue}}</view>
+                </view>
+            </block>
+            <block wx:else>
+                <view class="tr tr-empty">
+                    暂无说明书
+                </view>
+            </block>
+        </view>
+    </view>
+</view>
+<!-- float -->
+<view class='goodsfloat'>
+
+    <!-- 下架 -->
+    <block wx:if="{{goodsinfo.goodsAdded == 0}}">
+        <view class='gray'>该商品已下架</view>
+        <navigator url='/pages/Cart/Cart' open-type="switchTab" class='cart' hover-class='none' wx:if="{{goodsinfo.goodsType != 0}}">
+            <view class='icon'></view>
+            <view>购物车</view>
+        </navigator>
+        <navigator url='/pages/Goods/Reservation/Reservation' class='list' hover-class='none' wx:else>
+            <view class='icon'></view>
+            <view>预定清单</view>
+        </navigator>
+    </block>
+
+    <!-- 缺货 -->
+    <block wx:if="{{goodsinfo.goodsStock == 0}}">
+        <view class='gray'>该商品已缺货</view>
+        <navigator url='/pages/Cart/Cart' open-type="switchTab" class='cart' hover-class='none' wx:if="{{goodsinfo.goodsType != 0}}">
+            <view class='icon'></view>
+            <view>购物车</view>
+        </navigator>
+        <navigator url='/pages/Goods/Reservation/Reservation' class='list' hover-class='none' wx:else>
+            <view class='icon'></view>
+            <view>预定清单</view>
+        </navigator>
+    </block>
+
+    <!-- 非处方药 -->
+    <block wx:elif="{{goodsinfo.goodsAdded != 0 && goodsinfo.goodsStock > 0 && goodsinfo.goodsType != 0}}">
+        <view class='buy' bindtap="HandleModal" data-type="Buy">立即购买</view>
+        <view class='addcart' bindtap="HandleModal" data-type="Cart">加入购物车</view>
+        <navigator url='/pages/Cart/Cart' open-type="switchTab" class='cart' hover-class='none'>
+            <view class='icon'></view>
+            <view>购物车</view>
+        </navigator>
+    </block>
+
+    <!-- 处方药 -->
+    <block wx:elif="{{goodsinfo.goodsAdded != 0 && goodsinfo.goodsStock > 0 && goodsinfo.goodsType == 0}}">
+        <view class='buy' bindtap="HandleModal" data-type="RxBuy">立即预定</view>
+        <view class='addcart green' bindtap="HandleModal" data-type="RxCart">加入预定清单</view>
+        <navigator url='/pages/Goods/Reservation/Reservation' class='list' hover-class='none'>
+            <view class='icon'></view>
+            <view>预定清单</view>
+        </navigator>
+    </block>
+    
+    <view class='phone' hover-class='none' bindtap="ToggleChaticonMenu">
+        <view class='icon'></view>
+        <view>联系客服</view>
+    </view>
+</view>
+<!-- 属性弹出框 -->
+<view class='prop' id='select-attr' wx:if="{{showModalStatus}}">
+    <view class='select-attr' animation="{{animationData}}">
+        <view class='close' bindtap="hideModal" wx:if="{{showModalStatus}}"></view>
+        <view class='info'>
+            <image class='pic' src='{{spec.src  || DefaultImage}}' binderror="ErrorImage" data-obj="spec.src" lazy-load="true"></image>
+            <view class='price'>¥
+                <text class='nums'>{{Filter.toFixed(spec.price)}}</text>
+            </view>
+            <view class='name'>{{spec.name}}</view>
+        </view>
+        <block wx:if="{{spec.speclists.length > 0}}">
+            <view class='grid attr'>
+                <view class='t'>规格</view>
+                <view class='lists'>
+                    <block wx:for="{{spec.speclists}}" wx:for-item="item" wx:for-index='index' wx:key="spec_{{index}}">
+                        <view class="item{{item.isselect?' on':''}}{{item.goodsStock > 0 && item.goodsAdded == 1 ?'':' disabled'}}" data-index="{{index}}" data-type="spec" bindtap='ClickAttr'>{{item.goodsSpec}}</view>
+                    </block>
+                </view>
+            </view>
+        </block>
+        <block wx:if="{{spec.packager.length > 0}}">
+            <view class='grid packager'>
+                <view class='t'>优惠套餐</view>
+                <view class='lists'>
+                    <block wx:for="{{spec.packager}}" wx:key="packager_{{index}}">
+                        <view class="item{{item.isselect?' on':''}}" data-index="{{index}}" data-type="packager" bindtap='ClickAttr'>{{item.combinationTitle}}</view>
+                    </block>
+                </view>
+            </view>
+        </block>
+        <view class='grid' wx:if="{{goodsinfo.goodsType != 0}}">
+            <view class='t'>数量</view>
+            <view class='control'>
+                <view class='mins{{num <= 1 ? " disabled":""}}' bindtap="bindMinus" hover-class="hover"></view>
+                <input type='number' class='nums' bindchange="bindManual" value="{{num}}"></input>
+                <view class='plus{{num >= goodsinfo.stock ? " disabled":""}}' hover-class="hover" bindtap="bindPlus"></view>
+            </view>
+        </view>
+        <!-- 非处方药按钮 -->
+        <block wx:if="{{ goodsinfo.goodsType != 0}}">
+            <!-- 有UserInfo权限 -->
+            <view class='comfirm-btn' hover-class="hover" wx:if="{{hasUserInfo || ModalMode == 'Cart' ||  ModalMode == ''}}" bindtap="ModalConfirm">确定</view>
+            <!-- 无UserInfo权限 -->
+            <button class='comfirm-btn' open-type="getUserInfo" bindgetuserinfo="getUserInfo" hover-class="hover" wx:if="{{!hasUserInfo && ModalMode == 'Buy'}}" bindtap="ModalConfirm">确定</button>
+        </block>
+        <!-- 处方药按钮 -->
+        <block wx:if="{{ goodsinfo.goodsType == 0}}">
+            <!-- 有UserInfo权限 -->
+            <view class='comfirm-btn' hover-class="hover" wx:if="{{hasUserInfo && ModalMode == ''}}" bindtap="ModalConfirm">确定</view>
+            <view class='comfirm-btn' hover-class="hover" wx:elif="{{hasUserInfo && ModalMode == 'RxBuy'}}" bindtap="ModalConfirm">立即预定</view>
+            <view class='comfirm-btn green' hover-class="hover" wx:elif="{{hasUserInfo && ModalMode == 'RxCart'}}" bindtap="ModalConfirm">加入预定清单</view>
+            <!-- 无UserInfo权限 -->
+            <button class='comfirm-btn' open-type="getUserInfo" bindgetuserinfo="getUserInfo" hover-class="hover" wx:if="{{!hasUserInfo && ModalMode == 'RxBuy'}}" bindtap="ModalConfirm">立即预定</button>
+            <button class='comfirm-btn green' open-type="getUserInfo" bindgetuserinfo="getUserInfo" hover-class="hover" wx:if="{{!hasUserInfo && ModalMode == 'RxCart'}}" bindtap="hideModal">加入预定清单</button>
+            <button class='comfirm-btn green' open-type="getUserInfo" bindgetuserinfo="getUserInfo" hover-class="hover" wx:if="{{!hasUserInfo && ModalMode == ''}}" bindtap="hideModal">预定</button>
+        </block>
+    </view>
+    <view class='gray-bg' bindtap="hideModal" wx:if="{{showModalStatus}}"></view>
+</view>
+
+<!-- 从分享页进入，返回首页悬浮按钮 -->
+<navigator class="find-index" open-type="switchTab" url="/pages/Index/Index" wx:if="{{isShare}}" hover-class="none">
+    <image src="http://www.kzj365.com/mini_program/images/find_index.png" lazy-load="true"></image>
+</navigator>
+
+<!-- 页脚 -->
+<import src="/pages/Common/footer.wxml" />
+<template is="footer" data="" />
+
+<!-- 提示组件 -->
+<Dialog id="Dialog"></Dialog>
+<!-- 客服菜单 -->
+<MenuCustomer id="MenuCustomer"></MenuCustomer>
+<!-- 提交需求表单 -->
+<ReservationInput id="ReservationInput" bind:SaveEvent="RxBuyFn"></ReservationInput>

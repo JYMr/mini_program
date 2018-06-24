@@ -1,0 +1,39 @@
+<!--pages/Common/CustomerService/CustomerService.wxml-->
+<view class="CustomerService" wx:if="{{isShow}}">
+    <view class="title">
+        售后单
+        <view class="loading" wx:if="{{lastInfoLoading}}"></view>
+    </view>
+    <view class="type-group">
+    	<view class="type" data-type="1" catchtap="ChangeType">
+    		<view class="select{{UserInfo.type == 1 ? ' on': ''}}"></view>退款
+    	</view>
+    	<view class="type" data-type="2" catchtap="ChangeType">
+    		<view class="select{{UserInfo.type == 2 ? ' on': ''}}"></view>换货
+    	</view>
+    </view>
+    <view class="input-item">
+        <text>售后原因</text>
+        <picker range="{{reason_list}}" value="{{region}}" class="picker" bindchange="bindpickerChange">
+            <view class="picker-text">
+              {{UserInfo.reason}}
+            </view>
+        </picker>
+    </view>
+    <view class="input-item">
+        <text>联系人</text>
+        <input type="text" bindinput="BindNameChange" value="{{UserInfo.name}}"/>
+    </view>
+    <view class="input-item">
+        <text>手机号</text>
+        <input type="number" bindinput="BindMobileChange" confirm-type="next" value="{{UserInfo.mobile}}"/>
+    </view>
+    <view class="CustomerServiceBtn{{ValiStatus ? ' active':''}}" bindtap="save">
+        保存
+    </view>
+    <view class="close" bindtap="Close"></view>
+</view>
+<view class="mask" wx:if="{{isShow}}" bindtap="Close"></view>
+
+<!-- 提示组件 -->
+<Dialog id="Dialog"></Dialog>

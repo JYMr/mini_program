@@ -1,0 +1,23 @@
+<!--pages/Common/search.wxml-->
+<view class='search-out {{classtype}}'>
+    <view class='search-box'>
+        <view class='search'>
+            <view class='search-icon'></view>
+            <input type='text' class='search-text' placeholder-class='placeholder' placeholder='请输入药品名称' bindinput="bindInput" value="{{inputValue}}" confirm-type='search' data-clickable='{{clickable}}' bindconfirm="searchSubmit" bindtap='tosearch' disabled="{{clickable}}"></input>
+            <view class='scan-btn' wx:if="{{!selectHide}}" bindtap='scan'></view>
+            <view class='clear-btn' wx:if="{{selectHide}}" bindtap="clearInput"></view>
+        </view>
+    </view>
+    <view class='search-blank'></view>
+</view>
+
+<!-- 提示组件 -->
+<Dialog id="Dialog" bind:toastEvent="ToastEvent">
+    <!-- 未找到符合条码的商品 -->
+    <view slot="content">
+        <view class='errrocode'>
+            <image src='http://www.kzj365.com/mini_program/images/errorcode.png' lazy-load="true"></image>
+            <view class='text'>未找到符合条码的商品</view>
+        </view>
+    </view>
+</Dialog>

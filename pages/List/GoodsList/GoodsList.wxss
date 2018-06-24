@@ -1,0 +1,13 @@
+/* pages/cate/lists.wxss */
+.header{ line-height: 60rpx; text-align: center; color: #999;}
+.lists-view{ overflow: hidden;min-height:800rpx;}
+.lists-view .item{border-bottom: #f4f4f4 1px solid; background: #fff; position: relative; }
+.lists-view navigator{ padding: 30rpx; display: block; overflow: hidden;}
+.lists-view .pic{ width: 180rpx; height: 180rpx; float: left; margin-right: 30rpx;}
+.lists-view .name{ text-overflow: ellipsis;display: -webkit-box;-webkit-line-clamp: 3;-webkit-box-orient: vertical;overflow: hidden;  color: #4a5259;}
+.lists-view .TypeIcon{ background: #37c4a4; display: inline-block; line-height: 30rpx; vertical-align: middle; padding: 0 10rpx; font-size: 24rpx; height: 30rpx; color: #fff; text-align: center; margin-right: 10rpx; text-transform: uppercase; border-radius: 50rpx;}
+.lists-view .TypeIcon.redbg{ background: #ff5c58;}
+.lists-view .TypeIcon.bjp{height: 30rpx;width: 47rpx;
+	background: url("http://www.kzj365.com/mini_program/images/bjpicon.png") center center no-repeat;background-size: 47rpx 30rpx;}
+.lists-view .price{color: #ff5c58; overflow: hidden; position: absolute; left: 240rpx; bottom: 30rpx; z-index: 100;font-size: 20rpx;}
+.lists-view .price .nums{ font-size: 30rpx;}

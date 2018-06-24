@@ -1,0 +1,31 @@
+/* pages/address/addressList/addressList.wxss */
+.addressList{padding-bottom: 98rpx;}
+.addressItem{background-color: #FFF;}
+.addressItem + .addressItem{margin-top: 20rpx;}
+.addressData{padding: 36rpx 30rpx;border-bottom: 1rpx solid #f4f4f4;}
+.addressData .name{font-size: 34rpx;color: #222}
+.addressData .mobile{font-size: 29rpx;color: #222;margin-left: 32rpx;}
+.addressData .detail{display: block;font-size: 26rpx;color: #888;line-height: 36rpx;margin-top: 25rpx;}
+
+.addressBottonGroup{padding: 0 30rpx;overflow: hidden;}
+.addressDefault{padding: 18rpx 0;float: left;color: #555}
+.addressDefault text{line-height: 36rpx;margin: 18rpx 0;}
+.addressDefault .addressDefaultIcon{width: 36rpx; height: 36rpx;margin-right: 20rpx;display: inline-block;
+	background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACQAAAAkCAMAAADW3miqAAAAV1BMVEUAAADd3d3d3d3d3d3d3d3d3d3d3d3d3d3d3d3d3d3d3d3d3d3d3d3d3d3d3d3d3d3d3d3d3d3d3d3d3d3d3d3////v7+/39/fq6urk5OTz8/Px8fHf39+2OgBSAAAAFHRSTlMAxvqbaUQhFQkCWezY18/MpKbtWm8WARwAAADvSURBVDjLjdRRkoMgEEXRRpEIKmLmEceZ7H+dSSxEIiDeLz9OFVrSTWGCm7Grqm40XFAyqRiCmJKxaQYcGpoDaWskqtvQ3EYkG2+B6ZGp96plyMa2E2ucVLvvwmnrN8rhHA3yjRTSPf7cg3ojljHWOsWIRNZ4JYjnjX1gjZOBa1kyBob0Zqxd0gaaOm+cigzuVGFttk5t5he+akNPr/692VGHbxUb3N2L7yfGBpom7CptYIgjUEkDTgKhShmIww+eE4ZFV2WODNTFS1e+vtcHoTxS5eG8PublhbHX9NFRTXmJ/UhKJvikP+tQT9/r8AWEQU9jV9L2vQAAAABJRU5ErkJggg==) center center no-repeat;background-size: 36rpx; vertical-align: middle;}
+
+.addressButton{float: right;height: 72rpx;width: auto;}
+.addressButton-item{height: 72rpx;float: left;margin-left: 40rpx;}
+.addressButton-item text{line-height: 36rpx;display: inline-block;margin: 18rpx 0;}
+.addressButton-item .icon{width: 36rpx; height: 36rpx;display: inline-block;vertical-align: bottom;margin: 18rpx 10rpx 18rpx 0;}
+.addressButton-item .icon.icon-edit{
+	background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABoAAAAaBAMAAABbZFH9AAAAGFBMVEUAAAAxMTExMTExMTExMTExMTExMTExMTG6+9RwAAAAB3RSTlMAzxMSvLsx8iFEQgAAAFVJREFUGNOty8EJgDAQRNFFO/DiVUtIM9ahIKT95BOYWXLOXJbHZ6OyN9j+ZJU/Knek80gq34WckBJyQkrICTkhJevuSdpIEkkiWf5CJIsksbVKm9QAoRwoDotsRFUAAAAASUVORK5CYII=) center center no-repeat;background-size: 26rpx;
+}
+.addressButton-item .icon.icon-delete{
+	background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABwAAAAcAQMAAABIw03XAAAABlBMVEUAAABVVVUT3Vn+AAAAAXRSTlMAQObYZgAAACdJREFUCNdjYPz/gwFCIMD///8/QAgDBoYDGMQxA3IJrObZ//8PIQDD2DANqV3VDgAAAABJRU5ErkJggg==) center center no-repeat;background-size: 28rpx;
+}
+
+.addressItem.active .addressData{
+	background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGAAAAAEBAMAAACD0ydHAAAAFVBMVEUAAAA3xKT/XFg3xKT/XFg3xKT/XFhJlIX8AAAABXRSTlMAwMA/P8sxefYAAAA7SURBVAjXY2AOxQCBDEDAkoYBkhhAgBFTQzBInAlTQwpYgymmBgGQuBumBgWwBlFMDQYgcTVMDQ4gcQBfnjdjtFZ3igAAAABJRU5ErkJggg==) bottom left repeat-x;background-size: auto 4rpx;}
+.addressItem.active .addressDefault .addressDefaultIcon{background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACQAAAAkCAMAAADW3miqAAAAUVBMVEUAAAA3xKQ3xKQ3xKQ3xKQ3xKQ3xKQ3xKQ3xKQ3xKQ3xKQ3xKQ3xKQ3xKQ3xKQ3xKQ3xKQ3xKQ3xKQ3xKQ3xKQ3xKQ3xKQ3xKQ3xKQ3xKQ3xKTnRLhqAAAAGnRSTlMAz/fG7zMUAmk/myEWCdekWezYRHWmRe2yWk1ABGcAAADvSURBVDjLjdTbjoMgFIXhhcwMjCh4qHZmvf+DtimhSjeo/5XGLwET2NjnbFBj04wqWIdiZtDcpQcjzez5kZ8/SN+yUNvvTadZTHc7M7HS9Fa9ZjWdVmx5UBvNzMNe/2j8MfLmiQaeNDxRZdfNHNLeAVcxvzBJOdiaAcxffLEIVYPvr/gWoNIHdasYKozp6Qe3suEdzdsgKmHY7FFUm9nQyFxJwzsUM2WlocLCXEnDAMtcSUMLx1xJQwfoXEmj01HZlDAcxKHzwnhz4fiuFy/C+ZW6eDmTUmWjussDY2udxFLr+RD7Nyjm7BLH4ZKPwwdnAFkWoDdK4AAAAABJRU5ErkJggg==) center center no-repeat;background-size: 36rpx;}
+
+.addAddressBtn{height: 98rpx; line-height: 98rpx;text-align: center;background-color: #37c4a4;font-size: 32rpx;position: fixed;bottom: 0;width: 100%;color: #FFF;}

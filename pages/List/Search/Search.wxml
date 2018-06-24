@@ -1,0 +1,34 @@
+<!--pages/search.wxml-->
+<Search id='Search' inputValue='{{inputValue}}' selectHide='{{selectHide}}' bind:SearchEvent="SearchtoList"></Search>
+
+<view class='searchlists'>
+    <!-- 热门搜索 -->
+    <view class='hotlists'>
+        <view class='title'>热门搜索<view class="loading" wx:if="{{SearchHotListLoading}}"></view></view>
+        <block wx:if="{{hotgoods.length!=0}}">
+            <view class='con'>
+                <block wx:for="{{hotgoods}}" wx:for-item="item" wx:for-index='index' wx:key="hot_{{index}}">
+                    <text class='item' data-search='{{item.searchName}}' bindtap="searchSubmit">{{item.searchName}}</text>
+                </block>
+            </view>
+        </block>
+        <block wx:else>
+            暂无热门搜索数据
+        </block>
+    </view>
+    <!-- 历史记录 -->
+    <block wx:if="{{searchstory.length!=0}}">
+        <view class='storylists'>
+            <view class='title'>历史记录
+                <text class='clear-btn' bindtap="clearSearchStorage">清除</text>
+            </view>
+            <view class='con'>
+                <block wx:for="{{searchstory}}" wx:for-item="item" wx:for-index='index' wx:key="story_{{index}}">
+                    <text class='item' data-search='{{item}}' bindtap="searchSubmit">{{item}}</text>
+                </block>
+            </view>
+        </view>
+    </block>
+</view>
+
+<Dialog id="Dialog"></Dialog>

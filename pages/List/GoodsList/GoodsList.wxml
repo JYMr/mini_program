@@ -1,0 +1,36 @@
+<import src="/pages/Common/TypeIcon.wxml" />
+
+<!-- 引入过滤器 -->
+<wxs module="Filter" src="../../Common/filter/filter.wxs"></wxs>
+
+<search id='search' inputValue='{{keyword}}' selectHide='{{selectHide}}' bind:SearchEvent="SearchtoList"></search>
+<block wx:if='{{contentlist.length!=0}}'>
+    <!-- 列表 -->
+    <scroll-view class="lists-view" scroll-y bindscrolltoupper="refresh" bindscrolltolower="loadMore">
+        <block wx:for='{{contentlist}}' wx:for-item="item" wx:for-index='index' wx:key="story_{{index}}">
+            <view class='item'>
+                <navigator url='/pages/Goods/GoodsDetail/GoodsDetail?id={{item.goods_id}}' hover-class="none">
+                    <image class='pic' src='{{item.goods_img || DefaultImage}}' binderror="ErrorImage" data-obj="contentlist[{{index}}].goods_img" lazy-load='true'></image>
+                    <view class='name'>
+                        <template is="TypeIcon" data="{{type: item.goods_type}}" />{{item.goods_title}} {{item.goods_spec}}</view>
+                    <view class='price'>￥
+                        <text class='nums'>{{Filter.toFixed(item.goods_price)}}</text>
+                    </view>
+                </navigator>
+            </view>
+        </block>
+    </scroll-view>
+    <view class="bottom" hidden="{{hideBottom}}">
+        <view>{{loadMoreData}}</view>
+        <view>{{refreshTime}}</view>
+    </view>
+</block>
+<view wx:if='{{contentlist.length==0 && !RequestError && isLoading}}' class='empty'>暂无数据</view>
+<view class="loaderror" wx:if="{{(RequestError && RequestErrorList) || (RequestError && RequestErrorCategory)}}">
+  <view>页面加载失败</view>
+  <view>请检查网络后 <text class='reflash' wx:if='{{RequestErrorList}}' bindtap='onRefreshList'>重试</text><text class='reflash' wx:if='{{RequestErrorCategory}}' bindtap='onRefreshCategory'>重试</text></view>
+</view>
+<view class='footer-out' wx:if="{{contentlist.length != 0 && isEnd}}">
+    <import hidden="{{hideBottom}}" src="/pages/Common/footer.wxml" />
+    <template is="footer" data="" />
+</view>

@@ -1,0 +1,33 @@
+<!--pages/address/addressEdit/addressEdit.wxml-->
+<view class="AddressEdit" wx:if="{{isShow}}">
+	<text class="title">新增地址</text>
+	<view class="input-item">
+		<text>收货人</text>
+		<input type="text" bindinput="BindNameChange" value="{{Detail.addr_recipient}}"/>
+	</view>
+	<view class="input-item">
+		<text>联系号码</text>
+		<input type="number" bindinput="BindMobileChange" value="{{Detail.addr_mobile}}" confirm-type="next" />
+	</view>
+	<view class="input-item">
+		<text>选择地区</text>
+		<picker mode="region" value="{{region}}" class="region" bindchange="bindRegionChange">
+		    <view class="picker">
+		      {{region[0]}} - {{region[1]}} - {{region[2]}}
+		    </view>
+		</picker>
+	</view>
+	<view class="input-item">
+		<text>详细地址</text>
+    <input bindinput="BindAddressChange" value="{{Detail.addr_address}}"></input>
+		<!-- <textarea bindinput="BindAddressChange" value="{{Detail.addr_address}}"></textarea> -->
+	</view>
+	<view class="AddressBtn{{ValiStatus ? ' active':''}}" bindtap="saveEdit">
+		保存
+	</view>
+	<view class="close" bindtap="CloseEdit"></view>
+</view>
+
+<view class="mask" wx:if="{{isShow}}" bindtap="CloseEdit"></view>
+
+<Dialog id="Dialog"></Dialog>

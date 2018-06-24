@@ -1,0 +1,40 @@
+<!--pages/address/addressList/addressList.wxml-->
+<view class="addressList" wx:wx:if="{{AddressList.length > 0}}">
+	<view class="addressItem{{item.addr_default == 1 ? ' active': ''}}" wx:for="{{AddressList}}" wx:for-item="item"  wx:for-index="index" wx:key="{{index}}" data-id="{{item.addr_id}}" bindtap="ChooseAddress">
+		<view class="addressData">
+			<text class="name">{{item.addr_recipient}}</text><text class="mobile">{{item.addr_mobile}}</text>
+			<text class="detail">{{item.addr_province}}{{item.addr_city}}{{item.addr_area}}{{item.addr_address}}</text>
+		</view>
+		<view class="addressBottonGroup">
+			<view class="addressDefault" data-id="{{item.addr_id}}"  catchtap="ChooseDefault">
+				<view class="addressDefaultIcon"></view>
+				<text>默认地址</text>
+			</view>
+			<view class="addressButton">
+				<view class="addressButton-item" data-id="{{item.addr_id}}" catchtap="EditFn">
+					<view class="icon icon-edit"></view>
+					<text>编辑</text>
+				</view>
+				<view class="addressButton-item" data-id="{{item.addr_id}}" catchtap="DelFu">
+					<view class="icon icon-delete"></view>
+					<text>删除</text>
+				</view>
+			</view>
+		</view>
+	</view>
+	<import src="/pages/Common/footer.wxml"/>
+	<template is="footer" data="" wx:if="{{AddressList.length > 0}}"/> 
+</view>
+
+<view class="addAddressBtn" catchtap="AddFn">添加收货地址</view>
+
+<!-- 无地址状态 -->
+<view class="empty" wx:if="{{AddressList.length == 0 && !isLoading && !RequestError}}">没有收货地址哦</view>
+<view class="loaderror" wx:if="{{RequestError }}">
+  <view>页面加载失败</view>
+  <view>请检查网络后 <text class='reflash' bindtap='onRefresh'>重试</text></view>
+</view>
+<!-- 地址编辑弹窗 -->
+<AddressEdit id="AddressEdit" bind:EditEvent="HandleEditEvent"></AddressEdit>
+<!-- 提示组件 -->
+<Dialog id="Dialog"></Dialog>

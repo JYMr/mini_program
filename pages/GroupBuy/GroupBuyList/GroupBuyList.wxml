@@ -1,0 +1,36 @@
+<!--pages/GroupBuy/GroupBuyList/GroupBuyList.wxml-->
+<!-- 引入过滤器 -->
+<wxs module="Filter" src="../../Common/filter/filter.wxs"></wxs>
+
+<view>
+    <block wx:if="{{GroupBuyData.length != 0}}">
+        <view class='index-grid hot-grid'>
+            <navigator class='slide' wx:for="{{GroupBuyData}}" url='/pages/GroupBuy/GroupBuyDetail/GroupBuyDetail?id={{item.purchase_id}}' wx:key="GroupBuyData_{{index}}" hover-class="none">
+                <view class='pic'>
+                    <image src="{{item.purchase_image || DefaultImage}}" class="slide-image" lazy-load="true" mode="aspectFill" binderror="ErrorImage" data-obj="GroupBuyData[{{index}}].purchase_image" lazy-load="true"/>
+                    <view class='discount'>
+                        <text class='n'>立省</text>
+                        <text class='nums'>￥{{Filter.toFixed(item.preferen_price)}} </text>
+                    </view>
+                    <view class='name'>{{item.purchase_name}}</view>
+                </view>
+                <view class='bottom'>
+                    <view class='join-btn'>
+                    	<text>{{item.people_number}}人团</text><text>去拼团</text>
+                	</view>
+                    <text class='price'>¥{{Filter.toFixed(item.purchase_price)}}</text>/1{{item.goods_unit}}｜已售{{item.virtua_sale_number + item.sale_number}}
+                </view>
+            </navigator>
+        </view>
+    </block>
+</view>
+
+<view class="empty" wx:if="{{GroupBuyData.length == 0 && !RequestError && isLoading}}">购物车暂无商品</view>
+
+<view class="loaderror" wx:if="{{RequestError}}">
+  <view>页面加载失败</view>
+  <view>请检查网络后 <text class='reflash' bindtap='GetCartList'>重试</text></view>
+</view>
+<!-- footer -->
+<import src="/pages/Common/footer.wxml"/>
+<template is="footer" data="" wx:if="{{GroupBuyData.length != 0 && isEnd}}"/>

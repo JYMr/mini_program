@@ -1,0 +1,23 @@
+<!--pages/Common/ReservationInput/ReservationInput.wxml-->
+<!-- 预定登记弹层 -->
+<view class="ReservationInput" wx:if="{{isShow}}">
+    <view class="title">预定登记
+        <view class="loading" wx:if="{{lastInfoLoading}}"></view>
+    </view>
+    <view class="input-item">
+        <text>联系人</text>
+        <input type="text" bindinput="BindNameChange" value="{{UserInfo.name}}" />
+    </view>
+    <view class="input-item">
+        <text>联系号码</text>
+        <input type="number" bindinput="BindMobileChange" value="{{UserInfo.mobile}}" />
+    </view>
+    <view class="ReservationInputBtn{{ValiStatus ? ' active':''}}" bindtap="save">
+        提交预定
+    </view>
+    <view class="close" bindtap="CloseEdit"></view>
+</view>
+<view class="mask" wx:if="{{isShow}}" bindtap="CloseEdit"></view>
+
+<!-- 提示组件 -->
+<Dialog id="Dialog"></Dialog>

@@ -1,0 +1,9 @@
+{
+    "navigationBarTitleText": "拼团详情",
+    "usingComponents":
+    {
+        "Dialog": "/pages/Common/Dialog/Dialog",
+        "MenuCustomer": "/pages/Common/MenuCustomer/MenuCustomer"
+    }
+
+}

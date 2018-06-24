@@ -1,0 +1,69 @@
+<import src="/pages/Common/TypeIcon.wxml" />
+<!-- 引入过滤器 -->
+<wxs module="Filter" src="../../Common/filter/filter.wxs"></wxs>
+
+<view class='ordernav'>
+    <view class='item{{Status == "" ? " on" : ""}}' bindtap="TabToggle" data-status="">全部</view>
+    <view class='item{{Status == 1 ? " on" : ""}}' bindtap="TabToggle" data-status="1">待审核</view>
+    <view class='item{{Status == 3 ? " on" : ""}}' bindtap="TabToggle" data-status="3">已审核</view>
+</view>
+<view class='ordernav-bank'></view>
+
+<block wx:for="{{OrderList}}" wx:for-index="index"  wx:for-item="OrderItem" wx:key="order_{{index}}" wx:if="{{OrderList.length > 0}}">
+<view class='orderlists'>
+    <view class='title'>
+        <text class='shopicon'></text>
+        <text class='name'>康之家药店</text>
+        <text class='audited' wx:if="{{OrderItem.needStatus == 1}}">待审核</text>
+        <text class='audited' wx:if="{{OrderItem.needStatus == 2}}">审核中</text>
+        <text class='audited' wx:if="{{OrderItem.needStatus == 3}}">已审核</text>
+        <text class='audited' wx:if="{{OrderItem.needStatus == 0}}">已取消</text>
+    </view>
+    <view class='lists'>
+      <block wx:for="{{OrderItem.needGoods}}" wx:for-index="goods_index"  wx:for-item="item" wx:key="goods_{{goods_index}}">
+        <view class='item'>
+            <image class='pic' src='{{item.goodsImg || DefaultImage}}' binderror="ErrorImage" data-obj="OrderList[{{index}}].needGoods[{{goods_index}}].goodsImg" lazy-load="true"></image>
+            <view class='name'><template is="TypeIcon" data="{{type: item.goodsType}}" />{{item.goodsTitle}}</view>
+            <text class='price'>
+              <text>￥</text>
+              <text class='n'>{{Filter.toFixed(item.goodsPrice)}}</text>
+            </text>
+            <text class='attr' wx:if="{{item.goodsUnit}}">/1{{item.goodsUnit}}</text>
+            <text class='nums'>x{{item.goodsInfoNum}}</text>
+        </view>
+      </block>
+    </view>
+    <view class='total'> 登记信息：{{OrderItem.needPerson}} {{OrderItem.needPhone}}</view>
+    <block wx:if="{{OrderItem.needStatus == 1 || OrderItem.needStatus == 2}}">
+    <view class='control'>
+        <text class='cancel-btn' data-id="{{OrderItem.needId}}" catchtap="CancelReservation">取消预定</text>
+    </view>
+    </block>
+    <block wx:if="{{OrderItem.needStatus == 3}}">
+    <view class='control'>
+        <text class='delete-btn' data-id="{{OrderItem.needId}}" catchtap="DeleteReservation">删除预定</text>
+        <text class='resubmit-btn' data-id="{{OrderItem.needId}}" catchtap="AgainReservation">重新提交</text>
+    </view>
+    </block>
+    <block wx:if="{{OrderItem.needStatus == 0}}">
+    <view class='control'>
+        <text class='delete-btn' data-id="{{OrderItem.needId}}" catchtap="DeleteReservation">删除预定</text>
+        <text class='resubmit-btn' data-id="{{OrderItem.needId}}" catchtap="AgainReservation">重新提交</text>
+    </view>
+    </block>
+</view>
+</block>
+<!-- 无订单状态 -->
+<view wx:if="{{OrderList.length == 0 && !RequestError && isLoading}}" class='empty'>暂无数据</view>
+<view class="loaderror" wx:if="{{RequestError }}">
+  <view>页面加载失败</view>
+  <view>请检查网络后 <text class='reflash' bindtap='onRefresh'>重试</text></view>
+</view>
+<import src="/pages/Common/footer.wxml" />
+<template is="footer" wx:if="{{OrderList.length != 0 && isEnd}}" data="" />
+
+<!-- 提示组件 -->
+<Dialog id="Dialog"></Dialog>
+
+<!-- 客服悬浮按钮 -->
+<Floatcustomer id='Floatcustomer' ></Floatcustomer>

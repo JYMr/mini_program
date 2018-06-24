@@ -1,0 +1,7 @@
+{
+    "navigationBarTitleText": "",
+    "usingComponents":
+    {
+        "MenuCustomer": "/pages/Common/MenuCustomer/MenuCustomer"
+    }
+}

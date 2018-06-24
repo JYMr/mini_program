@@ -1,0 +1,161 @@
+<!--pages/GroupBuy/GroupBuyShare/GroupBuyShare.wxml-->
+<!-- 引入过滤器 -->
+<wxs module="Filter" src="../../Common/filter/filter.wxs"></wxs>
+
+<view class="ShareTitle">
+	<text class="group-num">活动{{ShareData.people_number}}人团</text>
+	<block wx:if="{{ShareData.group_state == 0}}">
+		<view class="time">
+			<text>{{TimeOut.hours}}</text>:
+			<text>{{TimeOut.minute}}</text>:
+			<text>{{TimeOut.second}}</text>
+		</view>
+		<block wx:if="{{TimeOut.hours != 0 || TimeOut.minute != 0 || TimeOut.second != 0}}">后结束</block>
+		<block wx:if="{{TimeOut.hours == 0 && TimeOut.minute == 0 && TimeOut.second == 0}}">已结束</block>
+	</block>
+	<block wx:if="{{ShareData.group_state == 1}}">
+		<view class="time">
+			拼团成功, 已结束
+		</view>
+	</block>
+	<block wx:if="{{ShareData.group_state == 2}}">
+		<view class="time">
+			拼团已取消
+		</view>
+	</block>
+</view>
+<view class='goods'>
+    <navigator hover-class='none' url="/pages/GroupBuy/GroupBuyDetail/GroupBuyDetail?id={{ShareData.purchase_id}}&gid={{ShareData.group_id}}">
+        <image class='pic' src='{{ShareData.goods_img || DefaultImage}}' lazy-load="true" binderror="ErrorImage" data-obj="ShareData.goods_img"></image>
+        <view class='name'>{{ShareData.goods_title}}</view>
+        <text class='price'>
+        	<text>￥</text>
+            <text class='n'>{{Filter.toFixed(ShareData.purchase_price)}}</text>
+        </text>
+        <text class='attr'>/1{{ShareData.goods_unit}}</text>
+        <text class='ctype'>省{{Filter.toFixed(ShareData.preferen_price)}}元</text>
+    </navigator>
+</view>
+<view class="group-list">
+
+	<!-- 进行中 -->
+	<block wx:if="{{ShareData.group_state == 0}}">
+		<!-- 团主 -->
+		<view class="title" wx:if="{{ShareData.is_join == 1}}">还差<text>{{ShareData.remain_number}}</text>人，即可满足拼团订单的条件</view>
+
+		<!-- 非团主 -->
+		<view class="title"  wx:if="{{ShareData.is_join == 0}}">还差<text>{{ShareData.remain_number}}</text>人，赶紧参团</view>
+
+	</block>
+
+	<!-- 已结束 -->
+	<block wx:elif="{{ShareData.group_state == 1}}">
+		<!-- 团主 -->
+		<view class="title"  wx:if="{{ShareData.is_join == 1}}">拼团成功</view>
+
+		<!-- 非团主 -->
+		<view class="title"  wx:if="{{ShareData.is_join == 0}}">客官来晚了，该团已满员</view>
+	</block>
+
+	<!-- 已取消 -->
+	<block wx:elif="{{ShareData.group_state == 2}}">
+		<!-- 团主 -->
+		<view class="title" wx:if="{{ShareData.is_join == 1}}">拼团已取消</view>
+
+		<!-- 非团主 -->
+		<view class="title" wx:if="{{ShareData.is_join == 0}}">客官来晚了，该团已取消</view>
+	</block>
+
+	<view class="list">
+		<view class="list-item" wx:for="{{ShareData.headimgs}}" wx:key="{{index}}">
+			<image src="{{item || Default_avatar}}" lazy-load="true"></image>
+		</view>
+	</view>
+</view>	
+<view class="GroupBuyText">
+	<text class="title">拼团说明</text>
+	<view class="step">
+		<view class="step1"><text>1</text>发起团购</view>
+		<view class="step2"><text>2</text>邀请好友</view>
+		<view class="step3"><text>3</text>好友参团</view>
+		<view class="step4"><text>4</text>满团发货</view>
+	</view>
+	<text>支付开团并邀请好友参加，人数不足自动退款</text>
+</view>
+<!-- footer -->
+<import src="/pages/Common/footer.wxml"/>
+<template is="footer" data=""/> 
+
+<view class="Group-Fixed">
+
+	<!-- 进行中 -->
+	<block wx:if="{{ShareData.group_state == 0}}">
+
+		<!-- 团主 -->
+		<block wx:if="{{ShareData.is_join == 1}}">
+			<navigator class="Icon-btn" bindtap="ToggleChaticonMenu" open-type="switchTab" url="/pages/GroupBuy/GroupBuyList/GroupBuyList">
+				<image src="http://www.kzj365.com/mini_program/images/time_icon_01.png" lazy-load="true"></image>
+				更多拼团
+			</navigator>
+			<button class="Group-btn left" open-type="share">
+				还差{{ShareData.remain_number}}人 去邀请好友参团
+			</button>
+		</block>
+
+		<!-- 非团主 -->
+		<block class="title"  wx:if="{{ShareData.is_join == 0}}">
+			<navigator class="Icon-btn" bindtap="ToggleChaticonMenu" open-type="switchTab" url="/pages/GroupBuy/GroupBuyList/GroupBuyList">
+				<image src="http://www.kzj365.com/mini_program/images/time_icon_01.png" lazy-load="true"></image>
+				更多拼团
+			</navigator>
+			<view class="Group-btn left" wx:if="{{hasUserInfo}}" bindtap="ConfirmGroupOrder">
+				我要参团
+			</view>
+			<button class="Group-btn left" wx:if="{{!hasUserInfo}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo">
+				我要参团
+			</button>
+		</block>
+
+	</block>
+
+	<!-- 已结束 -->
+	<block wx:if="{{ShareData.group_state == 1}}">
+
+		<!-- 团主 -->
+		<block wx:if="{{ShareData.is_join == 1}}">
+			<navigator class="Icon-btn" bindtap="ToggleChaticonMenu" open-type="switchTab" url="/pages/GroupBuy/GroupBuyList/GroupBuyList">
+				<image src="http://www.kzj365.com/mini_program/images/time_icon_01.png" lazy-load="true"></image>
+				更多拼团
+			</navigator>
+			<navigator class="Group-btn left" url="/pages/Order/MyOrderDetail/MyOrderDetail?id={{ShareData.order_id}}">
+				查看订单
+			</navigator>
+		</block>
+
+		<!-- 非团主 -->
+		<block wx:if="{{ShareData.is_join == 0}}">
+			<navigator class="Icon-btn" bindtap="ToggleChaticonMenu" open-type="switchTab" url="/pages/GroupBuy/GroupBuyList/GroupBuyList">
+				<image src="http://www.kzj365.com/mini_program/images/time_icon_01.png" lazy-load="true"></image>
+				更多拼团
+			</navigator>
+			<navigator class="Group-btn left" url="/pages/GroupBuy/GroupBuyDetail/GroupBuyDetail?id={{ShareData.purchase_id}}">
+				重新开团
+			</navigator>
+		</block>
+
+	</block>
+
+	<!-- 已取消 -->
+	<block wx:if="{{ShareData.group_state == 2}}">
+
+		<navigator class="Icon-btn" bindtap="ToggleChaticonMenu" url="/pages/GroupBuy/GroupBuyList/GroupBuyList">
+			<image src="http://www.kzj365.com/mini_program/images/time_icon_01.png" lazy-load="true"></image>
+			更多拼团
+		</navigator>
+		<navigator class="Group-btn left gray" hover-class="none">
+			该团已取消
+		</navigator>
+	</block>
+</view>
+
+<Dialog id="Dialog"></Dialog>

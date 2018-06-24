@@ -1,0 +1,23 @@
+/* pages/address/addressEdit/addressEdit.wxss */
+.AddressEdit{width:  570rpx;position: fixed;top: 36rpx;left: 0;right: 0;margin: 0 auto;z-index: 999;transform: translate(0, -50%);animation-name: editfadeInDown;animation-duration: .3s;animation-fill-mode: both;}
+.mask{position: fixed;z-index: 998;top: 0;bottom: 0;left: 0;right: 0;margin: auto;background-color: rgba(0,0,0,.6);}
+.AddressEdit .title{font-size: 36rpx;color: #222;line-height: 107rpx;text-align: center;width: 100%;display: block;background-color: #FFF;border-radius: 10rpx 10rpx 0 0;}
+.AddressEdit .input-item{border-top: 1rpx solid #ddd;line-height: 88rpx;padding: 0 20rpx;overflow: hidden;background-color: #FFF;}
+.AddressEdit .input-item text{display: block;width: 144rpx;box-sizing: border-box;padding: 0 16rpx;line-height: 88rpx;float: left;}
+.AddressEdit .input-item input{width: 386rpx;float: left;line-height: 88rpx;height: 88rpx;}
+.AddressEdit .input-item .region{width: 386rpx;height: 88rpx;float: left;}
+
+.AddressEdit .input-item textarea{height: 120rpx;line-height: 40rpx;width: 386rpx;float: left;padding: 25rpx 0;}
+
+.close{position: absolute;width: 40rpx;height: 40rpx;right: -20rpx;top: -20rpx;
+background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACgAAAAoCAMAAAC7IEhfAAAAUVBMVEUAAADMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMz6+vrT09P////V1dXcoQ40AAAAFnRSTlMA+u2XB7OsNxOHHFnj09J5eFfk4oge1xXQ9gAAAOJJREFUOMuVld0OgyAMhQs4Udim8+fofP8HnRfTqtVQvyubfElDLQfa4+v8bY2x77z2dEkoW2xoy3CqFc7ggHGF9D4WJ9jPQcscLnDZznvgkkcmvLTJfU9x6zmQIP7nYpHAFtxY0bw3SGL6WSy5noaRi3GYuChn8cnl8GVznAusPIk8mHExl0/GUwVpSg815ZCm9JDTC9KUHl5kIU3pwZKBNKUHoxbVrdWHUY9HPXD1L9QvhX7NgmZxg/Yq3LtcFJEgagNAHyn6kNLHHhPPgzTeiGZJ6BpsaLpAl/hqeT4qTzt+qWRp/Z+a3MIAAAAASUVORK5CYII=) center center no-repeat;background-size: 40rpx;}
+
+.AddressEdit .AddressBtn{background-color: #ddd;color: #FFF;text-align: center;font-size: 32rpx;display: block;line-height: 98rpx;height: 98rpx;border-radius: 0 0 10rpx 10rpx;}
+.AddressEdit .AddressBtn.active{background-color: #37c4a4;}
+
+@keyframes editfadeInDown{from{transform: translate3d(0, -50%, 0);opacity: 0;}
+    to{transform: none;opacity: 1;}}
+
+.address-view{height: 264rpx;z-index: 1000;position: relative;background-color: #FFF;text-align: center;}
+.address-view .picker-view-column{height: 264rpx;}
+.address-view view{line-height: 88rpx;height: 88rpx;}

@@ -1,0 +1,17 @@
+/* pages/Common/Nav/Nav.wxss */
+.nav-blank{ height: 96rpx;}
+.nav{font-size: 20rpx;line-height: 1.2;position: fixed;z-index: 1000;right: 0;bottom: 0;left: 0;display: flex;flex-direction: row; height: 98rpx;color: #bbb;background: #fff;box-shadow: rgba(0, 0,0, .05) 0 -1px 3px;align-items: center;justify-content: space-around;}
+.nav .navli{ display: inline-block;text-align: center;flex: 1;}
+.nav .navBtn{font-size: inherit;line-height: inherit;margin-right: 0; margin-left: 0;padding-right: 0;padding-left: 0;border-radius: none;background-color: #fff;color:#bbb;
+}
+.nav .navBtn::after{border: none;}
+.nav .navli .icon{display: inline-block; width: 50rpx;height: 50rpx;}
+.nav .navli .icon01{ background: url(http://www.kzj365.com/mini_program/images/navicon01.png) no-repeat center center;background-size: 90%;}
+.nav .navli .icon02{ background: url(http://www.kzj365.com/mini_program/images/navicon02.png) no-repeat center center;background-size: 90%;}
+.nav .navli .icon03{ background: url(http://www.kzj365.com/mini_program/images/navicon03.png) no-repeat center center;background-size: 95%;}
+.nav .navli .icon04{ background: url(http://www.kzj365.com/mini_program/images/navicon04.png) no-repeat center center;background-size: auto 90%;}
+
+.nav .navli.hover .icon01{ background: url(http://www.kzj365.com/mini_program/images/navicon-hover01.png) no-repeat center center;background-size: 90%;}
+.nav .navli.hover .icon02{ background: url(http://www.kzj365.com/mini_program/images/navicon-hover02.png) no-repeat center center;background-size: 90%;}
+.nav .navli.hover .icon03{ background: url(http://www.kzj365.com/mini_program/images/navicon-hover03.png) no-repeat center center;background-size: 95%;}
+.nav .navli.hover .icon04{ background: url(http://www.kzj365.com/mini_program/images/navicon-hover04.png) no-repeat center center;background-size: auto 100%;}

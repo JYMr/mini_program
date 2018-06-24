@@ -1,0 +1,23 @@
+/* pages/search.wxss */
+page{ background: #fff;}
+
+
+.searchlists{ background: #fff; height: calc( 100% - 80rpx); padding: 48rpx 40rpx 0 60rpx;}
+.searchlists .hotlists { overflow: hidden; margin-bottom: 30rpx;}
+.searchlists .hotlists .title{ color: #222; font-size: 30rpx; margin-bottom: 30rpx; border-left: #37c4a4  10rpx solid; padding-left: 10rpx; line-height: 30rpx; }
+.searchlists .hotlists .title .loading{width: 30rpx;height: 30rpx;display: inline-block;margin-left: 20rpx;vertical-align: bottom;animation: loading 1s linear infinite;
+	background: url("http://www.kzj365.com/mini_program/images/loading_img.png") center center no-repeat;background-size: 30rpx;transition: all 1s;}
+.searchlists .hotlists .item{ line-height: 60rpx; height: 60rpx; padding: 0 30rpx; background: #f4f4f4; color: #888; font-size: 26rpx; float: left; margin-right: 20rpx; margin-bottom: 20rpx; border-radius: 10rpx; white-space: nowrap;text-overflow: ellipsis; overflow: hidden; max-width: 100%; box-sizing: border-box;}
+.searchlists .hotlists .con{ max-height: 390rpx; overflow: hidden;}
+.searchlists .hotlists .con{overflow: hidden;height: 380rpx;}
+
+.searchlists .storylists { overflow: hidden;}
+.searchlists .storylists .title{ color: #222; font-size: 30rpx; margin-bottom: 30rpx; border-left: #37c4a4  10rpx solid; padding-left: 10rpx; line-height: 30rpx; position: relative; }
+.searchlists .storylists .clear-btn{ padding:0 20rpx; line-height: 40rpx; height: 40rpx; display: inline-block; color: #fff; background: #ddd; border-radius: 30rpx; position: absolute; z-index: 100; right: 0; top:0; font-size: 24rpx;}
+.searchlists .storylists .item{ line-height: 60rpx; height: 60rpx; padding: 0 30rpx; background: #f4f4f4; color: #888; font-size: 26rpx; float: left; margin-right: 20rpx; margin-bottom: 20rpx;border-radius: 10rpx;white-space: nowrap;text-overflow: ellipsis; overflow: hidden; max-width: 100%; box-sizing: border-box;}
+.searchlists .storylists .con{ max-height: 220rpx; overflow: hidden }
+
+@keyframes loading{
+	from{transform: rotate(360deg);}
+	to{transform: rotate(0deg);}
+}

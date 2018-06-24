@@ -1,0 +1,25 @@
+<!--pages/Common/Dialog.wxml-->
+<view class="Dialog" wx:if="{{isShow && option.type == 'Confirm'}}">
+	<view class="Dialog-text">
+		{{option.title}}
+	</view>
+	<view class="Dialog-btn">
+		<view class="btn-item {{item.class}}" wx:for="{{option.btnArray}}" wx:for-item="item"  wx:for-index="index" wx:key="{{index}}" data-index="{{index}}" data-name="{{item.name}}" bindtap="_tapEvent">{{item.title}}</view>
+	</view>
+</view>
+<view class="Dialog" wx:if="{{isShow && option.type == 'Alert'}}">
+	<view class="Dialog-text">
+		{{option.title}}
+	</view>
+	<view class="Dialog-btn">
+		<view class="btn-item {{item.class}}" bindtap="_tapEvent">{{option.btnArray[1].title}}</view>
+	</view>
+</view>
+<view class="Dialog Dialog-1" wx:if="{{isShow && option.type == 'Message'}}">
+	<view class="icon icon-{{option.messageType}}"></view>
+	<text>{{option.title}}</text>
+</view>
+<view class="Dialog" wx:if="{{isShow && option.type == 'Slot'}}">
+	<slot name="content"></slot>
+</view>
+<view class="mask" wx:if="{{isShow}}"></view>

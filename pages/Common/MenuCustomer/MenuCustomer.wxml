@@ -1,0 +1,12 @@
+<!--pages/Common/MenuCustomer/MenuCustomer.wxml-->
+<view class="Menu{{flag ? ' Menu-bottom' : ''}}" wx:if="{{isShow}}">
+    <view class="Menu-item" wx:if="{{isOpenCustomerService}}">
+        <button open-type="contact">
+            <image src="http://www.kzj365.com/mini_program/images/message_icon.png"></image>
+            在线咨询
+        </button>
+    </view>
+    <view class="Menu-item" bindtap="Calling">免费热线：{{mobile}}</view>
+    <view class="Menu-item cancel" bindtap="ToggleChaticonMenu">取消</view>
+</view>
+<view class="mask" wx:if="{{isShow}}" bindtap="ToggleChaticonMenu"></view>

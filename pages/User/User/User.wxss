@@ -1,0 +1,31 @@
+/* pages/user/user.wxss */
+.defaultinfo{ background:url(http://www.kzj365.com/mini_program/images/userdefaulticon.png) no-repeat center center #37c4a4; background-size: 100% 100%; padding: 36rpx 27rpx; color: #fff; display: flex; flex-direction: row; align-items: center; font-size: 30rpx;}
+.defaultinfo .avatar{ border-radius: 100%; width: 132rpx; height: 132rpx; border: #2c9d83 6rpx solid;overflow: hidden;}
+.defaultinfo .nickname{ margin-left: 30rpx; display: inline-block;height: 30rpx;width: 200rpx;}
+.meau{ background: #fff; margin-bottom: 20rpx;}
+.meau .title{ height: 100rpx; line-height: 100rpx; border-bottom: #f4f4f4 1px solid; font-size: 30rpx; font-weight: 700; position: relative;}
+.meau .title navigator{ padding: 0 30rpx; display: block;}
+.meau .title navigator::before{ content: ''; width: 10rpx; height: 36rpx; margin-top: 32rpx; margin-right: 15rpx; background: #37c4a4; float: left;}
+.meau .title navigator::after{ content: ''; width: 14rpx; height: 24rpx; margin-right: 10rpx; background: url(http://www.kzj365.com/mini_program/images/ciricon.png) no-repeat center center; background-size: 100% 100%; display: inline-block; position: absolute; top: 0; bottom: 0; right: 40rpx; margin: auto; z-index: 100;}
+.meau .con{  display: flex; align-items: center; flex-direction: row; justify-content:space-around; color: #888888; font-size: 26rpx; height: 200rpx;}
+.meau .item{ display: flex; flex-direction: column;position: relative; }
+.meau .icon01{ width: 78rpx; height: 78rpx; background:url(http://www.kzj365.com/mini_program/images/meauicon01.png) no-repeat center center; background-size: 100%; display: inline-block; margin-bottom: 10rpx;}
+.meau .icon02{ width: 78rpx; height: 78rpx; background:url(http://www.kzj365.com/mini_program/images/meauicon02.png) no-repeat center center; background-size: 100%; display: inline-block; margin-bottom: 10rpx;}
+.meau .icon03{ width: 78rpx; height: 78rpx; background:url(http://www.kzj365.com/mini_program/images/meauicon03.png) no-repeat center center; background-size: 100%; display: inline-block; margin-bottom: 10rpx;}
+.meau .icon04{ width: 78rpx; height: 78rpx; background:url(http://www.kzj365.com/mini_program/images/meauicon04.png) no-repeat center center; background-size: 100%; display: inline-block; margin-bottom: 10rpx;}
+.meau .item .num{position: absolute;top: -15rpx;right: -15rpx;font-size: 22rpx;color: #fff;background-color: #ff5c58;border-radius: 15px;height: 0;min-width: 30rpx;text-align: center;line-height: 0;padding: 15rpx 8rpx 15rpx 10rpx;box-sizing: border-box; }
+.meau .item .num::before,.meau .item .num::after{ content: ''; display: inline-block; width: 0; height: 0; vertical-align: middle;}
+
+.lists{  background: #fff; }
+.lists .item{ height: 100rpx; line-height: 100rpx; border-bottom: #f4f4f4 1px solid; font-size: 30rpx; color: #888888; position: relative;}
+.lists .item button{background-color: #FFF;text-align: left;font-size: 30rpx; color: #888888;height: 100rpx; line-height: 100rpx;}
+.lists .item button:after{border: 0;}
+.lists .item navigator{padding: 0 30rpx; }
+.lists .item view{padding: 0 30rpx;}
+.lists .item::after{ content: ''; width: 14rpx; height: 24rpx; margin-right: 10rpx; background: url(http://www.kzj365.com/mini_program/images/ciricon.png) no-repeat center center; background-size: 100%; display: inline-block; position: absolute; top: 0; bottom: 0; right: 40rpx; margin: auto; z-index: 100;}
+.lists .prestand-icon{ width: 32rpx; height: 36rpx; margin-top: 32rpx; margin-right: 34rpx; background: url(http://www.kzj365.com/mini_program/images/myprestandingicon.png) no-repeat center center; background-size: 100%; float: left;}
+.lists .address-icon{ width: 30rpx; height: 42rpx; margin-top: 32rpx; margin-right: 36rpx; background: url(http://www.kzj365.com/mini_program/images/adressicon.png) no-repeat center center; background-size: 100%; float: left;}
+.lists .contact-icon{ width: 36rpx; height: 36rpx; margin-top: 34rpx; margin-right: 30rpx; background: url(http://www.kzj365.com/mini_program/images/contacticon.png) no-repeat center center; background-size: 100%; float: left;}
+.lists .CustomerService-icon{ width: 36rpx; height: 36rpx; margin-top: 34rpx; margin-right: 30rpx; background: url(http://www.kzj365.com/mini_program/images/customerserviceicon.png) no-repeat center center; background-size: 100%; float: left;}
+.lists .nums{ font-size: 22rpx;color: #fff;background-color: #ff5c58;border-radius: 15px;height: 0;min-width: 30rpx;text-align: center;line-height: 0;padding: 15rpx 8rpx;box-sizing: border-box; display: inline-block; vertical-align: middle; position: relative; top: -2rpx;}
+.lists .nums::before,.lists .nums::after{  content: ''; display: inline-block; width: 0; height: 0; vertical-align: middle;}

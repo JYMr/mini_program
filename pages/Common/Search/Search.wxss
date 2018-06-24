@@ -1,0 +1,18 @@
+/* pages/Common/search.wxss */
+.search-box{ display: flex; justify-content: center; align-items: center;height: 150rpx; width: 100%; background: #37c4a4; position: fixed; left: 0; right: 0; top: 0; margin: auto; z-index: 500;}
+.search{ position: relative;width: 630rpx;height: 80rpx; line-height: 80rpx; background: #fff; border-radius: 50rpx;}
+.search .search-icon{ position: absolute; left: 0; top: 0; z-index: 100; width: 80rpx; height: 80rpx;  background: url(http://www.kzj365.com/mini_program/images/searchicon.png) no-repeat center center; background-size: 36rpx 36rpx;  }
+.search .search-text{ color:#37c4a4; font-size: 28rpx; width: 100%; padding: 0 80rpx; box-sizing: border-box; display: flex; justify-content: center;align-items: center; height: 80rpx; line-height: 80rpx; }
+.search .placeholder{ color: #37c4a4;}
+.search .scan-btn{ position: absolute; right: 0rpx; top: 0rpx; z-index: 100; padding: 15rpx; width: 80rpx; height: 80rpx; box-sizing: border-box; }
+.search .scan-btn::after{ content: ''; width: 50rpx; height: 50rpx; background: url(http://www.kzj365.com/mini_program/images/scanicon.png) no-repeat center center #37c4a4; background-size:100%;border-radius: 100%; display: inline-block;}
+.search .clear-btn{ position: absolute; right: 0rpx; top: 0rpx; z-index: 101; padding: 15rpx; width: 80rpx; height: 80rpx; box-sizing: border-box; }
+.search .clear-btn::after{ content: ''; width: 50rpx; height: 50rpx; background: url(http://www.kzj365.com/mini_program/images/closeicon2.png) no-repeat center center #37c4a4; background-size: 19rpx;border-radius: 100%; display: inline-block;}
+.search-blank{ height:150rpx;}
+
+.search-index-out .search-box{ height: 300rpx; position: relative;}
+.search-index-out .search{ width: 510rpx;}
+.search-index-out .search-blank{ height:0;}
+
+.errrocode{ text-align: center; color: #222; font-size: 30rpx; padding: 50rpx 0;}
+.errrocode image{ width: 168rpx; height: 114rpx; margin-bottom: 20rpx;}

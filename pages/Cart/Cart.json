@@ -1,0 +1,9 @@
+{
+    "enablePullDownRefresh": true,
+    "backgroundTextStyle": "dark",
+    "navigationBarTitleText": "购物车",
+    "usingComponents":
+    {
+        "Dialog": "/pages/Common/Dialog/Dialog"
+    }
+}

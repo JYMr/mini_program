@@ -1,0 +1,49 @@
+<!--pages/cart/reservation.wxml-->
+<import src="/pages/Common/TypeIcon.wxml" />
+
+<!-- 引入过滤器 -->
+<wxs module="Filter" src="../../Common/filter/filter.wxs"></wxs>
+
+<block wx:if="{{NeedList.length > 0}}">
+    <view class='cart-title'>
+        <text class="allselect{{isAllSelect ? ' on': ''}}" bindtap="AllSelect">
+            <text class='icon'></text>全选</text>
+        <text class='edit' wx:if="{{!editMode}}" bindtap="editMode">编辑</text>
+        <text class='edit' wx:if="{{editMode}}" bindtap="editMode">完成</text>
+    </view>
+    <view class="Need-list">
+    <block wx:for="{{NeedList}}" wx:key="{{index}}">
+        <view class='cart-item'>
+            <view class='goods'>
+                <text class='select{{item.isChoose == 1 ? " on":""}}' bindtap="HandleCheckBox" data-id="{{item.shopcart_id}}"></text>
+                <view>
+                    <image class='pic' src='{{item.goods_img ||DefaultImage}}' binderror="ErrorImage" data-obj="NeedList[{{index}}].goods_img" bindtap="HandleCheckBox" data-id="{{item.shopcart_id}}" lazy-load="true"></image>
+                    <view class='name' hover-class="none"><template is="TypeIcon" data="{{type: item.goods_type}}" />{{item.goods_title}} {{item.goods_spec}}</view>
+                    <text class='price'>￥<text class='n'>{{Filter.toFixed(item.goods_price)}}</text></text>
+                    <text class='attr'>/1{{item.goods_unit}}</text>
+                </view>
+            </view>
+        </view>
+    </block>
+    </view>
+    <view class='floattotal'>
+        <!-- 有UserInfo权限 -->
+        <view class='buy-btn' wx:if="{{!editMode && hasUserInfo}}" bindtap="ShowReservationInput">去预定</view>
+        <!-- 无UserInfo权限 -->
+        <button class='buy-btn' wx:if="{{!editMode && !hasUserInfo}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo">去预定</button>
+
+        <view class='buy-btn' wx:if="{{editMode}}" bindtap="DelList">删除</view>
+        <text class="allselect{{isAllSelect ? ' on': ''}}" bindtap="AllSelect">
+            <text class='icon'></text>全选</text>
+    </view>
+</block>
+
+<view class="empty" wx:if="{{NeedList.length == 0 && !RequestError && isLoading}}">暂无预定的商品</view>
+
+<view class="loaderror" wx:if="{{RequestError}}">
+  <view>页面加载失败</view>
+  <view>请检查网络后 <text class='reflash' bindtap='GetList'>重试</text></view>
+</view>
+
+<Dialog id="Dialog"></Dialog>
+<ReservationInput id="ReservationInput" bind:SaveEvent="ConfirmNeedOrder"></ReservationInput>

@@ -1,0 +1,18 @@
+<!--pages/Common/Nav/Nav.wxml-->
+<view class='nav-blank'></view>
+<view class='nav'>
+	<block wx:for="{{navList}}" wx:key="nav_{{index}}" wx:for-item='item'>
+        <block wx:if="{{item.auth && !hasUserInfo}}">
+            <button class="navBtn navli" data-index="{{index}}" data-route="{{item.path}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo">
+                <view class='icon icon0{{index+1}}'></view>
+                <view>{{item.title}}</view>
+            </button>
+        </block>
+        <block wx:else>
+            <navigator url='{{item.path}}' open-type="redirect" hover-class='none' class='navli{{item.path == "/"+route ? " hover":""}}'>
+                <view class='icon icon0{{index+1}}'></view>
+                <view>{{item.title}}</view>
+            </navigator>
+        </block>
+	</block>
+</view>

@@ -1,0 +1,10 @@
+/* pages/Common/floatcustomer/floatcustomer.wxss */
+.float-customer{ height: 120rpx; display: inline-block; position: fixed; left: 50rpx; z-index: 500; bottom: 40rpx;background: #fff;  border-radius: 120rpx;box-shadow: rgba(0, 0,0,0.1) 5rpx 5rpx 20rpx; overflow: hidden;}
+.float-customer .default{ width: 120rpx; height: 120rpx;background: url(http://www.kzj365.com/mini_program/images/chaticon.png) no-repeat center center #37c4a4; background-size: 46rpx; float: left; box-shadow: rgba(55, 196, 164, 0.5) 5rpx 10rpx 20rpx; border-radius: 100%;}
+.float-customer .extend{ width: 0; height: 120rpx; overflow: hidden;-webkit-transition: all .2s ease-out;transition: all .2s ease-out;}
+.float-customer .extend .text{ width: 250rpx; height: 100%; display: flex; justify-content: center; align-items: center; text-align: center; float: left;  font-size: 30rpx; color: #37c4a4; font-weight: 700; background: none; position: relative}
+.float-customer .contact-btn::after{ display: none;}
+.float-customer .tel-btn::before{ content: ''; display: inline-block; border-left: #ddd 2rpx solid; height:27rpx; position: absolute; z-index: 100; top: 0; bottom: 0; left: 0; margin: auto;}
+.float-customer-out .gray-white{ position: fixed; left: 0; right: 0; top: 0; bottom: 0; margin: auto; z-index: 400; display: none}
+.floatopen .extend{ width: auto}
+.floatopen .gray-white{ display: block;}

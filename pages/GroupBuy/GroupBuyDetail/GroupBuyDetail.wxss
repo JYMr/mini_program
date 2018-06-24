@@ -1,0 +1,109 @@
+/* pages/GroupBuy/GroupBuyDetail/GroupBuyDetail.wxss */
+page{padding-bottom: 98rpx;}
+.goodsilder{ overflow: hidden; text-align: center; height: 584rpx; position: relative; background: #fff;  }
+.goodsilder image{width: 464rpx; height: 464rpx; position: absolute; left: 0; right: 0;top: 0; bottom: 0; margin: auto; z-index: 100; }
+.goodsilder .wx-swiper-dot{width: 12rpx;display: inline-flex;height: 12rpx;vertical-align: sub; margin-left: 5rpx;margin-right: 5rpx;background:#ddd;border-radius: 100%; bottom: 0;}
+.goodsilder .wx-swiper-dot::before{ content: ''; flex-grow: 1;} 
+.goodsilder .wx-swiper-dot-active::before{ content: ''; flex-grow: 1; background:#37c4a4; border-radius: 100%;}
+
+.GroupBuyTime{height: 80rpx;background-color: #ff5c58;padding: 0 32rpx;color: #fff;font-size: 28rpx;line-height: 80rpx;}
+.GroupBuyTime.timeout{background-color: #bbbbbb;}
+.GroupBuyTime image{width: 36rpx; height: 36rpx;margin: 22rpx 22rpx 22rpx 0;float: left;}
+
+.goodserver{ overflow: hidden; height: 80rpx; background: #fafafa; border-top: #f4f4f4 1px solid; display: flex; flex-direction: row; justify-content: space-around; align-items: center;}
+.goodserver .item{ font-size: 24rpx; color: #a4aab2; }
+.goodserver .item .icon{ width: 24rpx; height: 24rpx; display: inline-block; margin-right: 5rpx; vertical-align: middle; position: relative; top: -1px;background: url(http://www.kzj365.com/mini_program/images/servericon.png) no-repeat center center; background-size: 100%; }
+
+.goodsinfo{padding: 20rpx 30rpx; position: relative; background: #fff; margin-bottom: 20rpx;}
+.goodsinfo .name{ font-size: 34rpx; padding-right: 80rpx; margin-bottom: 25rpx;font-weight: 700;}
+.goodsinfo .name .i{ background: #37c4a4; display: inline-block; line-height: 30rpx; vertical-align: middle; padding: 0 10rpx; font-size: 24rpx; height: 30rpx; color: #fff; text-align: center; margin-right: 10rpx; text-transform: uppercase; border-radius: 50rpx;}
+.goodsinfo .name .redbg{ background: #ff5c58;}
+.goodsinfo .price-item{ margin-bottom: 25rpx;}
+.goodsinfo .price{ margin-right: 15rpx; color: #ff5c58; font-weight: 700; }
+.goodsinfo .price .nums{ font-size: 46rpx;}
+.goodsinfo .market{ color: #bbbbbb; font-size: 18rpx;}
+.goodsinfo .market .nums{ font-size:30rpx; text-decoration: line-through;}
+.goodsinfo .share{ position: absolute;top: 30rpx;right: 30rpx;width: 80rpx;height: 36rpx;margin-right: 0;margin-left: 0;padding-right: 0;padding-left: 0;border-radius: 0;background: url(http://www.kzj365.com/mini_program/images/shareicon.png) no-repeat top right;background-size: 30rpx;}
+.goodsinfo .share:after{border: none;}
+.goodsinfo .detail{ font-size: 24rpx; color: #999; padding-right: 80rpx;}
+
+/*预加载样式*/
+.goodsinfo.load .name{background: #ddd;border-radius: 6rpx;height: 60rpx;margin-right: 80rpx; margin-bottom: 25rpx;}
+.goodsinfo.load .share{ position: absolute;top: 30rpx;right: 30rpx;width: 36rpx;height: 36rpx;background: #ddd;border-radius: 6rpx;}
+.goodsinfo.load .price-item{ margin-bottom: 25rpx;background: #ddd;border-radius: 6rpx;height: 60rpx;width: 200rpx;}
+.goodsinfo.load .detail{background: #ddd;border-radius: 6rpx;height: 30rpx;}
+
+.GroupBuyNumber{padding-bottom: 27rpx;}
+.GroupBuyNumber text{color: #bbb;font-size: 24rpx;}
+.GroupBuyNumber .num{background-image: linear-gradient(-81deg, #ff5959 0%, #ff9d34 100%), linear-gradient(#ff5c58, #ff5c58);color: #FFF;font-size: 24rpx;line-height: 30rpx;padding: 0 8rpx;margin-right: 10rpx;}
+
+.GroupBuyText{text-align: center;color: #bbb;font-size: 24rpx;padding: 30rpx 0;background-color: #FFF;margin-bottom: 20rpx;}
+.GroupBuyText .title{font-size: 30rpx;display: inline-block;position: relative;line-height: 1;}
+.GroupBuyText .title:before{content:'';display: block;position: absolute;top: 14rpx;left: -76rpx;height: 1rpx;width: 56rpx;background-color: #bbb;}
+.GroupBuyText .title:after{content:'';display: block;position: absolute;top: 14rpx;right: -76rpx;height: 1rpx;width: 56rpx;background-color: #bbb;}
+.step{width: 690rpx;height: 78rpx;border-radius: 39rpx;margin: 50rpx auto 59rpx;overflow: hidden;line-height: 78rpx;text-align: center;font-size: 24rpx;color: #FFF;display: flex; z-index: 9;position: relative;}
+.step text{display: inline-block;width: 28rpx; height: 0;background-color: #FFF;border-radius: 50%;color: #3eccac;font-size: 18rpx;line-height: 0;text-align: center;margin-right: 10rpx;padding: 14rpx 0;position: relative; top: -2rpx;}
+.step view{flex: 1;border-radius: 0 39rpx 39rpx 0;height: 78rpx;float: left;justify-content: center; align-items: center;}
+.step view + view{padding-left: 78rpx;margin-left: -78rpx;}
+.step .step1{z-index: 4;position: relative;background-color: #37c4a4;}
+.step .step2{z-index: 3;position: relative;background-color: #3fcfae;}
+.step .step3{z-index: 2;position: relative;background-color: #47d8b7;}
+.step .step4{z-index: 1;position: relative;background-color: #51e3c2;}
+
+.MemberList{background-color: #FFF;margin-bottom: 20rpx; overflow: hidden; }
+.MemberList .title{font-size: 30rpx;color: #222;padding: 34rpx 0 14rpx 30rpx;line-height: 1;}
+.MemberList .title:before{content:'';float: left;margin-right: 20rpx;background-color: #37c4a4;width: 10rpx;height: 36rpx;margin-top: -3rpx;}
+.MemberList-item{color: #222;font-size: 30rpx;line-height: 90rpx;overflow: hidden;padding: 20rpx 30rpx;}
+.MemberList-item + .MemberList-item{border-top: 1rpx solid #f4f4f4;}
+.MemberList-item image{width: 90rpx;height: 90rpx;float: left;margin-right: 30rpx;}
+.MemberList-item .item-data{font-size: 22rpx;color: #888;float: right;line-height: 1;text-align: right;}
+.MemberList-item .item-data .time{float: left;}
+.MemberList-item .item-data .time view{font-size: 24rpx;color: #555;margin-bottom: 8rpx;margin-top: 27rpx;}
+.MemberList-item .item-data .time view text{color: #ff5c58;}
+.MemberList-item .item-data .item-link{color: #fff;font-size: 26rpx;background-color: #ff5c58;border-radius: 10rpx;height: 50rpx;line-height: 50rpx;display: inline-block;padding: 0 20rpx;margin: 20rpx 0 0 20rpx;}
+.MemberList-item .item-data button.item-link:after{border: 0}
+.MemberList-item .item-data .item-link.disable{background-color: #eee;}
+
+.Detail-tab{display: flex;height: 98rpx;font-size: 30rpx;color: #888;background-color: #FFF;}
+.Detail-tab .tab-item{flex: 1;text-align: center;line-height: 98rpx;position: relative;}
+.Detail-tab .tab-item.active{color: #37c4a4;}
+.Detail-tab .tab-item.active:after{display: block;content: '';position: absolute;bottom: 0;height: 6rpx;width: 60rpx;background-color: #37c4a4;left: 50%;margin-left: -30rpx;}
+.goodsnavfixed{ position: fixed; top: 0;left: 0; right: 0; z-index: 500; box-shadow: rgba(0,0, 0, 0.1) 1px 1px 3px;}
+.goodsnav-blank{ height: 98rpx;}
+
+.Detail-Fixed{position: fixed;bottom: 0;width: 100%;background-color: #FFF;height: 98rpx;box-shadow: 0px 0px 20px 0px rgba(204, 204, 204, 0.5);z-index: 99999;}
+.Detail-Fixed .Icon-btn{width: 144rpx;font-size: 20rpx;color: #bbbbbb;text-align: center;box-sizing: border-box;border-right: 1rpx solid  #f4f4f4;float: left;}
+.Detail-Fixed .Icon-btn image{width: 46rpx;height: 46rpx;display: block;margin: 0 auto;margin-bottom: 11rpx;margin-top: 10rpx;}
+.Detail-btn{margin-left: 144rpx;display: flex;}
+.Detail-btn .btn{flex: 1;text-align: center;font-size: 36rpx;color: #fff;background-color: #ff5c58;line-height: 1;padding: 19rpx 0;height: 100%; box-sizing: border-box;}
+.Detail-btn .btn text{font-size: 24rpx;display: block;margin-top: 9rpx;line-height: 1;}
+.Detail-btn button.btn{border-radius: 0;}
+.Detail-btn button.btn:after{border: 0;}
+.Detail-btn .btn-1{background-color: #ff9459;}
+.Detail-btn .btn.disabled{background-color: #bbbbbb;}
+
+.Detail-btn .btn-all{height: 98rpx;background-color: #ff5c58;line-height: 98rpx;font-size: 32rpx;color: #fff;text-align: center;border-radius: 0;padding: 0;}
+.Detail-btn .btn-all:after{border: none;}
+
+.find-index{position: fixed;right: 15rpx;bottom: 148rpx;width: 88rpx;height: 88rpx;z-index: 9;}
+.find-index image{width: 88rpx;height: 88rpx;}
+
+.mask{position: fixed;top: 0;bottom: 0;left: 0;right: 0;background: rgba(0,0,0,.6);z-index: 99;}
+.Menu{position: fixed;background-color: #f4f4f4;bottom: 98rpx;width: 100%;z-index: 100;animation-name: MenuUp;animation-duration: .3s;animation-fill-mode: both;}
+.Menu-item{line-height: 100rpx;color: #37c4a4;font-size: 32rpx;text-align: center;background-color: #FFF;}
+.Menu-item + .Menu-item{border-top: 1rpx solid #f4f4f4;}
+.Menu-item image{width: 36rpx;height: 36rpx;}
+.Menu-item.cancel{color: #555;border-top: none;margin-top: 20rpx;}
+@keyframes MenuUp{from{transform: translate3d(0, 100%, 0);opacity: 0;}
+    to{transform: translate(0, 0);opacity: 1;}}
+
+.goodsdetail{ text-align: center; background: #fff;}
+.goodsdetail image{ width: 100%; vertical-align: middle; }
+
+.instructions{ padding: 30rpx;}
+.instructions .table {border:1px solid #ddd;border-right: 0;border-bottom: 0;width: 100%; box-sizing: border-box; margin-bottom: 30rpx; background: #fff;font-size: 28rpx;}
+.instructions .table:last-child{ margin-bottom: 0;}
+.instructions .tr {width: 100%;display: flex;justify-content: space-between;vertical-align: middle;just-cent:center}
+.instructions .tr.tr-empty{padding:30rpx;text-align: center;border-right: 1px solid #ddd;border-bottom: 1px solid #ddd;box-sizing: border-box;width: 100%;display: block;}
+.instructions .th,.instructions .td {padding:30rpx;border-bottom: 1px solid #ddd;border-right: 1px solid #ddd;width:100%;}
+.instructions .th { width: 200rpx;}

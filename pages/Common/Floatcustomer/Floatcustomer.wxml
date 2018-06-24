@@ -1,0 +1,12 @@
+<!--pages/Common/floatcustomer/floatcustomer.wxml-->
+<view class='float-customer-out {{openbool == true ? "floatopen" : ""}}'>
+  <view class='float-customer'>
+    <text class='default' bindtap='openfloat'></text>
+    <view class='extend'>
+      <button class='text contact-btn' open-type="contact" wx:if="{{isOpenCustomerService}}">在线咨询</button>
+      <view class='text tel-btn' hover-class='none' bindtap='calling'>免费热线</view>
+    </view>
+  </view>
+  <view class='gray-white' bindtap='closefloat'></view>
+</view>
+

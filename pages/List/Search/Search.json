@@ -1,0 +1,9 @@
+{
+    "component": true,
+    "navigationBarTitleText": "搜索",
+    "usingComponents":
+    {
+        "Search": "/pages/Common/Search/Search",
+        "Dialog": "/pages/Common/Dialog/Dialog"
+    }
+}

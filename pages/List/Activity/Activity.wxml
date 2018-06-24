@@ -1,0 +1,28 @@
+<!--pages/List/Activity/Activity.wxml-->
+<!-- 引入过滤器 -->
+<wxs module="Filter" src="../../Common/filter/filter.wxs"></wxs>
+
+<view class="activity-image">
+    <image src="{{item.image_url}}" mode="widthFix" wx:for="{{activityData.act_images}}" wx:key="img_{{index}}"></image>
+</view>
+<!-- 推荐单品 -->
+<view class='index-grid lists-grid'>
+    <view class='title'>
+        <text>推荐商品</text>
+    </view>
+    <view class='goodslists'>
+        <block wx:for="{{activityData.act_goodses}}" wx:for-index='key' wx:for-item='item' wx:key="recommend_{{key}}">
+            <view class='item'>
+                <navigator hover-class='none' url='/pages/Goods/GoodsDetail/GoodsDetail?id={{item.goods.goods_id}}'>
+                    <image class='pic' src='{{item.goods.goods_img || DefaultImage}}' binderror="ErrorImage" data-obj="activityData.act_goodses[{{index}}].goods.goods_img"></image>
+                    <view class='name'>{{item.goods.goods_title}}</view>
+                    <text class='price'>¥{{Filter.toFixed(item.goods.goods_price)}}</text>
+                </navigator>
+            </view>
+        </block>
+    </view>
+</view>
+<view class='chat-btn' bindtap='calling'>药师咨询电话</view>
+<!-- footer -->
+<import src="/pages/Common/footer.wxml" />
+<template is="footer" data="" />

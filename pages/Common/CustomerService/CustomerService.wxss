@@ -1,0 +1,29 @@
+/* pages/Common/CustomerService/CustomerService.wxss */
+.CustomerService{width:  570rpx;position: fixed;top: 36rpx;left: 0;right: 0;margin: 0 auto;z-index: 999;animation-name: fadeCustomerDown;animation-duration: .3s;animation-fill-mode: both;}
+.mask{position: fixed;z-index: 998;top: 0;bottom: 0;left: 0;right: 0;margin: auto;background-color: rgba(0,0,0,.6);}
+.CustomerService .title{font-size: 36rpx;color: #222;line-height: 107rpx;text-align: center;width: 100%;display: block;background-color: #FFF;border-radius: 10rpx 10rpx 0 0;position: relative;}
+.CustomerService .title .loading{display: block; width: 30rpx;height: 30rpx;transition: all 1s;animation: loading 1s linear infinite;vertical-align: bottom;position: absolute;top: 0;bottom: 0;margin: auto;right: 150rpx;
+		background: url('http://www.kzj365.com/mini_program/images/loading_img.png') center center no-repeat;background-size: 30rpx;}
+.CustomerService .input-item{border-top: 1rpx solid #ddd;line-height: 88rpx;padding: 0 20rpx;overflow: hidden;background-color: #FFF;}
+.CustomerService .input-item text{display: block;width: 144rpx;box-sizing: border-box;padding: 0 16rpx;line-height: 88rpx;float: left;}
+.CustomerService .input-item input{width: 386rpx;float: left;line-height: 88rpx;height: 88rpx;}
+.CustomerService .input-item .picker{width: 386rpx;height: 88rpx;float: left;}
+.CustomerService .input-item .picker-text{height: 88rpx;}
+.CustomerService .input-item textarea{height: 120rpx;line-height: 40rpx;width: 386rpx;float: left;padding: 25rpx 0;}
+
+.type-group{display: flex;background-color: #FFF;border-top: 1rpx solid #ddd;height: 88rpx;line-height: 88rpx;padding: 0 35rpx;}
+.type{flex: 1;}
+.CustomerService .select{width: 36rpx; height: 36rpx; border-radius: 100%; background:url(http://www.kzj365.com/mini_program/images/successicon.png) no-repeat center center #ddd; background-size: 100%;  margin-top: 26rpx; margin-right: 20rpx; float: left;}
+.CustomerService .select.on{ background-color: #3cc6a6;}
+
+.close{position: absolute;width: 40rpx;height: 40rpx;right: -20rpx;top: -20rpx;
+background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACgAAAAoCAMAAAC7IEhfAAAAUVBMVEUAAADMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMz6+vrT09P////V1dXcoQ40AAAAFnRSTlMA+u2XB7OsNxOHHFnj09J5eFfk4oge1xXQ9gAAAOJJREFUOMuVld0OgyAMhQs4Udim8+fofP8HnRfTqtVQvyubfElDLQfa4+v8bY2x77z2dEkoW2xoy3CqFc7ggHGF9D4WJ9jPQcscLnDZznvgkkcmvLTJfU9x6zmQIP7nYpHAFtxY0bw3SGL6WSy5noaRi3GYuChn8cnl8GVznAusPIk8mHExl0/GUwVpSg815ZCm9JDTC9KUHl5kIU3pwZKBNKUHoxbVrdWHUY9HPXD1L9QvhX7NgmZxg/Yq3LtcFJEgagNAHyn6kNLHHhPPgzTeiGZJ6BpsaLpAl/hqeT4qTzt+qWRp/Z+a3MIAAAAASUVORK5CYII=) center center no-repeat;background-size: 40rpx;}
+
+.CustomerService .CustomerServiceBtn{background-color: #ddd;color: #FFF;text-align: center;font-size: 32rpx;display: block;line-height: 98rpx;height: 98rpx;border-radius: 0 0 10rpx 10rpx;}
+.CustomerService .CustomerServiceBtn.active{background-color: #37c4a4;}
+
+@keyframes fadeCustomerDown{from{transform: translate3d(0, -50%, 0);opacity: 0;}
+    to{transform: none;opacity: 1;}}
+
+@keyframes loading{ from{ transform: rotate(360deg);}
+    to{ transform: rotate(0deg);}}

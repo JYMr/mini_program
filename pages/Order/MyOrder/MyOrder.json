@@ -1,0 +1,10 @@
+{
+    "navigationBarTitleText": "我的订单",
+    "backgroundTextStyle": "dark",
+    "usingComponents":
+    {
+        "Dialog": "/pages/Common/Dialog/Dialog",
+        "CustomerService": "/pages/Common/CustomerService/CustomerService",
+        "Floatcustomer": "/pages/Common/Floatcustomer/Floatcustomer"
+    }
+}

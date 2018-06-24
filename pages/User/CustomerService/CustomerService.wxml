@@ -1,0 +1,58 @@
+<!--pages/user/CustomerService/CustomerService.wxml-->
+<import src="/pages/Common/TypeIcon.wxml" />
+<!-- 引入过滤器 -->
+<wxs module="Filter" src="../../Common/filter/filter.wxs"></wxs>
+
+<!-- 头部Tab -->
+<view class='ordernav'>
+    <view class='item{{Status == 1 ? " on" : ""}}' bindtap="TabToggle" data-status="1">售后中</view>
+    <view class='item{{Status == 2 ? " on" : ""}}' bindtap="TabToggle" data-status="2">售后完成</view>
+</view>
+<view class='ordernav-bank'></view>
+
+
+<block wx:for="{{OrderList}}" wx:for-index="index"  wx:for-item="OrderItem" wx:key="order_{{index}}" wx:if="{{OrderList.length > 0}}">
+<navigator class='orderlists' url="/pages/Order/MyOrderDetail/MyOrderDetail?id={{OrderItem.orderId}}" hover-class="none">
+    <view class='title'>
+        <text class='shopicon'></text>
+        <text class='name'>康之家药店</text>
+        <!-- 售后状态 -->
+        <block wx:if="{{OrderItem.aftersalesStatus == 1 && OrderItem.aftersalesType == 1}}"><text class='pedpay'>退款</text></block>
+        <block wx:if="{{OrderItem.aftersalesStatus == 1 && OrderItem.aftersalesType == 2}}"><text class='pedpay'>换货</text></block>
+        <block wx:if="{{OrderItem.aftersalesStatus == 2}}"><text class='pedpay'>售后完成</text></block>
+    </view>
+    <view class='lists'>
+        <block wx:for="{{OrderItem.orderGoods}}" wx:for-index="goods_index"  wx:for-item="item" wx:key="goods_{{goods_index}}">
+        <view class='item'>
+            <image class='pic' src='{{item.goodsImg || DefaultImage}}' binderror="ErrorImage" data-obj="OrderList[{{index}}].orderGoods[{{goods_index}}].goodsImg" lazy-load="true"></image>
+            <view class='name'><template is="TypeIcon" data="{{type: item.goodsType}}" />{{item.goodsName}}</view>
+            <text class='price'>￥<text class='n'>{{Filter.toFixed(item.goodsPrice)}}</text></text>
+            <text class='attr'>/1{{item.goodsUnit}}</text>
+            <text class='ctype' wx:if="{{item.combinationType == 1}}">疗程装</text>
+            <text class='nums'>x{{item.goodsInfoNum}}</text>
+        </view>
+        </block>
+    </view>
+    <view class='total'> 共{{OrderItem.total}}件商品 合计：￥{{Filter.toFixed(OrderItem.orderPrice)}}
+      <block wx:if="{{OrderItem.freeExpressPrice == 2}}">（包含快递费10元）</block>
+      <block wx:if="{{OrderItem.freeExpressPrice == 1}}">（免运费）</block>
+    </view>
+</navigator>
+</block>
+
+<!-- 无订单状态 -->
+<view wx:if="{{OrderList.length == 0 && !RequestError && isLoading}}" class='empty'>暂无数据</view>
+<view class="loaderror" wx:if="{{RequestError }}">
+  <view>页面加载失败</view>
+  <view>请检查网络后 <text class='reflash' bindtap='onRefresh'>重试</text></view>
+</view>
+<!-- 页脚 -->
+<import src="/pages/Common/footer.wxml" />
+<template is="footer" wx:if="{{OrderList.length != 0 && isEnd}}" data="" />
+
+<!-- 提示组件 -->
+<Dialog id="Dialog"></Dialog>
+<!-- 售后弹窗 -->
+<CustomerService id="CustomerService" bind:SaveEvent="CustomerServiceFn"></CustomerService>
+<!-- 客服悬浮按钮 -->
+<Floatcustomer id='Floatcustomer' ></Floatcustomer>

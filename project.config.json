@@ -1,0 +1,158 @@
+{
+	"description": "项目配置文件。",
+	"setting": {
+		"urlCheck": false,
+		"es6": true,
+		"postcss": true,
+		"minified": true,
+		"newFeature": true
+	},
+	"compileType": "miniprogram",
+	"libVersion": "2.0.8",
+	"appid": "wx9db8f06f6cabfde5",
+	"projectname": "wechatminCom",
+	"isGameTourist": false,
+	"condition": {
+		"search": {
+			"current": -1,
+			"list": []
+		},
+		"conversation": {
+			"current": -1,
+			"list": []
+		},
+		"plugin": {
+			"current": -1,
+			"list": []
+		},
+		"game": {
+			"currentL": -1,
+			"list": []
+		},
+		"miniprogram": {
+			"current": -1,
+			"list": [
+				{
+					"id": 0,
+					"name": "User",
+					"pathName": "pages/User/User/User",
+					"query": ""
+				},
+				{
+					"id": 1,
+					"name": "GoodsDetail",
+					"pathName": "pages/Goods/GoodsDetail/GoodsDetail",
+					"query": "id=61"
+				},
+				{
+					"id": 2,
+					"name": "GroupBuyDetail",
+					"pathName": "pages/GroupBuy/GroupBuyDetail/GroupBuyDetail",
+					"query": "id=70&gid=14"
+				},
+				{
+					"id": 3,
+					"name": "ConfirmOrder",
+					"pathName": "pages/Order/ConfirmOrder/ConfirmOrder",
+					"query": "mode=0&id=45,48"
+				},
+				{
+					"id": -1,
+					"name": "AddressList",
+					"pathName": "pages/User/AddressList/AddressList",
+					"query": ""
+				},
+				{
+					"id": 5,
+					"name": "GroupBuyConfirm",
+					"pathName": "pages/GroupBuy/GroupBuyConfirm/GroupBuyConfirm",
+					"query": "gid=2&id=66"
+				},
+				{
+					"id": 6,
+					"name": "GroupBuyShare",
+					"pathName": "pages/GroupBuy/GroupBuyShare/GroupBuyShare",
+					"query": "gid=33"
+				},
+				{
+					"id": -1,
+					"name": "Cart",
+					"pathName": "pages/Cart/Cart",
+					"query": ""
+				},
+				{
+					"id": 8,
+					"name": "Activity",
+					"pathName": "pages/List/Activity/Activity",
+					"query": "id=43"
+				},
+				{
+					"id": 9,
+					"name": "Category",
+					"pathName": "pages/List/Category/Category",
+					"query": ""
+				},
+				{
+					"id": 10,
+					"name": "MyOrder",
+					"pathName": "pages/Order/MyOrder/MyOrder",
+					"query": "gid=16"
+				},
+				{
+					"id": -1,
+					"name": "GroupBuyList",
+					"pathName": "pages/GroupBuy/GroupBuyList/GroupBuyList",
+					"query": ""
+				},
+				{
+					"id": 12,
+					"name": "MyOrderDetail",
+					"pathName": "pages/Order/MyOrderDetail/MyOrderDetail",
+					"query": "id=104"
+				},
+				{
+					"id": 13,
+					"name": "GoodsList",
+					"pathName": "pages/List/GoodsList/GoodsList",
+					"query": "id=25&name=消化系统用药"
+				},
+				{
+					"id": -1,
+					"name": "Search",
+					"pathName": "pages/List/Search/Search",
+					"query": ""
+				},
+				{
+					"id": 15,
+					"name": "Index",
+					"pathName": "pages/Index/Index",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "GoodsList",
+					"pathName": "pages/List/GoodsList/GoodsList",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "CustomerService",
+					"pathName": "pages/User/CustomerService/CustomerService",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "ReservationOrder",
+					"pathName": "pages/Order/ReservationOrder/ReservationOrder",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "Reservation",
+					"pathName": "pages/Goods/Reservation/Reservation",
+					"query": "id=43"
+				}
+			]
+		}
+	}
+}

@@ -1,0 +1,114 @@
+<!--pages/index.wxml-->
+<!-- 搜索 -->
+<wxs module="Filter" src="../Common/filter/filter.wxs"></wxs>
+<view class='index'>
+    <search id='search' inputValue='{{inputValue}}' classtype='search-index-out' selectHide='{{selectHide}}' clickable="true"></search>
+    <!-- 菜单 -->
+    <block wx:if="{{!isLoading}}">
+        <view class='navmeau'>
+            <view class='navli' bindtap="IndexCategroyTap" data-type="0">
+                <image class='icon' src='http://www.kzj365.com/mini_program/images/navmeauicon01.png' lazy-load="true"></image>
+                <text>分类</text>
+            </view>
+            <block wx:for='{{navmeau}}' wx:for-item='item' wx:key="navmeau_{{index}}">
+                <view class='navli' bindtap="IndexCategroyTap" data-actid="{{item.act_id}}" data-oneid="{{item.cat_id_one}}" data-twoid="{{item.cat_id_two}}" data-type="{{item.act_type}}">
+                    <image class='icon' src='{{item.icon_url}}' lazy-load="true"></image>
+                    <text>{{item.act_name}}</text>
+                </view>
+            </block>
+        </view>
+    </block>
+    <!-- 加载过程展示的模块 -->
+    <block wx:if="{{navmeau.length == 0 && isLoading}}">
+        <view class="navmeau navmeau-empty" bindtap="GetHomeData">
+            <block wx:for="{{4}}" wx:key="navmeau_{{index}}">
+                <view class='navli'>
+                    <view class="icon"></view>
+                    <view class="text"></view>
+                </view>
+            </block>
+        </view>
+    </block>
+    <view class='index-out'>
+        <!-- 精品拼团 -->
+        <block wx:if="{{collage.length != 0}}">
+            <view class='index-grid hot-grid'>
+                <view class='title'>
+                    <navigator hover-class='none' url='/pages/GroupBuy/GroupBuyList/GroupBuyList' open-type="switchTab" class='more'>更多</navigator>
+                    <text>精品拼团</text>
+                </view>
+                <view class='slide'>
+                    <swiper autoplay="true" interval="3000" duration="500" circular='true'>
+                        <block wx:for="{{collage}}" wx:for-item='item' wx:key="GroupBuy_{{index}}">
+                            <swiper-item>
+                                <navigator class='pic' url='/pages/GroupBuy/GroupBuyDetail/GroupBuyDetail?id={{item.purchase_id}}' hover-class='none'>
+                                    <image src="{{item.purchase_image || DefaultImage}}" class="slide-image"  mode="aspectFill"  binderror="ErrorImage" data-obj="collage[{{index}}].purchase_image" lazy-load="true"/>
+                                    <view class='discount'>
+                                        <text class='n'>立省</text>
+                                        <text class='nums'>￥{{Filter.toFixed(item.preferen_price)}} </text>
+                                    </view>
+                                    <view class='name'>{{item.purchase_name}}</view>
+                                </navigator>
+                                <view class='bottom'>
+                                    <navigator class='join-btn' url='../GroupBuy/GroupBuyDetail/GroupBuyDetail?id={{item.goods_id}}'>去拼团</navigator>
+                                    <text class='price'>¥{{Filter.toFixed(item.purchase_price)}}</text><block wx:if="{{item.goods_unit}}">/1{{item.goods_unit}}</block>｜已售{{item.effective_stock + item.sale_number}}
+                                </view>
+                            </swiper-item>
+                        </block>
+                    </swiper>
+                </view>
+            </view>
+        </block>
+        <!-- 推荐单品 -->
+        <block wx:if="{{recommendgoods.length != 0}}">
+            <view class='index-grid lists-grid'>
+                <view class='title'>
+                    <text>推荐单品</text>
+                </view>
+                <view class='goodslists'>
+                    <block wx:for="{{recommendgoods}}" wx:for-index='key' wx:for-item='item' wx:key="recommend_{{key}}">
+                        <view class='item'>
+                            <navigator hover-class='none' url='/pages/Goods/GoodsDetail/GoodsDetail?id={{item.goods.goods_id}}'>
+                                <image class='pic' src='{{item.goods.goods_img || DefaultImage}}' binderror="ErrorImage" data-obj="recommendgoods[{{index}}].goods.goods_img" lazy-load="true"></image>
+                                <view class='name'>{{item.goods.goods_title}}</view>
+                                <text class='price'>¥{{Filter.toFixed(item.goods.goods_price)}}</text>
+                            </navigator>
+                        </view>
+                    </block>
+                </view>
+            </view>
+        </block>
+        <!-- 加载过程展示的模块 -->
+        <block wx:if="{{collage.length == 0 && isLoading}}">
+            <view class='index-grid hot-grid grid-empty' bindtap="GetHomeData">
+                <view class='title'></view>
+                <view class='slide'>
+                    <view class="slide-image"></view>
+                    <view class='bottom'>
+                        <view class='join-btn'></view>
+                        <view class='price'></view>
+                    </view>
+                </view>
+            </view>
+        </block>
+        <block wx:if="{{recommendgoods.length == 0 && isLoading}}">
+            <view class='index-grid lists-grid grid-empty' bindtap="GetHomeData">
+                <view class='title'></view>
+                <view class='goodslists'>
+                    <view class='item'>
+                        <view class="image"></view>
+                        <view class='name'></view>
+                    </view>
+                    <view class='item'>
+                        <view class="image"></view>
+                        <view class='name'></view>
+                    </view>
+                </view>
+            </view>
+        </block>
+        <view class='chat-btn' bindtap='calling'>药师咨询电话</view>
+        <!-- footer -->
+        <import src="/pages/Common/footer.wxml" />
+        <template is="footer" data="" />
+    </view>
+</view>

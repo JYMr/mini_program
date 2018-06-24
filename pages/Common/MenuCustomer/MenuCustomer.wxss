@@ -1,0 +1,11 @@
+/* pages/Common/MenuCustomer/MenuCustomer.wxss */
+.mask{position: fixed;top: 0;bottom: 0;left: 0;right: 0;background: rgba(0,0,0,.6);z-index: 99;}
+.Menu{position: fixed;background-color: #f4f4f4;width: 100%;z-index: 100;animation-name: MenuUp;animation-duration: .3s;animation-fill-mode: both;bottom: 0;}
+.Menu.Menu-bottom{bottom: 98rpx;}
+.Menu-item{line-height: 100rpx;color: #37c4a4;font-size: 32rpx;text-align: center;background-color: #FFF;}
+.Menu-item button{background-color: #FFF;color: #37c4a4;font-size: 32rpx;text-align: center;height: 100rpx;line-height: 100rpx;}
+.Menu-item + .Menu-item{border-top: 1rpx solid #f4f4f4;}
+.Menu-item image{width: 36rpx;height: 36rpx;vertical-align: sub;}
+.Menu-item.cancel{color: #555;border-top: none;margin-top: 20rpx;}
+@keyframes MenuUp{from{transform: translate3d(0, 100%, 0);opacity: 0;}
+    to{transform: translate(0, 0);opacity: 1;}}

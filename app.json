@@ -1,0 +1,67 @@
+{
+    "pages": [
+        "pages/Index/Index",
+        "pages/GroupBuy/GroupBuyList/GroupBuyList",
+        "pages/GroupBuy/GroupBuyDetail/GroupBuyDetail",
+        "pages/GroupBuy/GroupBuyShare/GroupBuyShare",
+        "pages/GroupBuy/GroupBuyConfirm/GroupBuyConfirm",
+        "pages/Cart/Cart",
+        "pages/User/User/User",
+        "pages/User/CustomerService/CustomerService",
+        "pages/User/AddressList/AddressList",
+        "pages/Order/ConfirmOrder/ConfirmOrder",
+        "pages/Order/MyOrder/MyOrder",
+        "pages/Order/MyOrderDetail/MyOrderDetail",
+        "pages/Order/ReservationOrder/ReservationOrder",
+        "pages/List/Search/Search",
+        "pages/List/Category/Category",
+        "pages/Goods/GoodsDetail/GoodsDetail",
+        "pages/Goods/Reservation/Reservation",
+        "pages/List/GoodsList/GoodsList",
+        "pages/List/Activity/Activity"
+    ],
+    "tabBar":
+    {
+        "color": "#bbbbbb",
+        "selectedColor": "#3dc6a7",
+        "list": [
+        {
+            "pagePath": "pages/Index/Index",
+            "text": "搜索",
+            "iconPath": "pages/assets/navicon001.png",
+            "selectedIconPath": "pages/assets/navicon-hover001.png"
+        },
+        {
+            "pagePath": "pages/GroupBuy/GroupBuyList/GroupBuyList",
+            "text": "拼团",
+            "iconPath": "pages/assets/navicon002.png",
+            "selectedIconPath": "pages/assets/navicon-hover002.png"
+        },
+        {
+            "pagePath": "pages/Cart/Cart",
+            "text": "购物车",
+            "iconPath": "pages/assets/navicon003.png",
+            "selectedIconPath": "pages/assets/navicon-hover003.png"
+        },
+        {
+            "pagePath": "pages/User/User/User",
+            "text": "我的",
+            "iconPath": "pages/assets/navicon004.png",
+            "selectedIconPath": "pages/assets/navicon-hover004.png"
+        }]
+    },
+    "window":
+    {
+        "backgroundTextStyle": "light",
+        "navigationBarBackgroundColor": "#37c4a4",
+        "navigationBarTitleText": "康之家知慧药房",
+        "navigationBarTextStyle": "#fff",
+        "backgroundColorTop": "#37c4a4"
+    },
+    "networkTimeout":
+    {
+        "request": 30000,
+        "downloadFile": 10000
+    },
+    "debug": true
+}

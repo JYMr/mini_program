@@ -1,0 +1,55 @@
+<!--pages/user/user.wxml-->
+<view class='defaultinfo' bindtap="bindViewTap">
+  <view class="avatar">
+    <open-data type="userAvatarUrl"></open-data>
+  </view>
+  <view class="nickname">
+    <open-data type="userNickName"></open-data>
+  </view>
+</view>
+<view class='meau'>
+  <view class='title'>
+    <navigator url="/pages/Order/MyOrder/MyOrder?status=-1">我的订单</navigator>
+  </view>
+  <view class='con'>
+    <navigator class='item' url="/pages/Order/MyOrder/MyOrder?status=0" hover-class='none'>
+      <text class='num' wx:if="{{OrderNum.notpay != 0}}">{{OrderNum.notpay}}</text>
+      <text class='icon01'></text>待付款</navigator>
+    <navigator class='item' url="/pages/Order/MyOrder/MyOrder?status=1" hover-class='none'>
+      <text class='num' wx:if="{{OrderNum.share != 0}}">{{OrderNum.share}}</text>
+      <text class='icon02'></text>待分享</navigator>
+    <navigator class='item' url="/pages/Order/MyOrder/MyOrder?status=2" hover-class='none'>
+      <text class='num' wx:if="{{OrderNum.notdelivery != 0}}">{{OrderNum.notdelivery}}</text>
+      <text class='icon03'></text>待发货</navigator>
+    <navigator class='item' url="/pages/Order/MyOrder/MyOrder?status=3" hover-class='none'>
+      <text class='num' wx:if="{{OrderNum.deliveryed != 0}}">{{OrderNum.deliveryed}}</text>
+      <text class='icon04'></text>已发货</navigator>
+  </view>
+</view>
+<view class='lists'>
+  <view class='item'>
+    <navigator url="/pages/Order/ReservationOrder/ReservationOrder">
+      <text class='prestand-icon'></text>我的预定
+    </navigator>
+  </view>
+  <view class='item'>
+    <navigator url="/pages/User/AddressList/AddressList">
+      <text class='address-icon'></text>收货地址</navigator>
+  </view>
+  <view class='item'>
+    <navigator url="/pages/User/CustomerService/CustomerService">
+      <text class='CustomerService-icon'></text>售后服务</navigator>
+  </view>
+  <view class='item'>
+    <view bindtap="OpenMenuCustomer">
+      <text class='contact-icon'></text>联系客服
+    </view>
+  </view>
+</view>
+
+<!-- 页脚 -->
+<import src="/pages/Common/footer.wxml" />
+<template is="footer" data="" />
+
+<!-- 客服菜单 -->
+<MenuCustomer id="MenuCustomer"></MenuCustomer>
