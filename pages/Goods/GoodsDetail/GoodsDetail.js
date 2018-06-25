@@ -165,6 +165,11 @@ Page({
                     chooseSpecStock: res.result.goodsdetail.goodsStock
                 });
 
+                //若为规格刷新, 数量大于1,刷新套餐选择
+                if(this.data.num > 1 && _Spec.packager.length > 0){
+                    this.AutoPackager();
+                }
+
                 wx.hideLoading();
             } else {
                 wx.hideLoading();
@@ -191,6 +196,10 @@ Page({
                 this.setData({
                     editMode: false
                 });
+
+                //加入购物车成功后默认设置勾选
+                //this.SetDefaultChoose(Id);
+
                 setTimeout(() => {
                     this.hideModal();
                 }, 1500);
@@ -359,6 +368,8 @@ Page({
                 if (this.data.num >= _List.packager[key].packageCount) {
                     //添加选中
                     _List.packager[key].isselect = true;
+                    //更换价格
+                    _List.price = _List.packager[key].combinationPrice;
                     break;
                 }
             }
@@ -456,9 +467,14 @@ Page({
             for (let key in _List) {
                 //判断库存是否大于套餐数量
                 if (_ChooseIndex == key && _List[key].packageCount <= this.data.chooseSpecStock) {
+
                     _ChooseFlag = true;
+                    //设置选中
                     _List[key].isselect = true;
+                    //设置数量
                     _Num = _List[key].packageCount;
+                    //更换价格
+                    _Spec.price = _List[key].combinationPrice;
                 }
             }
 
@@ -640,6 +656,15 @@ Page({
                 }
             })
         }
+    },
+    //添加购物车默认勾选状态
+    SetDefaultChoose(id){
+        let _chooselist = wx.getStorageSync('CartChooseList') || [];
+        //若存在
+        if(_chooselist.indexOf(id) >= 0) return;
+
+        _chooselist.push(id);
+        wx.setStorageSync('CartChooseList', _chooselist);
     },
     ErrorImage(e) {
         app.errImg(e, this);
