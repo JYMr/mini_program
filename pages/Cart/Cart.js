@@ -94,7 +94,7 @@ Page({
             if (res.done) {
 
                 //获取缓存选择状态
-                //res.result.shopCartApiList = this.GetCartChoose(res.result.shopCartApiList);
+                res.result.shopCartApiList = this.GetCartChoose(res.result.shopCartApiList);
 
                 this.setData({
                     CartList: res.result.shopCartApiList,
@@ -296,7 +296,7 @@ Page({
             CartList: _List
         });
 
-        //this.SetCartChoose();
+        this.SetCartChoose();
         this.CheckAllSelect();
         this.ListTotal();
     },
@@ -459,7 +459,6 @@ Page({
                 }
             }
         }
-        console.log(_chooselist);
         return list;
     },
     //申请授权判断

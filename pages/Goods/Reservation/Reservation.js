@@ -77,6 +77,10 @@ Page({
             shopcart_type: 2
         }).then(res => {
             if (res.done) {
+
+                //获取缓存选择状态
+                res.result.shopCartApiList = this.GetRxChoose(res.result.shopCartApiList);
+
                 this.setData({
                     NeedList: res.result.shopCartApiList,
                     isLoading: false
@@ -104,6 +108,7 @@ Page({
         this.setData({
             NeedList: _List
         });
+        this.SetRxChoose();
         this.CheckAllSelect();
     },
     //检查是否全选
@@ -265,6 +270,28 @@ Page({
                 }
             })
         }
+    },
+    //缓存选择状态
+    SetRxChoose(){
+        let _List = this.data.NeedList;
+        let _ChooseList = [];
+
+        for(let item of _List){
+            if(item.isChoose == 1) _ChooseList.push(item.shopcart_id);
+        }
+
+        wx.setStorageSync('RxChooseList', _ChooseList);
+    },
+    GetRxChoose(list){
+        let _chooselist = wx.getStorageSync('RxChooseList');
+        if(_chooselist.length > 0){
+            for(let item of list){
+                for(let uitem of _chooselist){
+                    if(item.shopcart_id == uitem) item.isChoose = 1;
+                }
+            }
+        }
+        return list;
     },
     ErrorImage(e) {
         app.errImg(e, this);
