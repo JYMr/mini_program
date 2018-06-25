@@ -81,6 +81,7 @@
 
                     <text class='attr' wx:if="{{item.goodsDeno}}">/1{{item.goodsDeno}}</text>
                     <text class='ctype' wx:if="{{item.combinationType == 1}}">疗程装</text>
+                    <text class='ctype' wx:if="{{OrderData.payWay == 1}}">货到付款</text>
                     <text class='nums'>x{{item.goodsInfoNum}}</text>
                 </view>
             </block>
