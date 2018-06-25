@@ -88,52 +88,68 @@
 
 <view class="Group-Fixed">
 
-	<!-- 进行中 -->
-	<block wx:if="{{ShareData.group_state == 0}}">
+	<!-- 活动未结束 -->
+	<block wx:if="{{ShareData.end_time >= serviceTime}}">
 
-		<!-- 团主 -->
-		<block wx:if="{{ShareData.is_join == 1}}">
-			<navigator class="Icon-btn" bindtap="ToggleChaticonMenu" open-type="switchTab" url="/pages/GroupBuy/GroupBuyList/GroupBuyList">
-				<image src="http://www.kzj365.com/mini_program/images/time_icon_01.png" lazy-load="true"></image>
-				更多拼团
-			</navigator>
-			<button class="Group-btn left" open-type="share">
-				还差{{ShareData.remain_number}}人 去邀请好友参团
-			</button>
+		<!-- 进行中 -->
+		<block wx:if="{{ShareData.group_state == 0}}">
+
+			<!-- 团主 -->
+			<block wx:if="{{ShareData.is_join == 1}}">
+				<navigator class="Icon-btn" bindtap="ToggleChaticonMenu" open-type="switchTab" url="/pages/GroupBuy/GroupBuyList/GroupBuyList">
+					<image src="http://www.kzj365.com/mini_program/images/time_icon_01.png" lazy-load="true"></image>
+					更多拼团
+				</navigator>
+				<button class="Group-btn left" open-type="share">
+					还差{{ShareData.remain_number}}人 去邀请好友参团
+				</button>
+			</block>
+
+			<!-- 非团主 -->
+			<block class="title"  wx:if="{{ShareData.is_join == 0}}">
+				<navigator class="Icon-btn" bindtap="ToggleChaticonMenu" open-type="switchTab" url="/pages/GroupBuy/GroupBuyList/GroupBuyList">
+					<image src="http://www.kzj365.com/mini_program/images/time_icon_01.png" lazy-load="true"></image>
+					更多拼团
+				</navigator>
+				<view class="Group-btn left" wx:if="{{hasUserInfo}}" bindtap="ConfirmGroupOrder">
+					我要参团
+				</view>
+				<button class="Group-btn left" wx:if="{{!hasUserInfo}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo">
+					我要参团
+				</button>
+			</block>
+
 		</block>
 
-		<!-- 非团主 -->
-		<block class="title"  wx:if="{{ShareData.is_join == 0}}">
-			<navigator class="Icon-btn" bindtap="ToggleChaticonMenu" open-type="switchTab" url="/pages/GroupBuy/GroupBuyList/GroupBuyList">
-				<image src="http://www.kzj365.com/mini_program/images/time_icon_01.png" lazy-load="true"></image>
-				更多拼团
-			</navigator>
-			<view class="Group-btn left" wx:if="{{hasUserInfo}}" bindtap="ConfirmGroupOrder">
-				我要参团
-			</view>
-			<button class="Group-btn left" wx:if="{{!hasUserInfo}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo">
-				我要参团
-			</button>
+		<!-- 已结束 -->
+		<block wx:if="{{ShareData.group_state == 1}}">
+
+			<!-- 团主 -->
+			<block wx:if="{{ShareData.is_join == 1}}">
+				<navigator class="Icon-btn" bindtap="ToggleChaticonMenu" open-type="switchTab" url="/pages/GroupBuy/GroupBuyList/GroupBuyList">
+					<image src="http://www.kzj365.com/mini_program/images/time_icon_01.png" lazy-load="true"></image>
+					更多拼团
+				</navigator>
+				<navigator class="Group-btn left" url="/pages/Order/MyOrderDetail/MyOrderDetail?id={{ShareData.order_id}}">
+					查看订单
+				</navigator>
+			</block>
+
+			<!-- 非团主 -->
+			<block wx:if="{{ShareData.is_join == 0}}">
+				<navigator class="Icon-btn" bindtap="ToggleChaticonMenu" open-type="switchTab" url="/pages/GroupBuy/GroupBuyList/GroupBuyList">
+					<image src="http://www.kzj365.com/mini_program/images/time_icon_01.png" lazy-load="true"></image>
+					更多拼团
+				</navigator>
+				<navigator class="Group-btn left" url="/pages/GroupBuy/GroupBuyDetail/GroupBuyDetail?id={{ShareData.purchase_id}}">
+					重新开团
+				</navigator>
+			</block>
+
 		</block>
 
-	</block>
-
-	<!-- 已结束 -->
-	<block wx:if="{{ShareData.group_state == 1}}">
-
-		<!-- 团主 -->
-		<block wx:if="{{ShareData.is_join == 1}}">
-			<navigator class="Icon-btn" bindtap="ToggleChaticonMenu" open-type="switchTab" url="/pages/GroupBuy/GroupBuyList/GroupBuyList">
-				<image src="http://www.kzj365.com/mini_program/images/time_icon_01.png" lazy-load="true"></image>
-				更多拼团
-			</navigator>
-			<navigator class="Group-btn left" url="/pages/Order/MyOrderDetail/MyOrderDetail?id={{ShareData.order_id}}">
-				查看订单
-			</navigator>
-		</block>
-
-		<!-- 非团主 -->
-		<block wx:if="{{ShareData.is_join == 0}}">
+		<!-- 已取消 -->
+		<block wx:if="{{ShareData.group_state == 1}}">
 			<navigator class="Icon-btn" bindtap="ToggleChaticonMenu" open-type="switchTab" url="/pages/GroupBuy/GroupBuyList/GroupBuyList">
 				<image src="http://www.kzj365.com/mini_program/images/time_icon_01.png" lazy-load="true"></image>
 				更多拼团
@@ -144,10 +160,9 @@
 		</block>
 
 	</block>
+	<block wx:else>
 
-	<!-- 已取消 -->
-	<block wx:if="{{ShareData.group_state == 2}}">
-
+		<!-- 已取消 -->
 		<navigator class="Icon-btn" bindtap="ToggleChaticonMenu" open-type="switchTab" url="/pages/GroupBuy/GroupBuyList/GroupBuyList">
 			<image src="http://www.kzj365.com/mini_program/images/time_icon_01.png" lazy-load="true"></image>
 			更多拼团
@@ -155,7 +170,9 @@
 		<navigator class="Group-btn left gray" hover-class="none">
 			该团已取消
 		</navigator>
+
 	</block>
+
 </view>
 
 <Dialog id="Dialog"></Dialog>

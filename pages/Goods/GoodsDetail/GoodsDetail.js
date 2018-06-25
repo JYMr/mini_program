@@ -198,7 +198,7 @@ Page({
                 });
 
                 //加入购物车成功后默认设置勾选
-                //this.SetDefaultChoose(Id);
+                this.SetDefaultChoose(res.result.shopCartApi.shopcart_id);
 
                 setTimeout(() => {
                     this.hideModal();
@@ -223,7 +223,11 @@ Page({
                 this.Dialog.ShowDialog({
                     type: 'Message',
                     title: '加入清单成功'
-                })
+                });
+
+                //加入清单成功后默认设置勾选
+                this.SetRXDefaultChoose(res.result.shopCartApi.shopcart_id);
+
                 setTimeout(() => {
                     this.hideModal();
                 }, 1500);
@@ -665,6 +669,15 @@ Page({
 
         _chooselist.push(id);
         wx.setStorageSync('CartChooseList', _chooselist);
+    },
+    //预定清单默认勾选状态
+    SetRXDefaultChoose(id){
+        let _chooselist = wx.getStorageSync('RxChooseList') || [];
+        //若存在
+        if(_chooselist.indexOf(id) >= 0) return;
+
+        _chooselist.push(id);
+        wx.setStorageSync('RxChooseList', _chooselist);
     },
     ErrorImage(e) {
         app.errImg(e, this);

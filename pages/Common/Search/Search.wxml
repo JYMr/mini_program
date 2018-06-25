@@ -3,7 +3,7 @@
     <view class='search-box'>
         <view class='search'>
             <view class='search-icon'></view>
-            <input type='text' class='search-text' placeholder-class='placeholder' placeholder='请输入药品名称' bindinput="bindInput" value="{{inputValue}}" confirm-type='search' data-clickable='{{clickable}}' bindconfirm="searchSubmit" bindtap='tosearch' disabled="{{clickable}}"></input>
+            <input type='text' class='search-text' placeholder-class='placeholder' placeholder='请输入药品名称' bindinput="bindInput" value="{{inputValue}}" confirm-type='search' data-clickable='{{clickable}}' bindconfirm="searchSubmit" bindtap='tosearch' disabled="{{clickable}}" focus='{{!clickable}}'></input>
             <view class='scan-btn' wx:if="{{!selectHide}}" bindtap='scan'></view>
             <view class='clear-btn' wx:if="{{selectHide}}" bindtap="clearInput"></view>
         </view>

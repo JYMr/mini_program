@@ -204,10 +204,9 @@
             <!-- 有UserInfo权限 -->
             <view class='comfirm-btn' hover-class="hover" wx:if="{{hasUserInfo && ModalMode == ''}}" bindtap="ModalConfirm">确定</view>
             <view class='comfirm-btn' hover-class="hover" wx:elif="{{hasUserInfo && ModalMode == 'RxBuy'}}" bindtap="ModalConfirm">立即预定</view>
-            <view class='comfirm-btn green' hover-class="hover" wx:elif="{{hasUserInfo && ModalMode == 'RxCart'}}" bindtap="ModalConfirm">加入预定清单</view>
+            <view class='comfirm-btn green' hover-class="hover" wx:elif="{{ModalMode == 'RxCart'}}" bindtap="ModalConfirm">加入预定清单</view>
             <!-- 无UserInfo权限 -->
             <button class='comfirm-btn' open-type="getUserInfo" bindgetuserinfo="getUserInfo" hover-class="hover" wx:if="{{!hasUserInfo && ModalMode == 'RxBuy'}}" bindtap="ModalConfirm">立即预定</button>
-            <button class='comfirm-btn green' open-type="getUserInfo" bindgetuserinfo="getUserInfo" hover-class="hover" wx:if="{{!hasUserInfo && ModalMode == 'RxCart'}}" bindtap="hideModal">加入预定清单</button>
             <button class='comfirm-btn green' open-type="getUserInfo" bindgetuserinfo="getUserInfo" hover-class="hover" wx:if="{{!hasUserInfo && ModalMode == ''}}" bindtap="hideModal">预定</button>
         </block>
     </view>

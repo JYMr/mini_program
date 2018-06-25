@@ -51,11 +51,11 @@
 .goodslists  .total .p{ color: #ff5c58;}
 .goodslists .control{ padding: 20rpx 30rpx;text-align: right;}
 
-.payway{ overflow: hidden;}
+.payway{ overflow: hidden;margin-bottom: 20rpx;}
 .payway .default{line-height: 88rpx;position: relative; height: 88rpx;padding: 0 30rpx;background: #fff;}
 .payway .default .icon{ position: absolute;z-index: 100;top: 0;right: 40rpx;bottom: 0;display: inline-block;width: 14rpx;height: 24rpx;margin: auto;margin-right: 10rpx;content: '';background: url(http://www.kzj365.com/mini_program/images/ciricon.png) no-repeat center center;background-size: 100%;background-size: 100%;transition: all .3s;}
 .payway .default.open .icon{transform: rotate(90deg);}
-.payway .lists{margin-bottom: 20rpx; background: #fff;}
+.payway .lists{ background: #fff;}
 .payway .lists .item{line-height: 88rpx;position: relative; height: 88rpx;padding: 0 30rpx;border-top: #f4f4f4 1px solid;}
 .payway .lists .wechat-icon{float: left; width: 39rpx;height: 34rpx;margin-top: 28rpx;margin-right: 20rpx;background: url(http://www.kzj365.com/mini_program/images/wechatpayicon.png) no-repeat center center;background-size: 100%;}
 .payway .lists .cash-icon{float: left; width: 40rpx;height: 40rpx;margin-top: 24rpx;margin-right: 20rpx;background: url(http://www.kzj365.com/mini_program/images/deliveryicon.png) no-repeat center center;background-size: 100%;}

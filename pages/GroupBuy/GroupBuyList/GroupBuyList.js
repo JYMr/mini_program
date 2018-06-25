@@ -45,8 +45,8 @@ Page({
     },
     //获取团购列表数据
     GetGroupList(flag) {
-     
-        if(flag !== false){
+
+        if (flag !== false) {
             wx.showLoading({
                 title: '加载数据中...',
                 mask: true
@@ -59,7 +59,7 @@ Page({
         }).then(res => {
             if (res.done) {
                 //当请求为第一页时，清空页面数据
-                if(this.data.pageNo == 1){
+                if (this.data.pageNo == 1) {
                     this.setData({
                         GroupBuyData: []
                     });
