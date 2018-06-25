@@ -75,10 +75,12 @@
                     <image class='pic' src='{{item.goodsImg ||DefaultImage}}' binderror="ErrorImage" data-obj="OrderData.orderGoods[{{index}}].goodsImageUrl" lazy-load="true"></image>
                     <view class='name'>
                         <template is="TypeIcon" data="{{type: item.goodsType}}" />{{item.goodsTitle}} {{item.goodsSpec}}</view>
-                    <text class='price'>￥<text class='n'>{{Filter.toFixed(item.goodsPrice > item.combinationPrice ? item.combinationPrice : item.goodsPrice)}}</text>
-                    </text>
+
+                    <text class='price' wx:if="{{item.combinationType == 1}}">￥<text class='n'>{{Filter.toFixed(item.combinationPrice)}}</text></text>
+                    <text class='price' wx:if="{{item.combinationType == 2}}">￥<text class='n'>{{Filter.toFixed(item.goodsPrice)}}</text></text>
+
                     <text class='attr' wx:if="{{item.goodsDeno}}">/1{{item.goodsDeno}}</text>
-                    <text class='ctype' wx:if="{{item.isGroup}}">疗程装</text>
+                    <text class='ctype' wx:if="{{item.combinationType == 1}}">疗程装</text>
                     <text class='nums'>x{{item.goodsInfoNum}}</text>
                 </view>
             </block>
