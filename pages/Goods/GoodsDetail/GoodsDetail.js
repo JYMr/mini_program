@@ -494,6 +494,8 @@ Page({
             if (spec.packager != undefined && spec.packager.length > 0) {
                 //若存在标准装套餐，直接选中
                 if (spec.packager[0].packageCount == 1) {
+                    //已选择数量大于1，则不选择默认套餐
+                    if(this.data.num > 1) return spec;
                     spec.packager[0].isselect = true;
                 } else {
                     //若不存在标准装，默认添加一个
