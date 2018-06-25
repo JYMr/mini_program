@@ -192,6 +192,8 @@ Page({
             //普通进入
             _isAllow = _goodsinfo.effective_stock > 0 //库存大于0
                 &&
+                _goodsinfo.effective_stock >= _goodsinfo.people_number//库存大于开团人数
+                &&
                 _goodsinfo.remain_number > 0 //限购数量大于0
                 &&
                 (Math.floor(_goodsinfo.end_time / 1000) > this.data.serviceTime); //活动未结束
@@ -261,7 +263,7 @@ Page({
     ConfirmGroupOrder(e) {
         let _id = this.data.goodsinfo.purchase_id;
         let _gid = this.data.GroupId;
-        let _status = e.currentTarget.dataset.disabled;
+        let _status = e.currentTarget.dataset.disabled != 'false';
         if (_status || _status == undefined) {
             wx.navigateTo({
                 url: '/pages/GroupBuy/GroupBuyConfirm/GroupBuyConfirm?gid=' + _gid + '&id=' + _id
