@@ -23,17 +23,17 @@ Page({
     /**
      * 生命周期函数--监听页面加载
      */
-    onLoad: function(options) {
+    onLoad(options) {
         if (app.globalData.userInfo) {
             this.setData({
                 hasUserInfo: true
-            })
+            });
         } else if (this.data.canIUse) {
             // 所以此处加入 callback 以防止这种情况
             app.userInfoReadyCallback = res => {
                 this.setData({
                     hasUserInfo: true
-                })
+                });
             }
         } else {
             // 在没有 open-type=getUserInfo 版本的兼容处理
@@ -43,27 +43,25 @@ Page({
                     this.setData({
                         userInfo: res.userInfo,
                         hasUserInfo: true
-                    })
+                    });
                 }
-            })
+            });
         }
-
-        this.GetList();
 
         //设置默认底图
         this.setData({
             DefaultImage: app.globalData.defaultImg
-        })
+        });
     },
 
     /**
      * 生命周期函数--监听页面初次渲染完成
      */
-    onReady: function() {
+    onReady() {
         this.Dialog = this.selectComponent("#Dialog");
         this.ReservationInput = this.selectComponent("#ReservationInput");
     },
-    onShow(){
+    onShow() {
         this.GetList();
     },
     //获取购物车数据
@@ -73,7 +71,7 @@ Page({
             mask: true
         });
         this.setData({
-            isLoading: false
+            isLoading: true
         });
         cartController.getCartData({
             shopcart_type: 2
@@ -81,13 +79,16 @@ Page({
             if (res.done) {
                 this.setData({
                     NeedList: res.result.shopCartApiList,
-                    isLoading: true
+                    isLoading: false
                 });
+                //检查是否全选
+                this.CheckAllSelect();
             }
             wx.hideLoading();
         }).catch(err => {
+            wx.hideLoading();
             this.setData({
-                RequestError: true
+                RequestError: false
             });
         });
     },
@@ -135,7 +136,7 @@ Page({
     editMode() {
         this.setData({
             editMode: !this.data.editMode
-        })
+        });
     },
     //删除购物车操作
     DelList() {
@@ -160,37 +161,8 @@ Page({
             callback: res => {
                 if (res.name == 'confirm') {
                     //此处删除接口
-                    
                     this.Dialog.CloseDialog();
-                    wx.showLoading({
-                        mask: true
-                    });
-                    cartController.delCart({
-                        shopcartids: DelList.toString(),
-                        shopcart_type: 2
-                    }).then(res => {
-                        if (res.done) {
-                            this.Dialog.ShowDialog({
-                                type: 'Message',
-                                title: '删除成功'
-                            })
-                            setTimeout(() => {
-                                this.GetList()
-                            }, 1500)
-                        } else {
-                            this.Dialog.ShowDialog({
-                                type: 'Message',
-                                title: res.msg || '删除失败',
-                                messageType: 'fail'
-                            })
-                        }
-                        wx.hideLoading();
-                    });
-                } else {
-                    this.Dialog.CloseDialog();
-                }
-            }
-        });*/
+                    */
         wx.showLoading({
             mask: true
         });
@@ -215,6 +187,12 @@ Page({
             }
             wx.hideLoading();
         });
+        /*
+                } else {
+                    this.Dialog.CloseDialog();
+                }
+            }
+        });*/
     },
     ShowReservationInput() {
         let _ChooseId = this.GetChooseId();

@@ -38,11 +38,11 @@
     </view>
 </block>
 
-<view class="empty" wx:if="{{NeedList.length == 0 && !RequestError && isLoading}}">暂无预定的商品</view>
+<view class="empty" wx:if="{{NeedList.length == 0 && !RequestError && !isLoading}}">暂无预定的商品</view>
 
 <view class="loaderror" wx:if="{{RequestError}}">
-  <view>页面加载失败</view>
-  <view>请检查网络后 <text class='reflash' bindtap='GetList'>重试</text></view>
+    <view>页面加载失败</view>
+    <view>请检查网络后 <text class='reflash' bindtap='GetList'>重试</text></view>
 </view>
 
 <Dialog id="Dialog"></Dialog>
