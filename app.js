@@ -25,7 +25,7 @@ App({
                     },
                     fail: () => {
                         // session_key 已经失效，需要重新执行登录流程
-                        this.GetLogin();
+                        this.GetLogin(false);
                     }
                 });
             }, 1500);
@@ -81,11 +81,13 @@ App({
 
     },
     //登录请求
-    GetLogin() {
-        wx.showLoading({
-            title: '登录中...',
-            mask: true
-        });
+    GetLogin(flag) {
+        if (flag == undefined || flag) {
+            wx.showLoading({
+                title: '登录中...',
+                mask: true
+            });
+        }
         wx.login({
             success: res => {
                 // 发送 res.code 到后台换取 openId, sessionKey, unionId
@@ -103,7 +105,9 @@ App({
                             this.SetHotRed();
                         }, 1000);
                     }
-                    wx.hideLoading();
+                    if (flag == undefined || flag) {
+                        wx.hideLoading();
+                    }
                 });
             }
         });
