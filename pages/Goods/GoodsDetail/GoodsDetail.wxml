@@ -162,32 +162,34 @@
             </view>
             <view class='name'>{{spec.name}}</view>
         </view>
-        <block wx:if="{{spec.speclists.length > 0}}">
-            <view class='grid attr'>
-                <view class='t'>规格</view>
-                <view class='lists'>
-                    <block wx:for="{{spec.speclists}}" wx:for-item="item" wx:for-index='index' wx:key="spec_{{index}}">
-                        <view class="item{{item.isselect?' on':''}}{{item.goodsStock > 0 && item.goodsAdded == 1 ?'':' disabled'}}" data-index="{{index}}" data-type="spec" bindtap='ClickAttr'>{{item.goodsSpec}}</view>
-                    </block>
+        <view class="select-attr-con">
+            <block wx:if="{{spec.speclists.length > 0}}">
+                <view class='grid attr'>
+                    <view class='t'>规格</view>
+                    <view class='lists'>
+                        <block wx:for="{{spec.speclists}}" wx:for-item="item" wx:for-index='index' wx:key="spec_{{index}}">
+                            <view class="item{{item.isselect?' on':''}}{{item.goodsStock > 0 && item.goodsAdded == 1 ?'':' disabled'}}" data-index="{{index}}" data-type="spec" bindtap='ClickAttr'>{{item.goodsSpec}}</view>
+                        </block>
+                    </view>
                 </view>
-            </view>
-        </block>
-        <block wx:if="{{spec.packager.length > 0}}">
-            <view class='grid packager'>
-                <view class='t'>优惠套餐</view>
-                <view class='lists'>
-                    <block wx:for="{{spec.packager}}" wx:key="packager_{{index}}">
-                        <view class="item{{item.isselect?' on':''}}{{chooseSpecStock >=  item.packageCount ?'':' disabled'}}" data-index="{{index}}" data-type="packager" bindtap='ClickAttr'>{{item.combinationTitle}}</view>
-                    </block>
+            </block>
+            <block wx:if="{{spec.packager.length > 0}}">
+                <view class='grid packager'>
+                    <view class='t'>优惠套餐</view>
+                    <view class='lists'>
+                        <block wx:for="{{spec.packager}}" wx:key="packager_{{index}}">
+                            <view class="item{{item.isselect?' on':''}}{{chooseSpecStock >=  item.packageCount ?'':' disabled'}}" data-index="{{index}}" data-type="packager" bindtap='ClickAttr'>{{item.combinationTitle}}</view>
+                        </block>
+                    </view>
                 </view>
-            </view>
-        </block>
-        <view class='grid' wx:if="{{goodsinfo.goodsType != 0}}">
-            <view class='t'>数量</view>
-            <view class='control'>
-                <view class='mins{{num <= 1 ? " disabled":""}}' bindtap="bindMinus" hover-class="hover"></view>
-                <input type='number' class='nums' bindchange="bindManual" value="{{num}}"></input>
-                <view class='plus{{num >= goodsinfo.stock ? " disabled":""}}' hover-class="hover" bindtap="bindPlus"></view>
+            </block>
+            <view class='grid' wx:if="{{goodsinfo.goodsType != 0}}">
+                <view class='t'>数量</view>
+                <view class='control'>
+                    <view class='mins{{num <= 1 ? " disabled":""}}' bindtap="bindMinus" hover-class="hover"></view>
+                    <input type='number' class='nums' bindchange="bindManual" value="{{num}}"></input>
+                    <view class='plus{{num >= goodsinfo.stock ? " disabled":""}}' hover-class="hover" bindtap="bindPlus"></view>
+                </view>
             </view>
         </view>
         <!-- 非处方药按钮 -->
