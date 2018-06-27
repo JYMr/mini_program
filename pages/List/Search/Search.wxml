@@ -1,5 +1,5 @@
 <!--pages/search.wxml-->
-<Search id='Search' inputValue='{{inputValue}}' selectHide='{{selectHide}}' bind:SearchEvent="SearchtoList"></Search>
+<Search id='Search' inputValue='{{inputValue}}' selectHide='{{selectHide}}' focus="true" bind:SearchEvent="SearchtoList"></Search>
 
 <view class='searchlists'>
     <!-- 热门搜索 -->
