@@ -136,6 +136,7 @@ Page({
             isAllSelect: !_status,
             NeedList: _List
         })
+        this.SetCartChoose();
     },
     //编辑模式
     editMode() {

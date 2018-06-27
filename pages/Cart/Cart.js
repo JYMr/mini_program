@@ -325,6 +325,8 @@ Page({
             isAllSelect: !_status,
             CartList: _List
         })
+        
+        this.SetCartChoose();
         this.ListTotal();
     },
     //编辑模式
