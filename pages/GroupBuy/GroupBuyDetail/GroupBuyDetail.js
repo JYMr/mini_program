@@ -17,7 +17,7 @@ Page({
         goodsnavtop: 0, //tab距离顶部的距离
         goodsnavbool: false, //tab是否浮动
         DefaultImage: '', //默认底图
-        GoodsDefaulteImage: ''
+        GoodsDefaulteImage: '', //主图默认底图
     },
     /**
      * 生命周期函数--监听页面加载
@@ -74,16 +74,6 @@ Page({
             GoodsDefaulteImage: app.globalData.goodsdefault
         });
 
-        let token = wx.getStorageSync('token') || '';
-        if (token) {
-            this.GetGroupDetailData();
-        } else {
-            //直接进入等待登录回调
-            app.tokenReadyCallback = res => {
-                this.GetGroupDetailData();
-            }
-        }
-
     },
 
     onShow() {
@@ -116,6 +106,17 @@ Page({
                 }
             });
             app.globalData.PaySuccessGroupId = '';
+        }
+
+        
+        let token = wx.getStorageSync('token') || '';
+        if (token) {
+            this.GetGroupDetailData();
+        } else {
+            //直接进入等待登录回调
+            app.tokenReadyCallback = res => {
+                this.GetGroupDetailData();
+            }
         }
     },
 
@@ -172,6 +173,15 @@ Page({
                     GroupList: res.result.proList,
                     serviceTime: Math.floor(res.result.serviceTime / 1000) //转化为时间戳
                 });
+
+                //团组找不到的情况
+                if (res.result.pDetails.group_state == '') {
+                    //作为普通商品处理
+                    this.setData({
+                        GroupId: ''
+                    });
+                }
+
                 //处理活动时间数据
                 this.handleData();
                 //推荐团购列表倒计时
@@ -192,7 +202,7 @@ Page({
             //普通进入
             _isAllow = _goodsinfo.effective_stock > 0 //库存大于0
                 &&
-                _goodsinfo.effective_stock >= _goodsinfo.people_number//库存大于开团人数
+                _goodsinfo.effective_stock >= _goodsinfo.people_number //库存大于开团人数
                 &&
                 _goodsinfo.remain_number > 0 //限购数量大于0
                 &&
@@ -202,7 +212,7 @@ Page({
             //已经成团无需判断库存
             _isAllow = _goodsinfo.remain_number > 0 //限购数量大于0
                 &&
-                (Math.floor(_goodsinfo.unite_end_time / 1000) > this.data.serviceTime); //团购未结束且活动未结束
+                (Math.floor(_goodsinfo.end_time / 1000) > this.data.serviceTime); //活动未结束
         }
         this.setData({
             isAllow: _isAllow
@@ -210,28 +220,31 @@ Page({
     },
     //推荐团购列表倒计时
     GroupTimeOut() {
-        setInterval(() => {
-            let _TempGroupList = this.data.GroupList
-            for (let item of _TempGroupList) {
-                let _time = Math.floor(item.unite_end_time / 1000) - this.data.serviceTime;
-                if (_time > 0) {
-                    let _hours = Math.floor(_time / (60 * 60));
-                    let _minute = Math.floor((_time - _hours * 60 * 60) / 60);
-                    let _second = Math.floor(_time - _hours * 60 * 60 - _minute * 60);
-                    _hours = _hours < 10 ? ('0' + _hours) : _hours
-                    _minute = _minute < 10 ? ('0' + _minute) : _minute
-                    _second = _second < 10 ? ('0' + _second) : _second
-                    item.time = _hours + ':' + _minute + ':' + _second;
-                } else {
-                    item.time = '00:00:00';
-                    item.number = 0;
+        let _TempGroupList = this.data.GroupList;
+        //有推荐拼团
+        if (_TempGroupList.length > 0) {
+            let grouptime = setInterval(() => {
+                for (let item of _TempGroupList) {
+                    let _time = Math.floor(item.unite_end_time / 1000) - this.data.serviceTime;
+                    if (_time > 0) {
+                        let _hours = Math.floor(_time / (60 * 60));
+                        let _minute = Math.floor((_time - _hours * 60 * 60) / 60);
+                        let _second = Math.floor(_time - _hours * 60 * 60 - _minute * 60);
+                        _hours = _hours < 10 ? ('0' + _hours) : _hours
+                        _minute = _minute < 10 ? ('0' + _minute) : _minute
+                        _second = _second < 10 ? ('0' + _second) : _second
+                        item.time = _hours + ':' + _minute + ':' + _second;
+                    } else {
+                        item.time = '00:00:00';
+                        item.number = 0;
+                    }
                 }
-            }
-            this.setData({
-                GroupList: _TempGroupList,
-                serviceTime: this.data.serviceTime + 1
-            })
-        }, 1000);
+                this.setData({
+                    GroupList: _TempGroupList,
+                    serviceTime: this.data.serviceTime + 1
+                })
+            }, 1000);
+        }
     },
     //Tab切换
     TabToggle(e) {
