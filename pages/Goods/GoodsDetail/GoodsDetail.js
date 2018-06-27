@@ -87,6 +87,9 @@ Page({
         });
 
     },
+    onShow(){
+      // this.getgoodsnavTop();
+    },
     /**
      * 生命周期函数--监听页面初次渲染完成
      */
@@ -94,18 +97,22 @@ Page({
         this.Dialog = this.selectComponent('#Dialog');
         this.ReservationInput = this.selectComponent('#ReservationInput');
         this.MenuCustomer = this.selectComponent('#MenuCustomer');
-
-        var that = this;
-        var query = wx.createSelectorQuery()
-        query.select('.goodsnav').boundingClientRect(function(res) {
-            that.setData({
-                goodsnavtop: res.top
-            })
-        }).exec()
+        // this.getgoodsnavTop();
+    },
+    getgoodsnavTop(){
+      var that = this;
+      var query = wx.createSelectorQuery()
+      query.select('.goodsnav').boundingClientRect(function (res) {
+        that.setData({
+          goodsnavtop: res.top
+        })
+      }).exec()
     },
     onPageScroll: function(e) {
         // 获取滚动条当前位置
+     
         if (e.scrollTop > this.data.goodsnavtop) {
+          console.log(this.data.goodsnavbool)
             this.setData({
                 goodsnavbool: true
             })
@@ -164,9 +171,9 @@ Page({
                     chooseSpecId: res.result.goodsdetail.goodsId,
                     chooseSpecStock: res.result.goodsdetail.goodsStock
                 });
-
+                this.getgoodsnavTop();
                 //若为规格刷新, 数量大于1,刷新套餐选择
-                if(this.data.num > 1 && _Spec.packager.length > 0){
+                if (this.data.num > 1 && _Spec.packager.length > 0) {
                     this.AutoPackager();
                 }
 
@@ -346,9 +353,14 @@ Page({
             if (this.data.chooseSpecAdded == 0 || this.data.chooseSpecStock <= 0) {
                 let _Spec = this.data.spec;
                 _Spec.speclists = this.data.goodsinfo.specGoodsApis;
+                //选择默认值
                 _Spec = this.DefaultAttr(_Spec);
+                //恢复已选择库存
                 this.setData({
-                    spec: _Spec
+                    spec: _Spec,
+                    chooseSpecId: this.data.goodsinfo.goodsId,
+                    chooseSpecStock: this.data.goodsinfo.goodsStock,
+                    chooseSpecAdded: this.data.goodsinfo.goodsAdded,
                 });
             }
             //有关联规格，显示规格弹层
@@ -394,7 +406,7 @@ Page({
             let _ChooseIndex = e.currentTarget.dataset.index;
             let _Added = this.data.chooseSpecAdded;
             let _SpecId = this.data.chooseSpecId; //选择的商品规格id
-            let _Stock = 1; //选择的商品库存
+            let _Stock = this.data.chooseSpecStock; //选择的商品库存
 
             let _ChooseFlag = false; //点击规格是否可以选中
 
@@ -402,8 +414,9 @@ Page({
             for (let key in _List) {
                 if (_ChooseIndex == key) {
                     //购物车或者立即购买的规格弹窗无库存或下架弹出，无法点击
-                    //选择规格可以点击
+                    //判断选择规格是否可以点击
                     if (this.data.ModalMode != '' && (_List[key].goodsStock <= 0 || _List[key].goodsAdded == 0)) {
+                        //无法点击，则退出循环
                         break;
                     }
                     _ChooseFlag = true;
@@ -432,18 +445,19 @@ Page({
                 }
             }
 
-            //处理套餐
-            _Spec = this.DefaultAttr(_Spec, 'packager');
-
             if (_ChooseFlag) {
                 //若可以选中，则除点击项外，其他选择状态取消
                 for (let ukey in _List) {
                     if (ukey != _ChooseIndex) _List[ukey].isselect = false;
                 }
+
+                //处理套餐
+                _Spec = this.DefaultAttr(_Spec, 'packager');
             }
 
             //如果选择数量大于所选规格库存，则设置为数量为商品最大库存
             let _num = this.data.num >= _Stock ? (_Stock == 0 ? 1 : _Stock) : this.data.num;
+
 
             this.setData({
                 spec: _Spec,
@@ -460,7 +474,7 @@ Page({
         } else if (type == 'packager') {
             //处理套餐选择
             //如果为处方药，仅提供展示
-            if (this.data.goodsinfo.goodsType == 0) return;
+            //if (this.data.goodsinfo.goodsType == 0) return;
 
             let _List = _Spec.packager;
             let _ChooseFlag = false; //点击套餐是否可以选中
@@ -500,11 +514,18 @@ Page({
     DefaultAttr(spec, mode) {
 
         if (mode == 'spec' || mode == undefined) {
-            //全部取否
+            //恢复默认选中，先全部取否
             for (let item of spec.speclists) {
                 item.isselect = false;
             }
+            //判断第一个规格是否有库存以及是否上下架
             if (spec.speclists != undefined && spec.speclists.length > 0 && spec.speclists[0].goodsStock > 0 && spec.speclists[0].goodsAdded == 1) {
+                //设置默认规格数据
+                spec.name = spec.speclists[0].goodsTitle;
+                spec.price = spec.speclists[0].goodsPrice;
+                spec.src = spec.speclists[0].goodsImg;
+                spec.packager = spec.speclists[0].goodsCombinations || [];
+
                 spec.speclists[0].isselect = true;
             }
         }
@@ -515,7 +536,8 @@ Page({
                 //若存在标准装套餐，直接选中
                 if (spec.packager[0].packageCount == 1) {
                     //已选择数量大于1，则不选择默认套餐
-                    if(this.data.num > 1) return spec;
+                    if (this.data.num > 1) return spec;
+                    
                     spec.packager[0].isselect = true;
                 } else {
                     //若不存在标准装，默认添加一个
@@ -524,7 +546,7 @@ Page({
                         "combinationTitle": "标准装",
                         "goodsId": spec.SpecId,
                         "packageCount": 1,
-                        "isselect": spec.Added == 1 && spec.Stock > 0//判断库存和上下架状态
+                        "isselect": spec.Added == 1 && spec.Stock > 0 //判断库存和上下架状态
                     }
                     spec.packager.unshift(defaultPaackage);
                 }
@@ -662,19 +684,19 @@ Page({
         }
     },
     //添加购物车默认勾选状态
-    SetDefaultChoose(id){
+    SetDefaultChoose(id) {
         let _chooselist = wx.getStorageSync('CartChooseList') || [];
         //若存在
-        if(_chooselist.indexOf(id) >= 0) return;
+        if (_chooselist.indexOf(id) >= 0) return;
 
         _chooselist.push(id);
         wx.setStorageSync('CartChooseList', _chooselist);
     },
     //预定清单默认勾选状态
-    SetRXDefaultChoose(id){
+    SetRXDefaultChoose(id) {
         let _chooselist = wx.getStorageSync('RxChooseList') || [];
         //若存在
-        if(_chooselist.indexOf(id) >= 0) return;
+        if (_chooselist.indexOf(id) >= 0) return;
 
         _chooselist.push(id);
         wx.setStorageSync('RxChooseList', _chooselist);
