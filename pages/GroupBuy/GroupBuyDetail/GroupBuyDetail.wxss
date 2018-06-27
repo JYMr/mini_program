@@ -85,8 +85,8 @@ page{padding-bottom: 98rpx;}
 .Detail-btn .btn-all{height: 98rpx;background-color: #ff5c58;line-height: 98rpx;font-size: 32rpx;color: #fff;text-align: center;border-radius: 0;padding: 0;}
 .Detail-btn .btn-all:after{border: none;}
 
-.find-index{position: fixed;right: 15rpx;bottom: 148rpx;width: 88rpx;height: 88rpx;z-index: 9;}
-.find-index image{width: 88rpx;height: 88rpx;}
+.find-index{position: fixed;right: 15rpx;bottom: 148rpx;width: 88rpx;height: 88rpx;z-index: 9;border-radius: 50%;background-color: #37c4a4;}
+.find-index image{width: 36rpx;height: 36rpx;margin-top: 26rpx;margin-left: 26rpx;}
 
 .mask{position: fixed;top: 0;bottom: 0;left: 0;right: 0;background: rgba(0,0,0,.6);z-index: 99;}
 .Menu{position: fixed;background-color: #f4f4f4;bottom: 98rpx;width: 100%;z-index: 100;animation-name: MenuUp;animation-duration: .3s;animation-fill-mode: both;}

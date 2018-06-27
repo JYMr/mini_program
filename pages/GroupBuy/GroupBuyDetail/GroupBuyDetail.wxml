@@ -155,7 +155,7 @@
                 </button>
             </block>
             <block wx:else>
-                 <view class="btn disabled" data-disabled="false" catchtap="ConfirmGroupOrder">￥{{Filter.toFixed(goodsinfo.purchase_price)}}
+                 <view class="btn disabled" data-disabled="true">￥{{Filter.toFixed(goodsinfo.purchase_price)}}
                     <text>{{goodsinfo.people_number}}人开团</text>
                 </view>
             </block>
@@ -165,7 +165,7 @@
         <!-- 从分享页带团购ID进入 -->
         <view class="Detail-btn" wx:if="{{GroupId != ''}}">
             <!-- 已经参加此团, 未过期 -->
-            <block wx:if="{{goodsinfo.is_join == 0 && isAllow}}">
+            <block wx:if="{{goodsinfo.is_join == 1 && isAllow && goodsinfo.group_state == 0}}">
                 <view class="btn btn-all" wx:if="{{hasUserInfo}}" bindtap="ConfirmGroupOrder">
                     我要参团
                 </view>
@@ -174,17 +174,17 @@
                 </button>
             </block>
                 <!-- 已经参团，活动过期 -->
-            <block wx:elif="{{goodsinfo.is_join == 0 && !isAllow}}">
+            <block wx:elif="{{goodsinfo.is_join == 1 && !isAllow}}">
                 <navigator class="btn btn-1" url="/pages/Goods/GoodsDetail/GoodsDetail?id={{goodsinfo.goods_id}}">￥{{Filter.toFixed(goodsinfo.goods_price)}}
                     <text>单独购买</text>
                 </navigator>
-                 <view class="btn disabled" data-disabled="true" catchtap="ConfirmGroupOrder">￥{{Filter.toFixed(goodsinfo.purchase_price)}}
+                 <view class="btn disabled" data-disabled="true">￥{{Filter.toFixed(goodsinfo.purchase_price)}}
                     <text>{{goodsinfo.people_number}}人开团</text>
                 </view>
             </block>
 
             <!-- 未参加此团 -->
-            <block wx:if="{{goodsinfo.is_join == 1}}">
+            <block wx:if="{{goodsinfo.is_join == 0}}">
                 <navigator class="btn btn-1" url="/pages/Goods/GoodsDetail/GoodsDetail?id={{goodsinfo.goods_id}}">￥{{Filter.toFixed(goodsinfo.goods_price)}}
                     <text>单独购买</text>
                 </navigator>
@@ -200,7 +200,7 @@
                     </button>
                 </block>
                 <block wx:else>
-                     <view class="btn disabled" data-disabled="false" catchtap="ConfirmGroupOrder">￥{{Filter.toFixed(goodsinfo.purchase_price)}}
+                     <view class="btn disabled" data-disabled="true">￥{{Filter.toFixed(goodsinfo.purchase_price)}}
                         <text>{{goodsinfo.people_number}}人开团</text>
                     </view>
                 </block>
@@ -212,7 +212,7 @@
 
 <!-- 从分享页进入，返回首页悬浮按钮 -->
 <navigator class="find-index" open-type="switchTab" url="/pages/Index/Index" wx:if="{{isShare}}" hover-class="none">
-    <image src="http://www.kzj365.com/mini_program/images/find_index.png" lazy-load="true"></image>
+    <image src="http://www.kzj365.com/mini_program/images/find_index_icon.png" lazy-load="true"></image>
 </navigator>
 
 <!-- 页脚 -->
