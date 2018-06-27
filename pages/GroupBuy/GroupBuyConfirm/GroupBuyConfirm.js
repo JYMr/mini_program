@@ -26,7 +26,8 @@ Page({
         ReMark: '',
         PayListStatus: false, //选择支付方式列表
         DefaultImage: '',
-        userInfo: ''
+        userInfo: '',
+        isPay: '' //是否处于支付状态
     },
 
     /**
@@ -50,7 +51,7 @@ Page({
             // cashStatus: app.globalData.cashStatus,
             userInfo: app.globalData.userInfo
         });
-        
+
         this.GetOrderData();
     },
 
@@ -176,6 +177,11 @@ Page({
             return;
         }
 
+        //更改为支付状态
+        this.setData({
+            isPay: true
+        });
+
         //支付取消后的再次调起
         if (this.data.isPayFail) {
             wx.showLoading({
@@ -211,18 +217,32 @@ Page({
                         },
                         fail: res => {
                             wx.hideLoading();
-                            if (res.errMsg.indexOf('cancel') >= 0) {
+
+                            //如果再次请求支付，取消或支付失败后，支付倒计时已结束，则回退页面
+                            let thisTime = new Date().getTime();
+                            if (this.data.isPay && thisTime - this.data.PayFailStartTime >= this.data.PayFailTime) {
                                 this.Dialog.ShowDialog({
-                                    title: '支付已取消!',
                                     type: 'Message',
+                                    title: '支付超时！',
                                     messageType: 'fail'
                                 });
-                            } else {
-                                wx.showToast({
-                                    title: res.errMsg,
-                                    icon: 'none'
-                                })
+                                //处于支付状态,不跳转
+                                setTimeout(() => {
+                                    wx.navigateBack();
+                                }, 1500);
+                                return;
                             }
+
+                            this.Dialog.ShowDialog({
+                                title: '支付已取消!',
+                                type: 'Message',
+                                messageType: 'fail'
+                            });
+
+                            //更改回支付状态
+                            this.setData({
+                                isPay: false
+                            });
                         }
                     })
                 }
@@ -273,14 +293,33 @@ Page({
                         }, 1500);
                     },
                     fail: res => {
+                        //判断是否支付超时
+                        //如果再次请求支付，取消或支付失败后，支付倒计时已结束，则回退页面
+                        let thisTime = new Date().getTime();
+                        if (this.data.isPay && thisTime - this.data.PayFailStartTime >= this.data.PayFailTime) {
+                            this.Dialog.ShowDialog({
+                                type: 'Message',
+                                title: '支付超时！',
+                                messageType: 'fail'
+                            });
+
+                            //处于支付状态,不跳转
+                            setTimeout(() => {
+                                wx.navigateBack();
+                            }, 1500);
+                            return;
+                        }
+
                         this.Dialog.ShowDialog({
                             title: '支付取消!',
                             type: 'Message',
                             messageType: 'fail'
                         });
+
                         //更改为支付取消，倒计时状态
                         this.setData({
-                            isPayFail: true
+                            isPayFail: true,
+                            isPay: false//更改回支付状态
                         });
                     }
                 });
@@ -319,14 +358,19 @@ Page({
                         second: '00'
                     }
                 });
-                this.Dialog.ShowDialog({
-                        type: 'Message',
-                        title: '支付超时！',
-                        messageType: 'fail'
-                    }),
+
+                //处于支付状态,不跳转
+                if (!this.data.isPay) {
                     setTimeout(() => {
                         wx.navigateBack();
                     }, 1500);
+                    return;
+                }
+                this.Dialog.ShowDialog({
+                    type: 'Message',
+                    title: '支付超时！',
+                    messageType: 'fail'
+                });
                 return;
             }
 
@@ -346,7 +390,8 @@ Page({
             });
         }, 10);
         this.setData({
-            PayTimeout: time
+            PayTimeout: time,
+            PayFailStartTime: startTime
         });
 
     },
