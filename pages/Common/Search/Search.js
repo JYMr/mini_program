@@ -24,6 +24,10 @@ Component({
             type: Boolean,
             value: false
         },
+        focus:{
+            type: Boolean,
+            value: false
+        }
     },
 
     /**
