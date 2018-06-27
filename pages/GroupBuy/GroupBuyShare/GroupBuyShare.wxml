@@ -2,6 +2,7 @@
 <!-- 引入过滤器 -->
 <wxs module="Filter" src="../../Common/filter/filter.wxs"></wxs>
 
+<canvas canvas-id="myCanvas" style="width: 420px;height: 300px; "/>
 <view class="ShareTitle">
 	<text class="group-num">活动{{ShareData.people_number}}人团</text>
 	<block wx:if="{{ShareData.group_state == 0}}">
@@ -15,8 +16,11 @@
 	</block>
 	<block wx:if="{{ShareData.group_state == 1}}">
 		<view class="time">
-			拼团成功, 已结束
+			<text>00</text>:
+			<text>00</text>:
+			<text>00</text>
 		</view>
+			拼团成功
 	</block>
 	<block wx:if="{{ShareData.group_state == 2}}">
 		<view class="time">
@@ -25,7 +29,7 @@
 	</block>
 </view>
 <view class='goods'>
-    <navigator hover-class='none' url="/pages/GroupBuy/GroupBuyDetail/GroupBuyDetail?id={{ShareData.purchase_id}}&gid={{ShareData.group_id}}">
+    <navigator hover-class='none' url="/pages/GroupBuy/GroupBuyDetail/GroupBuyDetail?id={{ShareData.purchase_id}}&gid={{ShareData.group_id}}&isShare=true">
         <image class='pic' src='{{ShareData.goods_img || DefaultImage}}' lazy-load="true" binderror="ErrorImage" data-obj="ShareData.goods_img"></image>
         <view class='name'>{{ShareData.goods_title}}</view>
         <text class='price'>
@@ -51,7 +55,7 @@
 	<!-- 已结束 -->
 	<block wx:elif="{{ShareData.group_state == 1}}">
 		<!-- 团主 -->
-		<view class="title"  wx:if="{{ShareData.is_join == 1}}">拼团成功</view>
+		<view class="title red"  wx:if="{{ShareData.is_join == 1}}">拼团成功</view>
 
 		<!-- 非团主 -->
 		<view class="title"  wx:if="{{ShareData.is_join == 0}}">客官来晚了，该团已满员</view>
@@ -149,7 +153,7 @@
 		</block>
 
 		<!-- 已取消 -->
-		<block wx:if="{{ShareData.group_state == 1}}">
+		<block wx:if="{{ShareData.group_state == 2}}">
 			<navigator class="Icon-btn" bindtap="ToggleChaticonMenu" open-type="switchTab" url="/pages/GroupBuy/GroupBuyList/GroupBuyList">
 				<image src="http://www.kzj365.com/mini_program/images/time_icon_01.png" lazy-load="true"></image>
 				更多拼团

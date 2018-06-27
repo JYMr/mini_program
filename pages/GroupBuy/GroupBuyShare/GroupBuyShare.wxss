@@ -16,6 +16,7 @@
  
 .group-list{padding: 0 30rpx;background: #FFF;padding-bottom: 36rpx;margin-bottom: 20rpx;}
 .group-list .title{font-size: 26rpx;color: #555;padding: 35rpx 0;}
+.group-list .title.red{color: #FF5C58;}
 .group-list .title text{color: #ff5c58;}
 .group-list .list{margin: 0 -14rpx;overflow: hidden;}
 .group-list .list .list-item{padding: 0 14rpx;float: left;}
@@ -42,3 +43,5 @@
 .Group-btn:after{border: none;}
 .Group-btn.left{margin-left: 144rpx;}
 .Group-btn.gray{background-color: #bbbbbb;}
+
+canvas{position: fixed;bottom: -300px;}

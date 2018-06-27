@@ -14,13 +14,14 @@ Page({
             minute: '00',
             second: '00'
         },
-        Default_avatar: 'http://www.kzj365.com/mini_program/images/avatar_default.png',
+        Default_avatar: 'https://mini.kzj365.com.cn/images/avatar_default.png',
         ShareData: {},
         serviceTime: '',
         GroupTime: '',
         DefaultImage: '', //默认底图
         canIUse: wx.canIUse('button.open-type.getUserInfo'),
         hasUserInfo: false,
+        ShareImg: ''
     },
 
     /**
@@ -67,15 +68,6 @@ Page({
         this.setData({
             DefaultImage: app.globalData.goodsdefault
         });
-        
-        let token = wx.getStorageSync('token') || '';
-        if (token) {
-            this.GetShaerData();
-        } else {
-            app.tokenReadyCallback = res => {
-                this.GetShaerData();
-            }
-        }
     },
 
     /**
@@ -89,7 +81,15 @@ Page({
      * 生命周期函数--监听页面显示
      */
     onShow: function() {
-        this.GetShaerData();
+
+        let token = wx.getStorageSync('token') || '';
+        if (token) {
+            this.GetShaerData();
+        } else {
+            app.tokenReadyCallback = res => {
+                this.GetShaerData();
+            }
+        }
     },
     onHide() {
         clearInterval(this.data.GroupTime);
@@ -119,6 +119,8 @@ Page({
                 if (res.result.prg.group_state == 0) {
                     this.TimeOutFn();
                 }
+
+                this.creteShareImage();
             } else {
                 wx.showToast({
                     title: res.msg || '服务器出错,请重试',
@@ -161,6 +163,8 @@ Page({
                     _TimeOut.minute = '00'
                     _TimeOut.second = '00'
                     clearInterval(GroupTime);
+                    //活动或拼团时间到，刷新数据
+                    this.GetShaerData();
                 }
                 ServerTime = ServerTime + 1;
                 this.setData({
@@ -180,8 +184,8 @@ Page({
         let GroupId = this.data.ShareData.group_id;
         let ShareOption = {
             title: '只要' + this.data.ShareData.purchase_price.toFixed(2) + '元就能拼到' + this.data.ShareData.goods_title,
-            path: '/' + this.route + '?gid=' + GroupId,
-            imageUrl: this.data.ShareData.goods_img || app.globalData.sharedefault
+            path: '/' + this.route + '?gid=' + GroupId + '&isShare=true',
+            imageUrl: this.data.ShareImg || this.data.ShareData.goods_img || app.globalData.sharedefault
         }
         return ShareOption;
     },
@@ -216,6 +220,175 @@ Page({
                 }
             });
         }
+    },
+    creteShareImage() {
+
+        //获取上下文
+        const ctx = wx.createCanvasContext('myCanvas');
+        //替换主图二级域名
+        let img = this.data.ShareData.goods_img.replace('https://kzj-mini-program.oss-cn-shenzhen.aliyuncs.com/', 'https://oss.kzj365.com.cn/');
+        //组装立省文字
+        const text = '立省' + this.data.ShareData.preferen_price.toFixed(2) + '元';
+
+        //组装图片绘制队列
+        /*let drawArr = ['https://mini.kzj365.com.cn/images/av.png', 'https://mini.kzj365.com.cn/images/av1.jpg',
+            'https://mini.kzj365.com.cn/images/av2.jpg', 'https://mini.kzj365.com.cn/images/av3.jpg',
+            'https://mini.kzj365.com.cn/images/av4.jpg', 'https://mini.kzj365.com.cn/images/av5.jpg'
+        ];*/
+        let drawArr = this.data.ShareData.headimgs;
+        //主图放在第一张
+        drawArr.unshift(img);
+
+        //绘制白色底
+        let DrawBackgroud = function() {
+            ctx.setFillStyle('#FFF');
+            ctx.fillRect(0, 0, 420, 300);
+        }
+
+        //绘制队列
+        let DrawImageList = function(key = 0) {
+            wx.downloadFile({
+                url: drawArr[key], //仅为示例，并非真实的资源
+                success: res => {
+                    // 只要服务器有响应数据，就会把响应内容写入文件并进入 success 回调，业务需要自行判断是否下载到了想要的内容
+                    if (res.statusCode === 200) {
+                        if (key == 0) {
+                            ctx.drawImage(res.tempFilePath, 0, 0, 220, 220);
+                        } else {
+                            ctx.save();
+                            ctx.beginPath()
+                            ctx.arc((key - 1) * (50 + 18) + 25, 230 + 25, 25, 0, 2 * Math.PI);
+                            ctx.clip();
+                            ctx.drawImage(res.tempFilePath, (key - 1) * (50 + 18), 230, 50, 50);
+                            ctx.restore();
+                        }
+                        //覆盖绘制
+                        ctx.draw(true, () => {
+                            if (key < drawArr.length - 1) {
+                                key++;
+                                DrawImageList(key);
+                                return;
+                            } else {
+                                //若为最后一张图片，导出canvas
+                                wx.canvasToTempFilePath({
+                                    x: 0,
+                                    y: 0,
+                                    width: 420,
+                                    height: 300,
+                                    destWidth: 420,
+                                    destHeight: 300,
+                                    quality: 1,
+                                    canvasId: 'myCanvas',
+                                    success: res => {
+                                        this.setData({
+                                            ShareImg: res.tempFilePath
+                                        });
+                                    }
+                                })
+                            }
+                        });
+                        return;
+                    }
+                },
+                fail: err => {}
+            });
+        }.bind(this);
+
+        //绘制背景矩形："立省"
+        let createRect = function(width) {
+            ctx.save();
+            ctx.rect(247, 24, width, 30);
+            ctx.fillStyle = '#FF5C58';
+            ctx.fill();
+            ctx.restore();
+        }
+
+        //绘制圆角
+        let roundRect = function(x, y, width, height, radius) {
+            ctx.save();
+            ctx.fillStyle = '#FFF';
+            ctx.strokeStyle = '#FF5C58';
+            ctx.beginPath();
+            ctx.moveTo(x, y + radius);
+            ctx.lineTo(x, y + height - radius);
+            ctx.quadraticCurveTo(x, y + height, x + radius, y + height);
+            ctx.lineTo(x + width - radius, y + height);
+            ctx.quadraticCurveTo(x + width, y + height, x + width, y + height - radius);
+            ctx.lineTo(x + width, y + radius);
+            ctx.quadraticCurveTo(x + width, y, x + width - radius, y);
+            ctx.lineTo(x + radius, y);
+            ctx.quadraticCurveTo(x, y, x, y + radius);
+            ctx.closePath();
+            ctx.stroke();
+            ctx.restore();
+        }
+
+        //绘制圆角矩形："立即参团"
+        let createRect1 = function(ctx) {
+            roundRect(257, 156, 104, 30, 15);
+        }
+
+        let createWord1 = function(ctx, str, x, y) {
+            ctx.setFontSize(24)
+            ctx.fillStyle = '#FFF';
+            ctx.fillText(str, x, y);
+        }
+
+        //绘制文字: 价格
+        var createWord2 = function(ctx, str, x, y) {
+            ctx.setFontSize(30);
+            ctx.fillStyle = '#FF5C58';
+            ctx.fillText(str, x, y);
+        }
+
+        //绘制文字："仅剩", "个名额"
+        let createWord3 = function(ctx, str, x, y) {
+            ctx.setFontSize(22);
+            ctx.fillStyle = '#555555';
+            ctx.fillText(str, x, y);
+        }
+
+        //绘制文字：剩余名额，数字(红色)
+        let createWord4 = function(ctx, str, x, y) {
+            ctx.font = "22px Microsoft YaHei";
+            ctx.fillStyle = '#FF5C58';
+            ctx.fillText(str, x, y);
+        }
+
+        //绘制文字："立即参团"
+        let createWord5 = function(ctx, str, x, y) {
+            ctx.save();
+            ctx.setFontSize(18)
+            ctx.fillStyle = '#FF5C58';
+            ctx.fillText(str, x, y);
+            ctx.restore();
+        }
+
+        //绘制白色背景
+        DrawBackgroud();
+
+
+        //绘制参团剩下名额文字
+        createWord3(ctx, '仅剩', 253, 88);
+        createWord4(ctx, this.data.ShareData.remain_number, 302, 90);
+        createWord3(ctx, '个名额', 318, 88);
+
+        //绘制拼团价格
+        createWord2(ctx, '￥' + this.data.ShareData.purchase_price, 263, 133);
+
+        //测量立省文字宽度
+        const metrics = ctx.measureText(text)
+        //绘制立省背景色块
+        createRect(metrics.width - 20);
+        //绘制立省文字
+        createWord1(ctx, text, 253, 48);
+
+        //绘制立即参团按钮矩形边框和文字
+        createRect1(ctx);
+        createWord5(ctx, "立即参团", 272, 178);
+
+        //绘制商品主图和用户头像
+        DrawImageList();
     },
     ErrorImage(e) {
         app.errImg(e, this);
