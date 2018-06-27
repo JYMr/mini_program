@@ -59,10 +59,7 @@
         </view>
     </view>
     <view class='payway'>
-        <view class='default{{PayListStatus ? " open" : ""}}' bindtap="TogglePayList" wx:if="{{cashStatus}}">
-            支付方式： {{PayWay == '2' ? '微信支付' : '货到付款'}}
-            <view class="icon"></view>
-        </view>
+        <view class='default{{PayListStatus ? " open" : ""}}' bindtap="TogglePayList" wx:if="{{cashStatus}}">支付方式： {{PayWay == '2' ? '微信支付' : '货到付款'}}<view class="icon"></view></view>
         <view class='lists' wx:if="{{!cashStatus || PayListStatus}}">
             <view class='item' data-type="2" bindtap="choosePayWay">
                 <text class='select{{PayWay == 2 ? " on" : ""}}'></text>

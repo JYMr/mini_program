@@ -6,13 +6,13 @@
 .addaddress .add{padding: 36rpx 30rpx; line-height: 90rpx; height: 90rpx; color: #222; font-size: 30rpx; position: relative; }
 .addaddress .add .icon{ float: left; width: 90rpx; height: 90rpx;background: url(http://www.kzj365.com/mini_program/images/addadressicon.png) no-repeat center center #37c4a4; background-size: 100%; border-radius: 20rpx; margin-right: 30rpx;  }
 .addaddress .add::after{ content: ''; width: 14rpx; height: 24rpx; margin-right: 10rpx; background: url(http://www.kzj365.com/mini_program/images/ciricon.png) no-repeat center center; background-size: 100% 100%; display: inline-block; position: absolute; top: 0; bottom: 0; right: 40rpx; margin: auto; z-index: 100;}
-.addaddress .info{ padding: 30rpx 30rpx 30rpx 80rpx;  background: #fff;}
+.addaddress .info{ padding: 30rpx 30rpx 30rpx 78rpx;  background: #fff;}
 .addaddress .info .t{ color: #222; font-size: 32rpx; font-weight: 700; margin-bottom: 10rpx;}
 .addaddress .info .name{ font-size: 34rpx;}
 .addaddress .info .tel{ font-size: 29rpx; margin-left: 25rpx;}
 .addaddress .info .tip{ background: #37c4a4; display: inline-block; color: #fff; padding: 0 15rpx;  font-size: 24rpx; border-radius: 30rpx; vertical-align: middle; margin-left: 15rpx;}
 .addaddress .info .c{ color: #888; position: relative;}
-.addaddress .info .c::after{ content: ''; width: 25rpx; height: 30rpx;  background: url(http://www.kzj365.com/mini_program/images/adressicon2.png) no-repeat center center; background-size: 100%; display: inline-block; position: absolute; top:10rpx;  left:-35rpx; margin: auto; z-index: 100;}
+.addaddress .info .c::after{ content: ''; width: 25rpx; height: 30rpx;  background: url(http://www.kzj365.com/mini_program/images/adressicon2.png) no-repeat center center; background-size: 100%; display: inline-block; position: absolute; top:10rpx;  left:-48rpx; margin: auto; z-index: 100;}
 
 .orderlists{ background: #fff; margin-bottom: 20rpx;}
 .orderlists .title{ line-height: 88rpx; height: 88rpx; padding: 0 30rpx;}
@@ -29,7 +29,7 @@
 .orderlists .lists .price{color: #ff5c58; font-size: 20rpx;font-weight: 700;}
 .orderlists .lists .price .n{ font-size: 30rpx;}
 .orderlists .lists .attr{ color: #888;}
-.orderlists .lists .ctype{ background: #37c4a4; display: inline-block; padding: 0 10rpx;color: #fff; text-align: center; margin-left: 10rpx; }
+.orderlists .lists .ctype{font-size: 24rpx;line-height: 23rpx;position: relative;top: -1px;display: inline-block;overflow: hidden;height: 24rpx;margin-left: 10rpx;padding: 2rpx 6rpx;text-align: center;vertical-align: middle;color: #fff; background: #37c4a4;}
 .orderlists .lists .nums{ color:#888; font-size:28rpx; position:absolute; right:30rpx; z-index: 100; bottom: 30rpx;}
 .orderlists .total{ height: 48rpx; line-height: 48rpx; color: #222; text-align: right; padding:20rpx 30rpx;border-bottom: #f4f4f4 1px solid; border-top: #f4f4f4 1px solid; }
 .orderlists .control{ padding: 20rpx 30rpx; text-align: right;}

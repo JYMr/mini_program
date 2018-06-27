@@ -93,10 +93,7 @@
     </view>
     <view class='totalinfo'>
         <view>订单编号：{{OrderData.orderCode}}</view>
-        <view>支付方式：
-            <text class='status' wx:if="{{OrderData.payWay == 2}}">微信支付</text>
-            <text class='status' wx:elif="{{OrderData.payWay == 1}}">货到付款</text>
-        </view>
+        <view>支付方式：<text class='status' wx:if="{{OrderData.payWay == 2}}">微信支付</text><text class='status' wx:elif="{{OrderData.payWay == 1}}">货到付款</text></view>
         <view>下单时间：{{OrderData.orderCreateTime}}</view>
     </view>
 </block>
