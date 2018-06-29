@@ -131,7 +131,8 @@ Component({
                         wx.hideLoading();
                     });
                 },
-                fail: res => {
+                fail: err => {
+                    if(err.errMsg.indexOf('cancel')) return;
                     wx.showToast({
                         title: '调用摄像头出错, 请重试！',
                         icon: 'none'
