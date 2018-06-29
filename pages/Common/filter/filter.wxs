@@ -1,6 +1,6 @@
 var filter = {
 	toFixed: function(value, num){
-		if(value === undefined) return value;
+		if(value === undefined || value === null) return value;
 		return value.toFixed(num || 2);
 	}
 }
