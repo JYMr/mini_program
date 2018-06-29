@@ -24,5 +24,6 @@
 .goodslists .pic{ width: 220rpx; height: 220rpx; display: block; margin:0 auto 30rpx;}
 .goodslists .name{ font-size: 26rpx; margin-bottom: 10rpx; height: 75rpx; overflow: hidden;text-overflow: ellipsis;display: -webkit-box;-webkit-line-clamp: 2;-webkit-box-orient: vertical;}
 .goodslists .price{ font-size: 34rpx; color: #ff5656;}
-.chat-btn{ height: 88rpx; line-height: 88rpx; text-align: center; color: #fff; font-size: 30rpx; background: #3dc6a7; border-radius: 100rpx; margin:20rpx; }
+.chat-btn{ height: 88rpx; line-height: 88rpx; text-align: center; color: #fff; font-size: 30rpx; background: #3dc6a7; border-radius: 100rpx; margin:20rpx 20rpx 0; }
 
+page{background-color: #FFF;}

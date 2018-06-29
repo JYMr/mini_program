@@ -4,7 +4,7 @@
 .ShareTitle .time{color: #555;line-height: 40rpx;font-size: 24rpx;display: inline-block;margin-left: 20rpx;margin-top: 26rpx;}
 .ShareTitle .time text{background-color: #555;border-radius: 10rpx;height: 40rpx;color: #FFF;padding: 6rpx 10rpx;margin-right: 10rpx;}
 
-.goods{ overflow: hidden; padding: 20rpx 30rpx; position: relative;}
+.goods{ overflow: hidden; padding: 20rpx 30rpx; position: relative;background-color: #fafafa;}
 .goods .pic{ width: 140rpx; height: 140rpx; float: left; margin-right: 30rpx;}
 .goods .name{ text-overflow: ellipsis;display: -webkit-box;-webkit-line-clamp: 3;-webkit-box-orient: vertical;overflow: hidden;  color: #4a5259; font-size: 26rpx; height: 100rpx; line-height: 1.4;}
 .goods .type{ background: #37c4a4; display: inline-block; line-height: 30rpx; vertical-align: middle; padding: 0 10rpx;  height: 30rpx; color: #fff; text-align: center; margin-right: 10rpx; text-transform: uppercase; border-radius: 50rpx;}
@@ -14,12 +14,12 @@
 .goods .attr{ color: #888;font-size: 24rpx;}
 .goods .ctype{ background: rgba(255, 92, 88, 0.2);  display: inline-block;padding: 2rpx 6rpx;color: #ff5c58; text-align: center; margin-left: 10rpx; height: 24rpx; overflow: hidden; font-size: 24rpx;  vertical-align: middle; line-height: 23rpx; position: relative; top: -1px; }
  
-.group-list{padding: 0 30rpx;background: #FFF;padding-bottom: 36rpx;margin-bottom: 20rpx;}
+.group-list{padding: 0 30rpx;background: #FFF;margin-bottom: 20rpx;}
 .group-list .title{font-size: 26rpx;color: #555;padding: 35rpx 0;}
 .group-list .title.red{color: #FF5C58;}
 .group-list .title text{color: #ff5c58;}
 .group-list .list{margin: 0 -14rpx;overflow: hidden;}
-.group-list .list .list-item{padding: 0 14rpx;float: left;}
+.group-list .list .list-item{padding: 0 14rpx;float: left;margin-bottom: 14rpx;}
 .group-list .list .list-item image{width: 90rpx;height: 90rpx;border-radius: 50%;}
 
 .GroupBuyText{text-align: center;color: #bbb;font-size: 24rpx;padding: 30rpx 0;background-color: #FFF;margin-bottom: 20rpx;}
@@ -44,4 +44,4 @@
 .Group-btn.left{margin-left: 144rpx;}
 .Group-btn.gray{background-color: #bbbbbb;}
 
-canvas{position: fixed;bottom: -300px;}
+canvas{position: fixed;left: -750px;}

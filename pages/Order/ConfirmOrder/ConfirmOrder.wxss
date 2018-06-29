@@ -56,9 +56,9 @@
 .floattotal .allselect .icon{position: relative;top: -2px;display: inline-block; width: 36rpx;height: 36rpx;margin-right: 20rpx;vertical-align: middle;border-radius: 100%;background: url(http://www.kzj365.com/mini_program/images/successicon.png) no-repeat center center #ddd;background-size: 100%;}
 .floattotal .allselect.on{ color: #3cc6a6;}
 .floattotal .allselect.on .icon{ background-color: #3cc6a6;}
-.floattotal .info{line-height: 1.2; float: right;margin-top: 20rpx;text-align: right;}
-.floattotal .info .price{font-size: 20rpx;font-weight: 700; color: #ff5c58;}
-.floattotal .info .price .n{ font-size: 30rpx;}
+.floattotal .info{line-height: 1.2; float: right;margin-top: 16rpx;text-align: right;}
+.floattotal .info .price{color: #ff5c58; font-size: 22rpx; font-weight: 700;}
+.floattotal .info .price .n{ font-size: 34rpx;}
 .floattotal .buy-btn{font-weight: 700;line-height: 98rpx; float: right;width: 286rpx;height: 98rpx;margin-left: 20rpx;text-align: center;color: #fff;background: #ff5c58;}
 
 .floattotal .free{ font-size: 20rpx;}

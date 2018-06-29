@@ -76,8 +76,7 @@
     <view class='buy-btn' wx:if="{{PayWay == 2}}" bindtap="ConfirmOrder">立即支付</view>
     <view class='buy-btn' wx:if="{{PayWay == 1}}" bindtap="ConfirmOrder">提交订单</view>
     <view class='info'>
-        <view>总计：
-            <text class='price'>¥<text class='n'>{{Filter.toFixed(OrderData.totalPrice)}}</text>
+        <view>总计：<text class='price'>¥ <text class='n'>{{Filter.toFixed(OrderData.totalPrice)}}</text>
             </text>
         </view>
         <text class='free' wx:if="{{!OrderData.freeshipping}}">（包含快递费10元）</text>
