@@ -31,13 +31,6 @@ Page({
     onReady() {
         this.search = this.selectComponent("#search");
     },
-    /**
-     * 页面相关事件处理函数--监听用户下拉动作
-     * 测试用
-     */
-    onPullDownRefresh() {
-        this.GetHomeData();
-    },
     //导航菜单事件响应
     IndexCategroyTap(e) {
         let _actid = e.currentTarget.dataset.actid;

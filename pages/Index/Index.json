@@ -1,5 +1,4 @@
 {
-    "enablePullDownRefresh": true,
     "usingComponents":
     {
         "search": "/pages/Common/Search/Search"
