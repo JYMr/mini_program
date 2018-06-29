@@ -76,12 +76,18 @@
                     <view class='name'>
                         <template is="TypeIcon" data="{{type: item.goodsType}}" />{{item.goodsTitle}} {{item.goodsSpec}}</view>
 
-                    <text class='price' wx:if="{{item.combinationType == 1}}">￥<text class='n'>{{Filter.toFixed(item.combinationPrice)}}</text></text>
-                    <text class='price' wx:if="{{item.combinationType == 2}}">￥<text class='n'>{{Filter.toFixed(item.goodsPrice)}}</text></text>
+                    <block wx:if="{{OrderData.orderType == 1}}">
+                        <text class='price' wx:if="{{item.combinationType == 1}}">￥<text class='n'>{{Filter.toFixed(item.combinationPrice)}}</text></text>
+                        <text class='price' wx:if="{{item.combinationType == 2}}">￥<text class='n'>{{Filter.toFixed(item.goodsPrice)}}</text></text>
+                    </block>
+                    <block wx:else>
+                        <text class='price'>￥<text class='n'>{{Filter.toFixed(item.goods_purchase_price)}}</text></text>
+                    </block>
 
                     <text class='attr' wx:if="{{item.goodsDeno}}">/1{{item.goodsDeno}}</text>
                     <text class='ctype' wx:if="{{item.combinationType == 1}}">疗程装</text>
                     <text class='ctype' wx:if="{{OrderData.payWay == 1}}">货到付款</text>
+                    <text class='ctype' wx:if="{{OrderData.orderType == 2 && OrderData.people_number != null}}">{{OrderData.people_number}}人团</text>
                     <text class='nums'>x{{item.goodsInfoNum}}</text>
                 </view>
             </block>
