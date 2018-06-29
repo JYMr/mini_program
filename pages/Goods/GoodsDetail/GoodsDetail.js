@@ -20,6 +20,7 @@ Page({
         goodsnavtop: 0, //tab距离顶部的距离
         goodsnavbool: false, //tab是否浮动
         DefaultImage: '', //默认底图
+        isredpoint: false,//加入购物车红点反馈
         canIUse: wx.canIUse('button.open-type.getUserInfo'),
         hasUserInfo: false
     },
@@ -201,7 +202,7 @@ Page({
                     title: '加入购物车成功'
                 });
                 this.setData({
-                    editMode: false
+                    isredpoint: true
                 });
 
                 //加入购物车成功后默认设置勾选
@@ -230,6 +231,10 @@ Page({
                 this.Dialog.ShowDialog({
                     type: 'Message',
                     title: '加入清单成功'
+                });
+                
+                this.setData({
+                    isredpoint: true
                 });
 
                 //加入清单成功后默认设置勾选

@@ -30,12 +30,10 @@
     </view>
     <view class='price-item'>
         <text class='price'>
-            <text>¥</text>
-            <text class='nums'>{{Filter.toFixed(goodsinfo.goodsPrice)}}</text>
+            <text>¥</text>  <text class='nums'>{{Filter.toFixed(goodsinfo.goodsPrice)}}</text>
         </text>
         <text class='market'>
-            <text>¥</text>
-            <text class='nums'>{{Filter.toFixed(goodsinfo.goodsMarketPrice)}}</text>
+            <text>¥</text>  <text class='nums'>{{Filter.toFixed(goodsinfo.goodsMarketPrice)}}</text>
         </text>
     </view>
     <view class='detail'>{{goodsinfo.goodsSubtitle}}</view>
@@ -121,6 +119,7 @@
             <view>购物车</view>
         </navigator>
         <navigator url='/pages/Goods/Reservation/Reservation' class='list' hover-class='none' wx:else>
+            <view class="redpoint"></view>
             <view class='icon'></view>
             <view>预定清单</view>
         </navigator>
@@ -131,6 +130,7 @@
         <view class='buy' bindtap="HandleModal" data-type="Buy">立即购买</view>
         <view class='addcart' bindtap="HandleModal" data-type="Cart">加入购物车</view>
         <navigator url='/pages/Cart/Cart' open-type="switchTab" class='cart' hover-class='none'>
+            <view class="redpoint" wx:if="{{isredpoint}}"></view>
             <view class='icon'></view>
             <view>购物车</view>
         </navigator>
@@ -141,6 +141,7 @@
         <view class='buy' bindtap="HandleModal" data-type="RxBuy">立即预定</view>
         <view class='addcart green' bindtap="HandleModal" data-type="RxCart">加入预定清单</view>
         <navigator url='/pages/Goods/Reservation/Reservation' class='list' hover-class='none'>
+            <view class="redpoint" wx:if="{{isredpoint}}"></view>
             <view class='icon'></view>
             <view>预定清单</view>
         </navigator>
