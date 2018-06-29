@@ -31,6 +31,15 @@ Page({
     /**
      * 页面上拉触底事件的处理函数
      */
+    onShow() {
+        //判断是否存在需要拼团提示
+        let PaySuccessGroupId = app.globalData.PaySuccessGroupId;
+
+        //取消提示
+        if (PaySuccessGroupId) {
+            app.globalData.PaySuccessGroupId = '';
+        }
+    },
     onReachBottom() {
         if (this.data.isEnd) return;
         this.GetGroupList();
