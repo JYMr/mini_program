@@ -1,20 +1,23 @@
 <!--pages/index.wxml-->
 <!-- 搜索 -->
 <wxs module="Filter" src="../Common/filter/filter.wxs"></wxs>
+<view class='logo'><image mode='widthFix' src='http://www.kzj365.com/mini_program/images/logo_index.png' lazy-load="true"></image></view>
 <search id='search' inputValue='{{inputValue}}' classtype='search-index-out' clickable="true"></search>
 <!-- 菜单 -->
 <block wx:if="{{!isLoading}}">
     <view class='navmeau'>
-        <view class='navli' bindtap="IndexCategroyTap" data-type="0">
-            <image class='icon' src='http://www.kzj365.com/mini_program/images/navmeauicon01.png' lazy-load="true"></image>
-            <text>分类</text>
-        </view>
-        <block wx:for='{{navmeau}}' wx:key="navmeau_{{index}}">
-            <view class='navli' bindtap="IndexCategroyTap" data-actid="{{item.act_id}}" data-oneid="{{item.cat_id_one}}" data-twoid="{{item.cat_id_two}}" data-type="{{item.act_type}}">
-                <image class='icon' src='{{item.icon_url}}' lazy-load="true"></image>
-                <text>{{item.act_name}}</text>
+        <view class="navlist">
+            <view class='navli' bindtap="IndexCategroyTap" data-type="0">
+                <image class='icon' src='http://www.kzj365.com/mini_program/images/navmeauicon01.png' lazy-load="true"></image>
+                <text>分类</text>
             </view>
-        </block>
+            <block wx:for='{{navmeau}}' wx:key="navmeau_{{index}}">
+                <view class='navli' bindtap="IndexCategroyTap" data-actid="{{item.act_id}}" data-oneid="{{item.cat_id_one}}" data-twoid="{{item.cat_id_two}}" data-type="{{item.act_type}}">
+                    <image class='icon' src='{{item.icon_url}}' lazy-load="true"></image>
+                    <text>{{item.act_name}}</text>
+                </view>
+            </block>
+        </view>
     </view>
 </block>
 <!-- 加载过程展示的空白模块 -->

@@ -10,8 +10,8 @@
 .search .clear-btn::after{ content: ''; width: 50rpx; height: 50rpx; background: url(http://www.kzj365.com/mini_program/images/closeicon2.png) no-repeat center center #37c4a4; background-size: 19rpx;border-radius: 100%; display: inline-block;}
 .search-blank{ height:150rpx;}
 
-.search-index-out .search-box{ height: 300rpx; position: relative;}
-.search-index-out .search{ width: 510rpx;}
+.search-index-out .search-box{ height: 196rpx; position: relative;}
+.search-index-out .search{ width: 630rpx;}
 .search-index-out .search-blank{ height:0;}
 
 .errrocode{ text-align: center; color: #222; font-size: 30rpx; padding: 50rpx 0;}

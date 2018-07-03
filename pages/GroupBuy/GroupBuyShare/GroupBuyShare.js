@@ -403,12 +403,7 @@ Page({
 
 
         //开始下载图片
-        DrawImageList(
-            /*(arr) => {
-                        //绘制商品主图和用户头像
-                        DrawImageList(arr, callback);
-                    }*/
-        );
+        DrawImageList();
 
     },
     ErrorImage(e) {

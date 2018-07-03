@@ -1,5 +1,8 @@
 /**index.wxss**/
+.logo{ text-align: center; background: #37c4a4; padding-top: 20rpx;}
+.logo image{ width: 290rpx;height: 108rpx; }
 .navmeau{display: flex; overflow: hidden;margin-bottom: 20rpx; background: #fff;justify-content: space-around;align-items: center;}
+.navmeau .navlist{width: 706rpx;}
 .navmeau .navli{font-size: 26rpx;float: left;box-sizing: border-box;width: 25%;padding: 36rpx 0 28rpx;text-align: center; color: #888;}
 .navmeau .navli .icon{display: block; width: 100rpx;height: 100rpx;margin: 0 auto 15rpx;}
 .navmeau .navli .icon01{ background: url(http://www.kzj365.com/mini_program/images/navmeauicon01.png) no-repeat 0 0;background-size: 100%;}

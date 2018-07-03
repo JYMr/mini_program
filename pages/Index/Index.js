@@ -8,6 +8,8 @@ Page({
         collage: [], //拼团
         recommendgoods: [], //推荐单品
         isLoading: true,
+        searchTop: 0,
+        titleStatus: false,
         DefaultImage: ''
     },
     onLoad() {
@@ -15,7 +17,7 @@ Page({
         this.setData({
             DefaultImage: app.globalData.defaultImg
         });
-        
+
         let token = wx.getStorageSync('token') || '';
 
         if (token) {
@@ -30,6 +32,47 @@ Page({
     },
     onReady() {
         this.search = this.selectComponent("#search");
+    },
+    onShow() {
+        this.getgoodsnavTop();
+    },
+    getgoodsnavTop() {
+        var that = this;
+        var query = wx.createSelectorQuery()
+        query.select('#search').boundingClientRect(function(res) {
+            console.log(res)
+            that.setData({
+                searchTop: res.top
+            });
+        }).exec();
+    },
+    onPageScroll: function(e) {
+        console.log(e.scrollTop)
+        // 获取滚动条当前位置
+        if (e.scrollTop > this.data.searchTop) {
+            //设置标题
+            this.SetTitle(true);
+        } else {
+            this.SetTitle(false);
+        }
+    },
+    SetTitle(flag) {
+        if (!this.data.titleStatus && flag) {
+            console.log('123')
+            this.setData({
+                titleStatus: true
+            });
+            wx.setNavigationBarTitle({
+                title: '康之家智慧药房'
+            });
+        } else if (this.data.titleStatus && !flag) {
+            this.setData({
+                titleStatus: false
+            });
+            wx.setNavigationBarTitle({
+                title: ''
+            });
+        }
     },
     //导航菜单事件响应
     IndexCategroyTap(e) {
