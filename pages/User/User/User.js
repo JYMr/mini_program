@@ -14,7 +14,7 @@ Page({
     },
     onLoad: function(options) {
 
-          //取消红点
+        //取消红点
         wx.hideTabBarRedDot({
             index: 3
         });
@@ -25,7 +25,7 @@ Page({
         });
 
     },
-    onShow(){
+    onShow() {
         this.GetOrderNum();
     },
     onReady() {
@@ -39,9 +39,11 @@ Page({
         });
         userController.getUserData().then(res => {
             if (res.done) {
-                this.setData({
-                    OrderNum: res.result
-                });
+                if (res.result != null) {
+                    this.setData({
+                        OrderNum: res.result
+                    });
+                }
             }
             wx.hideLoading();
         });

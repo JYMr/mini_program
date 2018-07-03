@@ -25,7 +25,7 @@
     </block>
 </view>
 
-<view class="empty" wx:if="{{GroupBuyData.length == 0 && !RequestError && isLoading}}">购物车暂无商品</view>
+<view class="empty" wx:if="{{GroupBuyData.length == 0 && !RequestError && isLoading}}">暂无团购活动</view>
 
 <view class="loaderror" wx:if="{{RequestError}}">
   <view>页面加载失败</view>
