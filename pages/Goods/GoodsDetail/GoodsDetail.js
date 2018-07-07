@@ -350,7 +350,7 @@ Page({
         });
 
         //商品为Rx，并商品无有关联规格时，直接跳过规格弹窗确认步骤
-        if (this.data.spec.speclists.length == 0 && this.data.goodsinfo.goodsType == 0) {
+        if (this.data.spec.speclists.length == 0 && this.data.goodsinfo.goodsType == 0 && this.data.ModalMode === 'RxCart') {
             //无关联规格，直接加入预定清单
             this.ModalConfirm();
         } else {
