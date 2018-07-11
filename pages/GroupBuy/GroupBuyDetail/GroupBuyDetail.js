@@ -18,6 +18,7 @@ Page({
         goodsnavbool: false, //tab是否浮动
         DefaultImage: '', //默认底图
         GoodsDefaulteImage: '', //主图默认底图
+        GroupListTime: '',//推荐列表时间计时器
     },
     /**
      * 生命周期函数--监听页面加载
@@ -126,6 +127,12 @@ Page({
     onReady: function() {
         this.Dialog = this.selectComponent('#Dialog');
         this.MenuCustomer = this.selectComponent('#MenuCustomer');
+    },
+    onHide(){
+        if(this.data.GroupListTime){
+            //离开页面时，停止计时器
+            clearInterval(this.data.GroupListTime);
+        }
     },
     scrollTop: function() {
         var that = this;
@@ -241,7 +248,8 @@ Page({
                 }
                 this.setData({
                     GroupList: _TempGroupList,
-                    serviceTime: this.data.serviceTime + 1
+                    serviceTime: this.data.serviceTime + 1,
+                    GroupListTime: grouptime
                 })
             }, 1000);
         }
