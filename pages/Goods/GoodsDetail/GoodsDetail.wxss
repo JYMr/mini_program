@@ -6,8 +6,8 @@ page{background:#f4f4f4;padding-bottom: 98rpx; color: #555;font-size: 28rpx;}
 .goodsnav .hover::after{ content: ''; height: 0; border-bottom: #37c4a4 6rpx solid; width:60rpx; position: absolute; bottom: 0; left: 0;right: 0; margin: auto; display: inline-block;}
 .goodsnavfixed{ position: fixed; top: 0;left: 0; right: 0; z-index: 500; box-shadow: rgba(0,0, 0, 0.1) 1px 1px 3px;}
 .goodsnav-blank{ height: 98rpx;}
-.goodsilder{ overflow: hidden; text-align: center; height: 584rpx; position: relative; background: #fff;  }
-.goodsilder image{width: 464rpx; height: 464rpx; position: absolute; left: 0; right: 0;top: 0; bottom: 0; margin: auto; z-index: 100; }
+.goodsilder{ overflow: hidden; text-align: center; height: 750rpx; position: relative; background: #fff;  }
+.goodsilder image{width: 100%;  position: absolute; left: 0; right: 0;top: 0; bottom: 0; margin: auto; z-index: 100; }
 .goodsilder .wx-swiper-dot{width: 12rpx;display: inline-flex;height: 12rpx;vertical-align: sub; margin-left: 5rpx;margin-right: 5rpx;background:#ddd;border-radius: 100%; bottom: 0;}
 .goodsilder .wx-swiper-dot::before{ content: ''; flex-grow: 1;} 
 .goodsilder .wx-swiper-dot-active::before{ content: ''; flex-grow: 1; background:#37c4a4; border-radius: 100%;}

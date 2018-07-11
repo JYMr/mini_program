@@ -7,7 +7,7 @@
 <swiper class="goodsilder" indicator-dots="true" autoplay="true" interval="5000" duration="500">
     <block wx:for="{{goodsinfo.goodsImages}}" wx:for-item="item" wx:for-index='index' wx:key="slider_{{index}}">
         <swiper-item>
-            <image src="{{item.imageArtworkName || DefaultImage}}" binderror="errImg" data-obj="goodsinfo.goodsImages[{{index}}].imageArtworkName" class="slide-image" lazy-load="true"/>
+            <image src="{{item.imageArtworkName || DefaultImage}}" binderror="errImg" data-obj="goodsinfo.goodsImages[{{index}}].imageArtworkName" class="slide-image" lazy-load="true" mode="widthFix"/>
         </swiper-item>
     </block>
 </swiper>
@@ -216,7 +216,7 @@
 
 <!-- 从分享页进入，返回首页悬浮按钮 -->
 <navigator class="find-index" open-type="switchTab" url="/pages/Index/Index" wx:if="{{isShare}}" hover-class="none">
-    <image src="http://www.kzj365.com/mini_program/images/find_index.png" lazy-load="true"></image>
+    <image src="http://www.kzj365.com/mini_program/images/find_index_icon.png" lazy-load="true"></image>
 </navigator>
 
 <!-- 页脚 -->

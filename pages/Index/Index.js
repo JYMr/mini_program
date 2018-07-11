@@ -40,7 +40,6 @@ Page({
         var that = this;
         var query = wx.createSelectorQuery()
         query.select('#search').boundingClientRect(function(res) {
-            console.log(res)
             that.setData({
                 searchTop: res.top
             });
