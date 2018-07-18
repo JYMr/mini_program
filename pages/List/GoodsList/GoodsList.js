@@ -66,7 +66,14 @@ Page({
             });
             return;
         }
-        this.GetListData();
+         //关键词
+        if (this.data.keyword) {
+            this.GetListData();
+        }
+        //分类
+        if (this.data.categoryId) {
+            this.GetCategoryList();
+        }
     },
     //获取搜索列表
     GetListData() {

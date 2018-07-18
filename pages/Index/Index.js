@@ -46,7 +46,6 @@ Page({
         }).exec();
     },
     onPageScroll: function(e) {
-        console.log(e.scrollTop)
         // 获取滚动条当前位置
         if (e.scrollTop > this.data.searchTop) {
             //设置标题
